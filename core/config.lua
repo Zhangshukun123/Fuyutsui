@@ -746,7 +746,7 @@ fu.EnumPowerType = {
     ["SHADOW_ORBS"] = 28,
 }
 -- 专精范围
-fu.rangeSpecID = {
+Fuyutsui.rangeSpecID = {
     -- Death Knight
     [250] = 15,  -- 鲜血
     [251] = 15,  -- 冰霜

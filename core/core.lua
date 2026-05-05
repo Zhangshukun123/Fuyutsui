@@ -5,22 +5,27 @@ local AC = LibStub("AceConfig-3.0") -- AceConfig-3.0 是 Ace3 库中的一个模
 local ACD = LibStub("AceConfigDialog-3.0")
 
 Fuyutsui = {
-    state = {
-        className = className,
-        classFilename = classFilename,
-        classId = classId,
-    },
+    state = {},
     blocks = {},
     target = {},
     nameplate = {},
     group = {
         list = {},
     },
+    defaults = {
+        profile = {
+            someInput = "",
+        },
+        char = {
+            level = 0,
+            aoeMode = 0,
+            cooldowns = 0,
+            dpsMode = 0,
+        },
+    },
 }
 
 function Fuyutsui:OnInitialize()
-    self.state = {}
-    self.blocks = {}
     -- 使用“默认”配置文件，而非特定角色的配置文件。
     -- https://www.wowace.com/projects/ace3/pages/api/ace-db-3-0
     self.db = LibStub("AceDB-3.0"):New("FuyutsuiADB", self.defaults, true)
@@ -38,9 +43,12 @@ function Fuyutsui:OnInitialize()
 
     self:GetCharacterInfo()
     self:loadPlayerBlocks(self.state.specIndex)
+    self.Initialize = true
 end
 
 function Fuyutsui:OnEnable()
+    self:GetCharacterSpecInfo()
+
     self:RegisterEvent("ZONE_CHANGED")
     self:RegisterEvent("ZONE_CHANGED_INDOORS")
     self:RegisterEvent("PLAYER_ENTERING_WORLD")
@@ -92,33 +100,9 @@ function Fuyutsui:OnEnable()
     self:RegisterEvent("SPELLS_CHANGED")
     self:RegisterEvent("ACTIONBAR_HIDEGRID")
     self:RegisterEvent("ACTIONBAR_SHOWGRID")
-
-    self:GetCharacterInfo()
-
     if self.StartFrameUpdates then
         self:StartFrameUpdates()
     end
-end
-
--- 首次登录获取角色信息
-function Fuyutsui:GetCharacterInfo()
-    self.db.char.level = UnitLevel("player")
-    self.state.name = UnitName("player")
-    self.state.GUID = UnitGUID("player")
-    self.state.className = className
-    self.state.classFilename = classFilename
-    self.state.classId = classId
-    self.state.specIndex = C_SpecializationInfo.GetSpecialization()
-    self.state.classColor = RAID_CLASS_COLORS[classFilename].colorStr
-end
-
--- 获取玩家专精信息
-function Fuyutsui:GetCharacterSpecInfo()
-    local specID, specName, _, _, role = C_SpecializationInfo.GetSpecializationInfo(self.state.specIndex)
-    self.state.specID = specID
-    self.state.specName = specName
-    self.state.specRole = role
-    self.state.specRange = fu.rangeSpecID[specID]
 end
 
 local function CharCfg()

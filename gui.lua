@@ -2,18 +2,6 @@ local addonName, fu = ...
 local AC = LibStub("AceConfig-3.0")
 local ACD = LibStub("AceConfigDialog-3.0")
 
-Fuyutsui.defaults = {
-    profile = {
-        someInput = "",
-    },
-    char = {
-        level = 0,
-        --- 原 SavedVariablesPerCharacter: FuyutsuiDB，现并入 AceDB char
-        aoeMode = 0,
-        cooldowns = 0,
-        dpsMode = 0,
-    },
-}
 
 local function CharCfg()
     return Fuyutsui.db and Fuyutsui.db.char
