@@ -120,6 +120,7 @@ def _priest_discipline_logic(state_dict):
             驱散单位 = dispel_unit_magic
     if 驱散单位 is None:
         驱散单位 = dispel_unit_disease
+    
     if 施法技能 == 30:
         无救赎数90 = int(无救赎数90 - 5)
         无救赎数阈值 = int(无救赎数阈值 - 5)

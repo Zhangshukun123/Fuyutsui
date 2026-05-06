@@ -1197,7 +1197,6 @@ function Fuyutsui:UNIT_SPELLCAST_CHANNEL_STOP(_, unitTarget, castGUID, spellID, 
     state.castTargetName = nil
     state.castTargetIndex = 0
     self:updatePlayerCasting(0)
-    -- updateTeaCount2(spellID)
 end
 
 -- 蓄力状态
