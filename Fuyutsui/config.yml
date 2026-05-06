@@ -567,6 +567,8 @@ state:
 
 8: # 法师
   keymap: "mage.yml"
+  1:
+  2:
   3:
     施法技能: {step: 22, type: "int" }
     敌人人数: {step: 23, type: "int" }

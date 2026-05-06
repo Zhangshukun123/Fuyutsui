@@ -1,162 +1,168 @@
 local addon, fu = ...
 if fu.classId ~= 5 then return end
 
-fu.HarmfulSpellId, fu.HelpfulSpellId = 585, 2061
+Fuyutsui.ClassBlocks = {
+    [1] = {
+        [1]  = { type = "block", name = "锚点" },
+        [2]  = { type = "block", name = "职业" },
+        [3]  = { type = "block", name = "专精" },
+        [4]  = { type = "block", name = "有效性" },
+        [5]  = { type = "block", name = "战斗" },
+        [6]  = { type = "block", name = "移动" },
+        [7]  = { type = "block", name = "施法" },
+        [8]  = { type = "block", name = "引导" },
+        [9]  = { type = "block", name = "蓄力" },
+        [10] = { type = "block", name = "蓄力层数" },
+        [11] = { type = "block", name = "生命值" },
+        [12] = { type = "block", name = "能量值" },
+        [13] = { type = "block", name = "一键辅助" },
+        [14] = { type = "block", name = "法术失败" },
+        [15] = { type = "block", name = "目标类型" },
+        [16] = { type = "block", name = "队伍类型" },
+        [17] = { type = "block", name = "队伍人数" },
+        [18] = { type = "block", name = "首领战" },
+        [19] = { type = "block", name = "难度" },
+        [20] = { type = "block", name = "英雄天赋" },
 
-fu.heroSpell = {
-    [1248423] = 1, -- 神谕者
-    [263165] = 2,  -- 虚空编织者
-    [447444] = 2,  -- 虚空编织者
-    [120517] = 3,  -- 执政官
-    [102644] = 3,  -- 执政官
-}
+        [21] = { type = "block", name = "施法技能" },
+        [22] = { type = "block", name = "施法目标" },
+        [23] = { type = "block", name = "目标生命值" },
 
-fu.spellCooldown = {
-    [8122] = { index = 31, name = "心灵尖啸" },
-    [32375] = { index = 32, name = "群体驱散" },
-    [527] = { index = 33, name = "纯净术" },
-    [19236] = { index = 34, name = "绝望祷言" },
-    [232633] = { index = 35, name = "奥术洪流" },
-}
+        [24] = { type = "aura", name = "虚空之盾", auraName = "虚空之盾", showKey = "remaining" },
+        [25] = { type = "aura", name = "圣光涌动", auraName = "圣光涌动", showKey = "remaining" },
+        [26] = { type = "aura", name = "涌动层数", auraName = "圣光涌动", showKey = "count" },
+        [27] = { type = "aura", name = "熵能裂隙", auraName = "熵能裂隙", showKey = "remaining" },
+        [28] = { type = "aura", name = "暗影愈合", auraName = "暗影愈合", showKey = "remaining" },
+        [29] = { type = "aura", name = "暗影层数", auraName = "暗影愈合", showKey = "count" },
+        [30] = { type = "aura", name = "福音层数", auraName = "福音", showKey = "count" },
 
-function fu.updateSpecInfo()
-    local specIndex = C_SpecializationInfo.GetSpecialization()
-    fu.powerType = nil
-    fu.blocks = nil
-    fu.countBars = nil
-    fu.group_blocks = nil
-    fu.assistant_spells = nil
-    if specIndex == 1 then
-        fu.powerType = "MANA"
-        fu.blocks = {
-            ["施法技能"] = 22,
-            ["施法目标"] = 23,
-            ["目标生命值"] = 46,
-            auras = {
-                ["虚空之盾"] = {
-                    index = 24,
-                    auraRef = fu.Auras["虚空之盾"],
-                    showKey = "remaining",
-                },
-                ["圣光涌动"] = {
-                    index = 25,
-                    auraRef = fu.Auras["圣光涌动"],
-                    showKey = "remaining",
-                },
-                ["涌动层数"] = {
-                    index = 26,
-                    auraRef = fu.Auras["圣光涌动"],
-                    showKey = "count",
-                },
-                ["熵能裂隙"] = {
-                    index = 27,
-                    auraRef = fu.Auras["熵能裂隙"],
-                    showKey = "remaining",
-                },
-                ["暗影愈合"] = {
-                    index = 28,
-                    auraRef = fu.Auras["暗影愈合"],
-                    showKey = "remaining",
-                },
-                ["暗影层数"] = {
-                    index = 29,
-                    auraRef = fu.Auras["暗影愈合"],
-                    showKey = "count",
-                },
-                ["福音层数"] = {
-                    index = 30,
-                    auraRef = fu.Auras["福音"],
-                    showKey = "count",
-                },
-            },
-        }
+        [31] = { type = "spell", spellId = 8122, name = "心灵尖啸" },
+        [32] = { type = "spell", spellId = 32375, name = "群体驱散" },
+        [33] = { type = "spell", spellId = 527, name = "纯净术" },
+        [34] = { type = "spell", spellId = 19236, name = "绝望祷言" },
+        [35] = { type = "spell", spellId = 232633, name = "奥术洪流" },
 
-        fu.spellCooldown[47540] = { index = 36, name = "苦修", charge = 37 }
-        fu.spellCooldown[194509] = { index = 38, name = "真言术：耀", charge = 39 }
-        fu.spellCooldown[17] = { index = 40, name = "真言术：盾" }
-        fu.spellCooldown[62618] = { index = 41, name = "真言术：障" }
-        fu.spellCooldown[421453] = { index = 42, name = "终极苦修" }
-        fu.spellCooldown[472433] = { index = 43, name = "福音" }
-        fu.spellCooldown[8092] = { index = 44, name = "心灵震爆" }
-        fu.spellCooldown[32379] = { index = 45, name = "暗言术：灭" }
+        [36] = { type = "spell", spellId = 47540, name = "苦修" },
+        [37] = { type = "spell", spellId = 47540, name = "苦修", charge = true },
+        [38] = { type = "spell", spellId = 194509, name = "真言术：耀" },
+        [39] = { type = "spell", spellId = 194509, name = "真言术：耀", charge = true },
+        [40] = { type = "spell", spellId = 17, name = "真言术：盾" },
+        [41] = { type = "spell", spellId = 62618, name = "真言术：障" },
+        [42] = { type = "spell", spellId = 421453, name = "终极苦修" },
+        [43] = { type = "spell", spellId = 472433, name = "福音" },
+        [44] = { type = "spell", spellId = 8092, name = "心灵震爆" },
+        [45] = { type = "spell", spellId = 32379, name = "暗言术：灭" },
 
-        fu.group_blocks = {
-            unit_start = 70,
-            block_num = 5,
+        [70] = {
+            type = "group",
+            num = 5,
             healthPercent = 1,
             role = 2,
             dispel = 3,
-            aura = {
+            auras = {
                 [4] = { 194384 },      -- 救赎, 194384
                 [5] = { 17, 1253593 }, -- 真言术：盾, 虚空护盾, 17, 1253593
             },
-        }
-    elseif specIndex == 2 then
-        fu.powerType = "MANA"
-        fu.blocks = {
-            ["施法技能"] = 22,
-            ["施法目标"] = 23,
-            auras = {
-                ["织光者"] = {
-                    index = 25,
-                    auraRef = fu.Auras["织光者"],
-                    showKey = "remaining",
-                },
-                ["织光者层数"] = {
-                    index = 26,
-                    auraRef = fu.Auras["织光者"],
-                    showKey = "count",
-                },
-                ["圣光涌动"] = {
-                    index = 27,
-                    auraRef = fu.Auras["圣光涌动"],
-                    showKey = "remaining",
-                },
-                ["祈福"] = {
-                    index = 28,
-                    auraRef = fu.Auras["祈福"],
-                    showKey = "remaining",
-                },
-            },
-        }
+        },
+    },
+    [2] = {
+        [1]  = { type = "block", name = "锚点" },
+        [2]  = { type = "block", name = "职业" },
+        [3]  = { type = "block", name = "专精" },
+        [4]  = { type = "block", name = "有效性" },
+        [5]  = { type = "block", name = "战斗" },
+        [6]  = { type = "block", name = "移动" },
+        [7]  = { type = "block", name = "施法" },
+        [8]  = { type = "block", name = "引导" },
+        [9]  = { type = "block", name = "蓄力" },
+        [10] = { type = "block", name = "蓄力层数" },
+        [11] = { type = "block", name = "生命值" },
+        [12] = { type = "block", name = "能量值" },
+        [13] = { type = "block", name = "一键辅助" },
+        [14] = { type = "block", name = "法术失败" },
+        [15] = { type = "block", name = "目标类型" },
+        [16] = { type = "block", name = "队伍类型" },
+        [17] = { type = "block", name = "队伍人数" },
+        [18] = { type = "block", name = "首领战" },
+        [19] = { type = "block", name = "难度" },
+        [20] = { type = "block", name = "英雄天赋" },
 
-        fu.spellCooldown[33076] = { index = 36, name = "愈合祷言", charge = 37 }
-        fu.spellCooldown[2050] = { index = 38, name = "圣言术：静", charge = 39 }
-        fu.spellCooldown[88625] = { index = 40, name = "圣言术：罚" }
-        fu.spellCooldown[200183] = { index = 41, name = "神圣化身" }
-        fu.spellCooldown[14914] = { index = 42, name = "神圣之火" }
-        fu.spellCooldown[120517] = { index = 43, name = "光晕" }
-        fu.spellCooldown[64843] = { index = 44, name = "神圣赞美诗" }
+        [22] = { type = "block", name = "施法技能" },
+        [23] = { type = "block", name = "施法目标" },
 
-        fu.group_blocks = {
-            unit_start = 70,
-            block_num = 5,
+        [25] = { type = "aura", name = "织光者", auraName = "织光者", showKey = "remaining" },
+        [26] = { type = "aura", name = "织光者层数", auraName = "织光者", showKey = "count" },
+        [27] = { type = "aura", name = "圣光涌动", auraName = "圣光涌动", showKey = "remaining" },
+        [28] = { type = "aura", name = "祈福", auraName = "祈福", showKey = "remaining" },
+
+        [31] = { type = "spell", spellId = 8122, name = "心灵尖啸" },
+        [32] = { type = "spell", spellId = 32375, name = "群体驱散" },
+        [33] = { type = "spell", spellId = 527, name = "纯净术" },
+        [34] = { type = "spell", spellId = 19236, name = "绝望祷言" },
+        [35] = { type = "spell", spellId = 232633, name = "奥术洪流" },
+
+        [36] = { type = "spell", spellId = 33076, name = "愈合祷言" },
+        [37] = { type = "spell", spellId = 33076, name = "愈合祷言" },
+        [38] = { type = "spell", spellId = 2050, name = "圣言术：静" },
+        [39] = { type = "spell", spellId = 2050, name = "圣言术：静" },
+        [40] = { type = "spell", spellId = 88625, name = "圣言术：罚" },
+        [41] = { type = "spell", spellId = 200183, name = "神圣化身" },
+        [42] = { type = "spell", spellId = 14914, name = "神圣之火" },
+        [43] = { type = "spell", spellId = 120517, name = "光晕" },
+        [44] = { type = "spell", spellId = 64843, name = "神圣赞美诗" },
+
+        [70] = {
+            type = "group",
+            num = 5,
             healthPercent = 1,
             role = 2,
             dispel = 3,
-            aura = {
+            auras = {
                 [4] = { 41635 }, -- 愈合祷言, 41635
                 [5] = { 139 },   -- 恢复, 139
             },
-        }
-    elseif specIndex == 3 then
-        fu.powerType = "INSANITY"
-        fu.blocks = {
-        }
-        fu.spellCooldown[8092] = { index = 36, name = "心灵震爆" }
-        fu.spellCooldown[32379] = { index = 37, name = "暗言术：灭" }
-        fu.spellCooldown[263165] = { index = 38, name = "虚空洪流" }
-        fu.spellCooldown[228260] = { index = 39, name = "虚空形态" }
-        fu.spellCooldown[1227280] = { index = 40, name = "触须猛击" }
-        fu.spellCooldown[15286] = { index = 41, name = "吸血鬼的拥抱" }
-        fu.spellCooldown[120644] = { index = 42, name = "光晕" }
-        fu.spellCooldown[1242173] = { index = 43, name = "虚空齐射", forcedKnown = true }
-    end
-end
+        },
 
-function fu.CreateClassMacro()
-    local dynamicSpells = { "苦修", "快速治疗", "真言术：盾", "愈合祷言", "纯净术", "圣言术：静" }
-    local staticSpells = {
+    },
+    [3] = {
+        [1] = { type = "block", name = "锚点" },
+        [2] = { type = "block", name = "职业" },
+        [3] = { type = "block", name = "专精" },
+        [4] = { type = "block", name = "有效性" },
+        [5] = { type = "block", name = "战斗" },
+        [6] = { type = "block", name = "移动" },
+        [7] = { type = "block", name = "施法" },
+        [8] = { type = "block", name = "引导" },
+        [9] = { type = "block", name = "蓄力" },
+        [10] = { type = "block", name = "蓄力层数" },
+        [11] = { type = "block", name = "生命值" },
+        [12] = { type = "block", name = "能量值" },
+        [13] = { type = "block", name = "一键辅助" },
+        [14] = { type = "block", name = "法术失败" },
+        [15] = { type = "block", name = "目标类型" },
+        [16] = { type = "block", name = "队伍类型" },
+        [17] = { type = "block", name = "队伍人数" },
+        [18] = { type = "block", name = "首领战" },
+        [19] = { type = "block", name = "难度" },
+        [20] = { type = "block", name = "英雄天赋" },
+
+        [36] = { type = "spell", spellId = 8092, name = "心灵震爆" },
+        [37] = { type = "spell", spellId = 32379, name = "暗言术：灭" },
+        [38] = { type = "spell", spellId = 263165, name = "虚空洪流" },
+        [39] = { type = "spell", spellId = 228260, name = "虚空形态" },
+        [40] = { type = "spell", spellId = 1227280, name = "触须猛击" },
+        [41] = { type = "spell", spellId = 15286, name = "吸血鬼的拥抱" },
+        [42] = { type = "spell", spellId = 120644, name = "光晕" },
+        [43] = { type = "spell", spellId = 1242173, name = "虚空齐射", forcedKnown = true },
+
+    },
+}
+
+
+Fuyutsui.MacrosList = {
+    dynamicSpells = { "苦修", "快速治疗", "真言术：盾", "愈合祷言", "纯净术", "圣言术：静" },
+    specialSpells = {},
+    staticSpells = {
         [1] = "心灵震爆",
         [2] = "惩击",
         [3] = "暗言术：痛",
@@ -192,7 +198,5 @@ function fu.CreateClassMacro()
         [33] = "真言术：盾",
         [34] = "愈合祷言",
         [35] = "圣言术：静",
-    }
-
-    fu.CreateMacro(dynamicSpells, staticSpells)
-end
+    },
+}

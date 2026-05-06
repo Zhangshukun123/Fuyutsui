@@ -1,167 +1,171 @@
 local _, fu = ...
 if fu.classId ~= 10 then return end
 
-local eventTable = { "SPELL_UPDATE_USES", "PLAYER_ENTERING_WORLD" }
+Fuyutsui.ClassBlocks = {
+    [1] = {
 
-fu.HarmfulSpellId, fu.HelpfulSpellId = 100780, 116670
+        ["countBars1"] = { type = "countBar", name = "疗伤珠", minValue = 0, maxValue = 10, spellId = 322101 },
 
-fu.heroSpell = {
-    [450508] = 1, -- 祥和宗师
-    [450615] = 2, -- 影踪派
-    [443028] = 3, -- 天神御师
-    [123904] = 3, -- 天神御师
-}
+        [1] = { type = "block", name = "锚点" },
+        [2] = { type = "block", name = "职业" },
+        [3] = { type = "block", name = "专精" },
+        [4] = { type = "block", name = "有效性" },
+        [5] = { type = "block", name = "战斗" },
+        [6] = { type = "block", name = "移动" },
+        [7] = { type = "block", name = "施法" },
+        [8] = { type = "block", name = "引导" },
+        [9] = { type = "block", name = "蓄力" },
+        [10] = { type = "block", name = "蓄力层数" },
+        [11] = { type = "block", name = "生命值" },
+        [12] = { type = "block", name = "能量值" },
+        [13] = { type = "block", name = "一键辅助" },
+        [14] = { type = "block", name = "法术失败" },
+        [15] = { type = "block", name = "目标类型" },
+        [16] = { type = "block", name = "队伍类型" },
+        [17] = { type = "block", name = "队伍人数" },
+        [18] = { type = "block", name = "首领战" },
+        [19] = { type = "block", name = "难度" },
+        [20] = { type = "block", name = "英雄天赋" },
 
-function fu.updateSpecInfo()
-    local specIndex = C_SpecializationInfo.GetSpecialization()
-    fu.powerType = nil
-    fu.blocks = nil
-    fu.countBars = nil
-    fu.group_blocks = nil
-    fu.assistant_spells = nil
+        [21] = { type = "block", name = "酒池" },
+        [22] = { type = "block", name = "目标生命值" },
+        [23] = { type = "block", name = "敌人人数" },
 
-    if specIndex == 1 then
-        -- 疗伤珠
-        fu.CreateAutoLayoutBar(0, 10, 322101, eventTable)
-        fu.HarmfulSpellId = 121253
+        [25] = { type = "aura", name = "疗伤珠", auraName = "疗伤珠", showKey = "count" },
+        [26] = { type = "aura", name = "活力苏醒", auraName = "活力苏醒", showKey = "remaining" },
+        [27] = { type = "aura", name = "清空地窖", auraName = "清空地窖", showKey = "remaining" },
 
-        fu.blocks = {
-            ["酒池"] = 21,
-            ["目标生命值"] = 22,
-            ["敌人人数"] = 23,
-            auras = {
-                ["疗伤珠"] = {
-                    index = 25,
-                    auraRef = fu.Auras["疗伤珠"],
-                    showKey = "count",
-                },
-                ["活力苏醒"] = {
-                    index = 26,
-                    auraRef = fu.Auras["活力苏醒"],
-                    showKey = "remaining",
-                },
-                ["清空地窖"] = {
-                    index = 27,
-                    auraRef = fu.Auras["清空地窖"],
-                    showKey = "remaining",
-                },
-            },
+        [31] = { type = "spell", spellId = 121253, name = "醉酿投" },
+        [32] = { type = "spell", spellId = 121253, name = "醉酿投", charge = true },
+        [33] = { type = "spell", spellId = 119582, name = "活血酒" },
+        [34] = { type = "spell", spellId = 119582, name = "活血酒", charge = true },
+        [35] = { type = "spell", spellId = 322507, name = "天神酒" },
+        [36] = { type = "spell", spellId = 322507, name = "天神酒", charge = true },
+        [37] = { type = "spell", spellId = 1241059, name = "天神灌注" },
+        [38] = { type = "spell", spellId = 1241059, name = "天神灌注", charge = true },
+        [39] = { type = "spell", spellId = 322109, name = "轮回之触" },
+        [40] = { type = "spell", spellId = 119381, name = "扫堂腿" },
+        [41] = { type = "spell", spellId = 322101, name = "移花接木" },
+        [42] = { type = "spell", spellId = 101643, name = "魂体双分" },
+        [43] = { type = "spell", spellId = 119996, name = "魂体双分：转移" },
+        [44] = { type = "spell", spellId = 116705, name = "切喉手" },
+        [45] = { type = "spell", spellId = 115181, name = "火焰之息" },
+        [46] = { type = "spell", spellId = 123986, name = "真气爆裂" },
+        [47] = { type = "spell", spellId = 325153, name = "爆炸酒桶" },
+        [48] = { type = "spell", spellId = 198898, name = "赤精之歌" },
+        [49] = { type = "spell", spellId = 115399, name = "玄牛酒" },
+        [50] = { type = "spell", spellId = 116844, name = "平心之环" },
+        [51] = { type = "spell", spellId = 115078, name = "分筋错骨" },
+        [52] = { type = "spell", spellId = 132578, name = "玄牛下凡" },
+        [53] = { type = "spell", spellId = 205523, name = "幻灭踢" },
 
-        }
-        fu.spellCooldown = {
-            [121253] = { index = 31, name = "醉酿投", charge = 32 },
-            [119582] = { index = 33, name = "活血酒", charge = 34 },
-            [322507] = { index = 35, name = "天神酒", charge = 36 },
-            [1241059] = { index = 37, name = "天神灌注", charge = 38 },
-            [322109] = { index = 39, name = "轮回之触" },
-            [119381] = { index = 40, name = "扫堂腿" },
-            [322101] = { index = 41, name = "移花接木" },
-            [101643] = { index = 42, name = "魂体双分" },
-            [119996] = { index = 43, name = "魂体双分：转移" },
-            [116705] = { index = 44, name = "切喉手" },
-            [115181] = { index = 45, name = "火焰之息" },
-            [123986] = { index = 46, name = "真气爆裂" },
-            [325153] = { index = 47, name = "爆炸酒桶" },
-            [198898] = { index = 48, name = "赤精之歌" },
-            [115399] = { index = 49, name = "玄牛酒" },
-            [116844] = { index = 50, name = "平心之环" },
-            [115078] = { index = 51, name = "分筋错骨" },
-            [132578] = { index = 52, name = "玄牛下凡" },
-            [205523] = { index = 53, name = "幻灭踢" },
-        }
-    elseif specIndex == 2 then
-        fu.countBars = {
-            [1] = { name = "法力茶", minValue = 0, maxValue = 20, spellId = 115294, events = eventTable },
-            [2] = { name = "神龙之赐", minValue = 0, maxValue = 10, spellId = 399491, events = eventTable },
-        }
+    },
+    [2] = {
+        ["countBars1"] = { type = "countBar", name = "法力茶", minValue = 0, maxValue = 20, spellId = 115294 },
+        ["countBars2"] = { type = "countBar", name = "神龙之赐", minValue = 0, maxValue = 10, spellId = 399491 },
 
-        fu.blocks = {
-            ["敌人人数"] = 21,
-            ["施法技能"] = 22,
-            ["施法目标"] = 23,
-            auras = {
-                ["生生不息1"] = {
-                    index = 25,
-                    auraRef = fu.Auras["生生不息1"],
-                    showKey = "remaining",
-                },
-                ["生生不息2"] = {
-                    index = 26,
-                    auraRef = fu.Auras["生生不息2"],
-                    showKey = "remaining",
-                },
-                ["灵泉"] = {
-                    index = 28,
-                    auraRef = fu.Auras["灵泉"],
-                    showKey = "remaining",
-                },
-                ["玄牛之力"] = {
-                    index = 29,
-                    auraRef = fu.Auras["玄牛之力"],
-                    showKey = "remaining",
-                },
-                ["青龙之心"] = {
-                    index = 30,
-                    auraRef = fu.Auras["青龙之心"],
-                    showKey = "remaining",
-                },
-            },
-        }
-        fu.spellCooldown = {
-            [116680] = { index = 31, name = "雷光聚神茶", charge = 32 },
-            [115151] = { index = 33, name = "复苏之雾", charge = 34 },
-            [115310] = { index = 35, name = "还魂术" },
-            [116849] = { index = 36, name = "作茧缚命" },
-            [115450] = { index = 37, name = "清创生血" },
-            [443028] = { index = 38, name = "天神御身" },
-            [322109] = { index = 39, name = "轮回之触" },
-            [119381] = { index = 40, name = "扫堂腿" },
-            [1270621] = { index = 41, name = "宁神茶" },
-            [101643] = { index = 42, name = "魂体双分" },
-            [119996] = { index = 43, name = "魂体双分：转移" },
-            [107428] = { index = 44, name = "旭日东升踢" },
-            [100784] = { index = 45, name = "幻灭踢" },
-            [116844] = { index = 46, name = "平心之环" },
-            [115078] = { index = 47, name = "分筋错骨" },
-        }
-        fu.group_blocks = {
-            unit_start = 70,
-            block_num = 5,
+        [1] = { type = "block", name = "锚点" },
+        [2] = { type = "block", name = "职业" },
+        [3] = { type = "block", name = "专精" },
+        [4] = { type = "block", name = "有效性" },
+        [5] = { type = "block", name = "战斗" },
+        [6] = { type = "block", name = "移动" },
+        [7] = { type = "block", name = "施法" },
+        [8] = { type = "block", name = "引导" },
+        [9] = { type = "block", name = "蓄力" },
+        [10] = { type = "block", name = "蓄力层数" },
+        [11] = { type = "block", name = "生命值" },
+        [12] = { type = "block", name = "能量值" },
+        [13] = { type = "block", name = "一键辅助" },
+        [14] = { type = "block", name = "法术失败" },
+        [15] = { type = "block", name = "目标类型" },
+        [16] = { type = "block", name = "队伍类型" },
+        [17] = { type = "block", name = "队伍人数" },
+        [18] = { type = "block", name = "首领战" },
+        [19] = { type = "block", name = "难度" },
+        [20] = { type = "block", name = "英雄天赋" },
+
+        [21] = { type = "block", name = "敌人人数" },
+        [22] = { type = "block", name = "施法技能" },
+        [23] = { type = "block", name = "施法目标" },
+
+        [25] = { type = "aura", name = "生生不息1", auraName = "生生不息1", showKey = "remaining" },
+        [26] = { type = "aura", name = "生生不息2", auraName = "生生不息2", showKey = "remaining" },
+        [28] = { type = "aura", name = "灵泉", auraName = "灵泉", showKey = "remaining" },
+        [29] = { type = "aura", name = "玄牛之力", auraName = "玄牛之力", showKey = "remaining" },
+        [30] = { type = "aura", name = "青龙之心", auraName = "青龙之心", showKey = "remaining" },
+
+        [31] = { type = "spell", spellId = 116680, name = "雷光聚神茶" },
+        [32] = { type = "spell", spellId = 116680, name = "雷光聚神茶", charge = true },
+        [33] = { type = "spell", spellId = 115151, name = "复苏之雾" },
+        [34] = { type = "spell", spellId = 115151, name = "复苏之雾", charge = true },
+        [35] = { type = "spell", spellId = 115310, name = "还魂术" },
+        [36] = { type = "spell", spellId = 116849, name = "作茧缚命" },
+        [37] = { type = "spell", spellId = 115450, name = "清创生血" },
+        [38] = { type = "spell", spellId = 443028, name = "天神御身" },
+        [39] = { type = "spell", spellId = 322109, name = "轮回之触" },
+        [40] = { type = "spell", spellId = 119381, name = "扫堂腿" },
+        [41] = { type = "spell", spellId = 1270621, name = "宁神茶" },
+        [42] = { type = "spell", spellId = 101643, name = "魂体双分" },
+        [43] = { type = "spell", spellId = 119996, name = "魂体双分：转移" },
+        [44] = { type = "spell", spellId = 107428, name = "旭日东升踢" },
+        [45] = { type = "spell", spellId = 100784, name = "幻灭踢" },
+        [46] = { type = "spell", spellId = 116844, name = "平心之环" },
+        [47] = { type = "spell", spellId = 115078, name = "分筋错骨" },
+
+        [70] = {
+            type = "group",
+            num = 5,
             healthPercent = 1,
             role = 2,
             dispel = 3,
-            aura = {
+            auras = {
                 [4] = { 119611 }, -- 复苏之雾, 119611
                 [5] = { 124682 }, -- 氤氲之雾, 124682
             },
-        }
-    elseif specIndex == 3 then
-        fu.HarmfulSpellId = 392983
-        fu.blocks         = {
-            ["目标生命值"] = 21,
-            ["敌人人数"] = 22,
-            auras = {
+        },
+    },
+    [3] = {
+        [1] = { type = "block", name = "锚点" },
+        [2] = { type = "block", name = "职业" },
+        [3] = { type = "block", name = "专精" },
+        [4] = { type = "block", name = "有效性" },
+        [5] = { type = "block", name = "战斗" },
+        [6] = { type = "block", name = "移动" },
+        [7] = { type = "block", name = "施法" },
+        [8] = { type = "block", name = "引导" },
+        [9] = { type = "block", name = "蓄力" },
+        [10] = { type = "block", name = "蓄力层数" },
+        [11] = { type = "block", name = "生命值" },
+        [12] = { type = "block", name = "能量值" },
+        [13] = { type = "block", name = "一键辅助" },
+        [14] = { type = "block", name = "法术失败" },
+        [15] = { type = "block", name = "目标类型" },
+        [16] = { type = "block", name = "队伍类型" },
+        [17] = { type = "block", name = "队伍人数" },
+        [18] = { type = "block", name = "首领战" },
+        [19] = { type = "block", name = "难度" },
+        [20] = { type = "block", name = "英雄天赋" },
 
-            },
+        [21] = { type = "block", name = "目标生命值" },
+        [22] = { type = "block", name = "敌人人数" },
 
-        }
-        fu.spellCooldown  = {
-            [322109] = { index = 31, name = "轮回之触" },
-            [119381] = { index = 32, name = "扫堂腿" },
-            [322101] = { index = 33, name = "移花接木" },
-            [101643] = { index = 34, name = "魂体双分" },
-            [119996] = { index = 35, name = "魂体双分：转移" },
-            [116705] = { index = 36, name = "切喉手" },
-            [198898] = { index = 37, name = "赤精之歌" },
-            [116844] = { index = 38, name = "平心之环" },
-            [115078] = { index = 39, name = "分筋错骨" },
-        }
-    end
-end
+        [31] = { type = "spell", spellId = 322109, name = "轮回之触" },
+        [32] = { type = "spell", spellId = 119381, name = "扫堂腿" },
+        [33] = { type = "spell", spellId = 322101, name = "移花接木" },
+        [34] = { type = "spell", spellId = 101643, name = "魂体双分" },
+        [35] = { type = "spell", spellId = 119996, name = "魂体双分：转移" },
+        [36] = { type = "spell", spellId = 116705, name = "切喉手" },
+        [37] = { type = "spell", spellId = 198898, name = "赤精之歌" },
+        [38] = { type = "spell", spellId = 116844, name = "平心之环" },
+        [39] = { type = "spell", spellId = 115078, name = "分筋错骨" },
+    },
+}
 
-function fu.CreateClassMacro()
-    local dynamicSpells = { "氤氲之雾", "活血术", "清创生血", "抚慰之雾", "复苏之雾" }
-    local staticSpells = {
+Fuyutsui.MacrosList = {
+    dynamicSpells = { "氤氲之雾", "活血术", "清创生血", "抚慰之雾", "复苏之雾" },
+    specialSpells = {},
+    staticSpells = {
         [1] = "扫堂腿",
         [2] = "神鹤引项踢",
         [3] = "壮胆酒",
@@ -190,6 +194,5 @@ function fu.CreateClassMacro()
         [26] = "风领主之击",
         [27] = "怒雷破",
         [28] = "升龙霸",
-    }
-    fu.CreateMacro(dynamicSpells, staticSpells, _)
-end
+    },
+}

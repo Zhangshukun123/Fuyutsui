@@ -3,7 +3,6 @@ if fu.classId ~= 2 then return end
 
 Fuyutsui.ClassBlocks = {
     [1] = {
-        powerType = "MANA",
         [1] = { type = "block", name = "锚点" },
         [2] = { type = "block", name = "职业" },
         [3] = { type = "block", name = "专精" },
@@ -115,7 +114,7 @@ Fuyutsui.ClassBlocks = {
         [46] = { type = "spell", spellId = 204019, name = "祝福之锤" },
 
         [70] = {
-            type = "group_blocks",
+            type = "group",
             block_num = 3,
             healthPercent = 1,
             role = 2,
@@ -171,7 +170,7 @@ Fuyutsui.ClassBlocks = {
         [44] = { type = "spell", spellId = 255937, name = "灰烬觉醒" },
 
         [70] = {
-            type = "group_blocks",
+            type = "group",
             block_num = 3,
             healthPercent = 1,
             role = 2,

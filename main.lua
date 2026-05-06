@@ -19,7 +19,6 @@ local spells = {}
 local failedSpell, failedSpellId, failedSpellTimer = nil, nil, nil
 local roleMap, enumPowerType, spellsList = Fuyutsui.roleMap, Fuyutsui.EnumPowerType, Fuyutsui.spellsList
 local fallbackColor = CreateColor(0, 0, 1)
-local specRange = 40
 
 -- ================================================================
 --                          创建颜色曲线
@@ -276,32 +275,45 @@ function Fuyutsui:loadPlayerBlocks(specIndex)
     Fuyutsui.blocks = blocks
 end
 
+-- 载入玩家宏
+function Fuyutsui:loadPlayerMacros()
+    if not self.MacrosList then
+        self:Print("|cffff0000载入玩家宏失败|r")
+        return
+    end
+    local m = self.MacrosList
+    self:Print("|cffff0000载入玩家宏成功|r")
+    self:CreateMacro(m.dynamicSpells, m.staticSpells, m.specialSpells)
+end
+
 -- 1. 首次登录获取角色信息
 function Fuyutsui:GetCharacterInfo()
     self.db.char.level = UnitLevel("player")
     self.state.name = UnitName("player")
     self.state.GUID = UnitGUID("player")
-    self.state.specIndex = C_SpecializationInfo.GetSpecialization()
     self.state.classColor = RAID_CLASS_COLORS[Fuyutsui.state.classFilename].colorStr
-    self:loadPlayerBlocks(self.state.specIndex)
-    self:updateSpellKnown()
-    self:CreatTexture(blocks.state["职业"], self.state.classId / 255)
-    self:CreatTexture(blocks.state["专精"], self.state.specIndex / 255)
 end
 
 -- 2. 首次登录获取玩家专精信息
 function Fuyutsui:GetCharacterSpecInfo()
+    self.state.specIndex = C_SpecializationInfo.GetSpecialization()
     local specID, specName, _, _, role = C_SpecializationInfo.GetSpecializationInfo(self.state.specIndex)
     self.state.specID = specID
     self.state.specName = specName
     self.state.specRole = role
-    self.state.specRange = Fuyutsui.rangeSpecID[specID]
+    self.state.specRange = self.rangeSpecID[specID]
     self.state.isDead = UnitIsDeadOrGhost("player")
     self.state.isChatOpen = false
     self.state.casting = false
     self.state.channeling = false
+    self:loadPlayerBlocks(self.state.specIndex)
+    self:updateSpellKnown()
     self:updatePlayerMounted()
     self:updateGroup()
+    self:loadPlayerMacros() -- 载入玩家宏
+    self:updateAuraIconByEnteringWorld()
+    self:CreatTexture(blocks.state["职业"], self.state.classId / 255)
+    self:CreatTexture(blocks.state["专精"], self.state.specIndex / 255)
 end
 
 -- 2. 更新玩家专精信息
@@ -314,6 +326,7 @@ function Fuyutsui:updatePlayerSpecInfo()
     self.state.specRole = role
     self.state.specRange = Fuyutsui.rangeSpecID[specID]
     self:loadPlayerBlocks(self.state.specIndex) -- 载入玩家blocks配置
+
     self:updateSpellKnown()                     -- 更新法术已知状态
     self:updatePlayerBlocks()                   -- 更新玩家blocks信息
     self:CreatTexture(blocks.state["职业"], self.state.classId / 255)
@@ -519,8 +532,8 @@ function Fuyutsui:updateTargetValid()
     if target.inRange and not target.isDead then
         targetType = getTargetDispelType()
     end
-    target.type = targetType / 255 or 0
-    Fuyutsui:CreatTexture(blocks.state["目标类型"], target.type)
+    target.type = targetType
+    self:CreatTexture(blocks.state["目标类型"], target.type)
 end
 
 -- 16. 更新玩家队伍类型
@@ -582,7 +595,7 @@ end
 function Fuyutsui:updatePlayerBarInfo()
     if blocks.countBars then
         for k, v in pairs(blocks.countBars) do
-            self:CreateAutoLayoutBar(v.minValue, v.maxValue, v.spellId, v.events)
+            self:CreateAutoLayoutBar(v.minValue, v.maxValue, v.spellId)
         end
     end
 end
@@ -740,14 +753,22 @@ end
 
 function Fuyutsui:updateTargetRangeBlock()
     local minRange, maxRange = updateUnitRange("target")
-    target.minRange = minRange and minRange / 255 or 1
-    target.maxRange = maxRange and maxRange / 255 or 1
-    if target.maxRange and specRange then
-        target.inRange = target.maxRange <= specRange
-        self:updateTargetValid()
+    target.minRange = minRange
+    target.maxRange = maxRange
+    if target.canAttack then
+        if target.maxRange and self.state.specRange then
+            target.inRange = target.maxRange <= self.state.specRange
+            self:updateTargetValid()
+        end
+    elseif target.canAssist then
+        if target.maxRange then
+            target.inRange = target.maxRange <= 40
+            self:updateTargetValid()
+        end
     end
     if blocks and blocks.state["目标距离"] and target.maxRange then
-        Fuyutsui:CreatTexture(blocks.state["目标距离"], target.maxRange)
+        local maxRangeValue = target.maxRange and target.maxRange / 255 or 1
+        Fuyutsui:CreatTexture(blocks.state["目标距离"], maxRangeValue)
     end
 end
 
@@ -801,7 +822,7 @@ function Fuyutsui:updateEnemyCount()
         data.minRange = minRange
         data.maxRange = maxRange
         data.affectingCombat = UnitAffectingCombat(unit)
-        if data.canAttack and data.maxRange and data.maxRange <= specRange and (data.affectingCombat or inTestMap) then
+        if data.canAttack and data.maxRange and data.maxRange <= self.state.specRange and (data.affectingCombat or inTestMap) then
             count = count + 1
         end
     end

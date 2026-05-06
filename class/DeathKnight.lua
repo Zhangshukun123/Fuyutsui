@@ -1,128 +1,137 @@
 local _, fu = ...
 if fu.classId ~= 6 then return end
-local eventTable = { "SPELL_UPDATE_USES", "PLAYER_ENTERING_WORLD" }
 
-fu.heroSpell = {
-    [439843] = 1, -- 死亡使者
-    [433901] = 2, -- 萨莱因
-    [444005] = 3, -- 天启骑士
+Fuyutsui.ClassBlocks = {
+    [1] = {
+        [1] = { type = "block", name = "锚点" },
+        [2] = { type = "block", name = "职业" },
+        [3] = { type = "block", name = "专精" },
+        [4] = { type = "block", name = "有效性" },
+        [5] = { type = "block", name = "战斗" },
+        [6] = { type = "block", name = "移动" },
+        [7] = { type = "block", name = "施法" },
+        [8] = { type = "block", name = "引导" },
+        [9] = { type = "block", name = "蓄力" },
+        [10] = { type = "block", name = "蓄力层数" },
+        [11] = { type = "block", name = "生命值" },
+        [12] = { type = "block", name = "能量值" },
+        [13] = { type = "block", name = "一键辅助" },
+        [14] = { type = "block", name = "法术失败" },
+        [15] = { type = "block", name = "目标类型" },
+        [16] = { type = "block", name = "队伍类型" },
+        [17] = { type = "block", name = "队伍人数" },
+        [18] = { type = "block", name = "首领战" },
+        [19] = { type = "block", name = "难度" },
+        [20] = { type = "block", name = "英雄天赋" },
+
+        [21] = { type = "block", name = "符文" },
+        [22] = { type = "block", name = "目标生命值" },
+        [23] = { type = "block", name = "敌人人数" },
+
+        [40] = { type = "spell", spellId = 49576, name = "死亡之握" },
+        [41] = { type = "spell", spellId = 51052, name = "反魔法领域" },
+        [42] = { type = "spell", spellId = 221562, name = "窒息" },
+        [43] = { type = "spell", spellId = 207167, name = "致盲冰雨" },
+
+        [44] = { type = "spell", spellId = 46585, name = "亡者复生" },
+        [45] = { type = "spell", spellId = 55233, name = "吸血鬼之血" },
+        [46] = { type = "spell", spellId = 48792, name = "冰封之韧" },
+        [47] = { type = "spell", spellId = 49039, name = "巫妖之躯" },
+        [48] = { type = "spell", spellId = 108199, name = "血魔之握" },
+        [49] = { type = "spell", spellId = 1263569, name = "憎恶附肢" },
+        [50] = { type = "spell", spellId = 50, name = "吞噬" },
+    },
+    [2] = {
+        [1] = { type = "block", name = "锚点" },
+        [2] = { type = "block", name = "职业" },
+        [3] = { type = "block", name = "专精" },
+        [4] = { type = "block", name = "有效性" },
+        [5] = { type = "block", name = "战斗" },
+        [6] = { type = "block", name = "移动" },
+        [7] = { type = "block", name = "施法" },
+        [8] = { type = "block", name = "引导" },
+        [9] = { type = "block", name = "蓄力" },
+        [10] = { type = "block", name = "蓄力层数" },
+        [11] = { type = "block", name = "生命值" },
+        [12] = { type = "block", name = "能量值" },
+        [13] = { type = "block", name = "一键辅助" },
+        [14] = { type = "block", name = "法术失败" },
+        [15] = { type = "block", name = "目标类型" },
+        [16] = { type = "block", name = "队伍类型" },
+        [17] = { type = "block", name = "队伍人数" },
+        [18] = { type = "block", name = "首领战" },
+        [19] = { type = "block", name = "难度" },
+        [20] = { type = "block", name = "英雄天赋" },
+
+        [21] = { type = "block", name = "符文" },
+        [22] = { type = "block", name = "目标生命值" },
+        [23] = { type = "block", name = "敌人人数" },
+
+        [24] = { type = "aura", name = "黑暗援助", auraName = "黑暗援助", showKey = "remaining" },
+
+    },
+    [3] = {
+
+        ["countBars1"] = { type = "countBar", name = "天灾打击", minValue = 0, maxValue = 20, spellId = 55090 },
+
+        [1] = { type = "block", name = "锚点" },
+        [2] = { type = "block", name = "职业" },
+        [3] = { type = "block", name = "专精" },
+        [4] = { type = "block", name = "有效性" },
+        [5] = { type = "block", name = "战斗" },
+        [6] = { type = "block", name = "移动" },
+        [7] = { type = "block", name = "施法" },
+        [8] = { type = "block", name = "引导" },
+        [9] = { type = "block", name = "蓄力" },
+        [10] = { type = "block", name = "蓄力层数" },
+        [11] = { type = "block", name = "生命值" },
+        [12] = { type = "block", name = "能量值" },
+        [13] = { type = "block", name = "一键辅助" },
+        [14] = { type = "block", name = "法术失败" },
+        [15] = { type = "block", name = "目标类型" },
+        [16] = { type = "block", name = "队伍类型" },
+        [17] = { type = "block", name = "队伍人数" },
+        [18] = { type = "block", name = "首领战" },
+        [19] = { type = "block", name = "难度" },
+        [20] = { type = "block", name = "英雄天赋" },
+
+        [21] = { type = "block", name = "符文" },
+        [22] = { type = "block", name = "目标生命值" },
+        [23] = { type = "block", name = "敌人人数" },
+
+        [24] = { type = "block", name = "爆发开关" },
+        [25] = { type = "block", name = "输出模式" },
+        [26] = { type = "block", name = "AOE开关" },
+
+        [27] = { type = "aura", name = "次级食尸鬼", auraName = "次级食尸鬼", showKey = "remaining" },
+        [28] = { type = "aura", name = "割魂索命", auraName = "割魂索命", showKey = "remaining" },
+        [29] = { type = "aura", name = "末日突降", auraName = "末日突降", showKey = "remaining" },
+        [30] = { type = "aura", name = "末日突降层数", auraName = "末日突降", showKey = "remaining" },
+
+        [31] = { type = "aura", name = "黑暗援助", auraName = "黑暗援助", showKey = "remaining" },
+        [32] = { type = "aura", name = "禁断知识", auraName = "禁断知识", showKey = "remaining" },
+        [33] = { type = "aura", name = "脓疮毒镰", auraName = "脓疮毒镰", showKey = "remaining" },
+        [34] = { type = "aura", name = "脓疮毒镰2", auraName = "脓疮毒镰2", showKey = "remaining" },
+        [35] = { type = "aura", name = "枯萎凋零", auraName = "枯萎凋零", showKey = "remaining" },
+
+        [36] = { type = "block", name = "疾病判断" },
+
+        [44] = { type = "spell", spellId = 46584, name = "亡者复生" },
+        [45] = { type = "spell", spellId = 42650, name = "亡者大军" },
+        [46] = { type = "spell", spellId = 1247378, name = "腐化", },
+        [47] = { type = "spell", spellId = 1247378, name = "腐化", charge = true },
+        [48] = { type = "spell", spellId = 1233448, name = "黑暗突变" },
+        [49] = { type = "spell", spellId = 343294, name = "灵魂收割" },
+        [50] = { type = "spell", spellId = 43265, name = "枯萎凋零" },
+        [51] = { type = "spell", spellId = 43265, name = "枯萎凋零", charge = true },
+    },
 }
-
-fu.spellCooldown = {
-    [49576]  = { index = 40, name = "死亡之握" },
-    [51052]  = { index = 41, name = "反魔法领域" },
-    [221562] = { index = 42, name = "窒息" },
-    [207167] = { index = 43, name = "致盲冰雨" },
-}
-
-function fu.updateSpecInfo()
-    local specIndex = C_SpecializationInfo.GetSpecialization()
-    fu.powerType = nil
-    fu.blocks = nil
-    fu.countBars = nil
-    fu.group_blocks = nil
-    fu.assistant_spells = nil
-    if specIndex == 1 then
-        fu.blocks = {
-            ["符文"] = 21,
-            ["目标生命值"] = 22,
-            ["敌人人数"] = 23,
-        }
-        fu.spellCooldown[46585] = { index = 44, name = "亡者复生" }
-        fu.spellCooldown[55233] = { index = 45, name = "吸血鬼之血" }
-        fu.spellCooldown[48792] = { index = 46, name = "冰封之韧" }
-        fu.spellCooldown[49039] = { index = 47, name = "巫妖之躯" }
-        fu.spellCooldown[108199] = { index = 48, name = "血魔之握" }
-        fu.spellCooldown[1263569] = { index = 49, name = "憎恶附肢" }
-        fu.spellCooldown[1263824] = { index = 50, name = "吞噬" }
-    elseif specIndex == 2 then
-        fu.blocks = {
-            ["符文"] = 21,
-            ["目标生命值"] = 22,
-            ["敌人人数"] = 23,
-            auras = {
-                ["黑暗援助"] = {
-                    index = 24,
-                    auraRef = fu.Auras["黑暗援助"],
-                    showKey = "remaining",
-                },
-            }
-        }
-    elseif specIndex == 3 then
-        fu.countBars = {
-            [1] = { name = "天灾打击", minValue = 0, maxValue = 20, spellId = 55090, events = eventTable },
-        }
-        fu.blocks = {
-            ["符文"] = 21,
-            ["目标生命值"] = 22,
-            ["敌人人数"] = 23,
-            ["爆发开关"] = 24,
-            ["输出模式"] = 25,
-            ["AOE开关"] = 26,
-            ["疾病判断"] = 36,
-            auras = {
-                ["次级食尸鬼"] = {
-                    index = 27,
-                    auraRef = fu.Auras["次级食尸鬼"],
-                    showKey = "remaining",
-                },
-                ["割魂索命"] = {
-                    index = 28,
-                    auraRef = fu.Auras["割魂索命"],
-                    showKey = "remaining",
-                },
-                ["末日突降"] = {
-                    index = 29,
-                    auraRef = fu.Auras["末日突降"],
-                    showKey = "remaining",
-                },
-                ["末日突降层数"] = {
-                    index = 30,
-                    auraRef = fu.Auras["末日突降"],
-                    showKey = "count",
-                },
-                ["黑暗援助"] = {
-                    index = 31,
-                    auraRef = fu.Auras["黑暗援助"],
-                    showKey = "remaining",
-                },
-                ["禁断知识"] = {
-                    index = 32,
-                    auraRef = fu.Auras["禁断知识"],
-                    showKey = "remaining",
-                },
-                ["脓疮毒镰"] = {
-                    index = 33,
-                    auraRef = fu.Auras["脓疮毒镰"],
-                    showKey = "remaining",
-                },
-                ["脓疮毒镰2"] = {
-                    index = 34,
-                    auraRef = fu.Auras["脓疮毒镰2"],
-                    showKey = "remaining",
-                },
-                ["枯萎凋零"] = {
-                    index = 35,
-                    auraRef = fu.Auras["枯萎凋零"],
-                    showKey = "remaining",
-                },
-            }
-        }
-        fu.spellCooldown[46584] = { index = 44, name = "亡者复生" }
-        fu.spellCooldown[42650] = { index = 45, name = "亡者大军" }
-        fu.spellCooldown[1247378] = { index = 46, name = "腐化", charge = 47 }
-        fu.spellCooldown[1233448] = { index = 48, name = "黑暗突变" }
-        fu.spellCooldown[343294] = { index = 49, name = "灵魂收割" }
-        fu.spellCooldown[43265] = { index = 50, name = "枯萎凋零", charge = 51 }
-    end
-end
-
-function fu.CreateClassMacro()
-    local dynamicSpells = {}
-    local specialSpells = { [38] = "/castsequence reset=3 死亡之握,x", }
-    local staticSpells = {
+Fuyutsui.MacrosList = {
+    dynamicSpells = {},
+    specialSpells = { [38] = "/castsequence reset=3 死亡之握,x", },
+    staticSpells = {
         [1] = "亡者复生",
-        [2] = "亡者大军\n",
+        [2] = "亡者大军",
         [3] = "凋零缠绕",
         [4] = "天灾打击",
         [5] = "扩散",
@@ -160,5 +169,5 @@ function fu.CreateClassMacro()
         [37] = "符文打击",
         [39] = "吞噬",
     }
-    fu.CreateMacro(dynamicSpells, staticSpells, specialSpells)
-end
+
+}

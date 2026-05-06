@@ -1,83 +1,89 @@
 local _, fu = ...
 if fu.classId ~= 8 then return end
 
-fu.HarmfulSpellId = 116 -- 寒冰箭
+Fuyutsui.ClassBlocks = {
+    [1] = {
+        [1] = { type = "block", name = "锚点" },
+        [2] = { type = "block", name = "职业" },
+        [3] = { type = "block", name = "专精" },
+        [4] = { type = "block", name = "有效性" },
+        [5] = { type = "block", name = "战斗" },
+        [6] = { type = "block", name = "移动" },
+        [7] = { type = "block", name = "施法" },
+        [8] = { type = "block", name = "引导" },
+        [9] = { type = "block", name = "蓄力" },
+        [10] = { type = "block", name = "蓄力层数" },
+        [11] = { type = "block", name = "生命值" },
+        [12] = { type = "block", name = "能量值" },
+        [13] = { type = "block", name = "一键辅助" },
+        [14] = { type = "block", name = "法术失败" },
+        [15] = { type = "block", name = "目标类型" },
+        [16] = { type = "block", name = "队伍类型" },
+        [17] = { type = "block", name = "队伍人数" },
+        [18] = { type = "block", name = "首领战" },
+        [19] = { type = "block", name = "难度" },
+        [20] = { type = "block", name = "英雄天赋" },
+    },
+    [2] = {
+        [1] = { type = "block", name = "锚点" },
+        [2] = { type = "block", name = "职业" },
+        [3] = { type = "block", name = "专精" },
+        [4] = { type = "block", name = "有效性" },
+        [5] = { type = "block", name = "战斗" },
+        [6] = { type = "block", name = "移动" },
+        [7] = { type = "block", name = "施法" },
+        [8] = { type = "block", name = "引导" },
+        [9] = { type = "block", name = "蓄力" },
+        [10] = { type = "block", name = "蓄力层数" },
+        [11] = { type = "block", name = "生命值" },
+        [12] = { type = "block", name = "能量值" },
+        [13] = { type = "block", name = "一键辅助" },
+        [14] = { type = "block", name = "法术失败" },
+        [15] = { type = "block", name = "目标类型" },
+        [16] = { type = "block", name = "队伍类型" },
+        [17] = { type = "block", name = "队伍人数" },
+        [18] = { type = "block", name = "首领战" },
+        [19] = { type = "block", name = "难度" },
+        [20] = { type = "block", name = "英雄天赋" },
+    },
+    [3] = {
+        [1] = { type = "block", name = "锚点" },
+        [2] = { type = "block", name = "职业" },
+        [3] = { type = "block", name = "专精" },
+        [4] = { type = "block", name = "有效性" },
+        [5] = { type = "block", name = "战斗" },
+        [6] = { type = "block", name = "移动" },
+        [7] = { type = "block", name = "施法" },
+        [8] = { type = "block", name = "引导" },
+        [9] = { type = "block", name = "蓄力" },
+        [10] = { type = "block", name = "蓄力层数" },
+        [11] = { type = "block", name = "生命值" },
+        [12] = { type = "block", name = "能量值" },
+        [13] = { type = "block", name = "一键辅助" },
+        [14] = { type = "block", name = "法术失败" },
+        [15] = { type = "block", name = "目标类型" },
+        [16] = { type = "block", name = "队伍类型" },
+        [17] = { type = "block", name = "队伍人数" },
+        [18] = { type = "block", name = "首领战" },
+        [19] = { type = "block", name = "难度" },
+        [20] = { type = "block", name = "英雄天赋" },
 
-fu.heroSpell = {
-    [443739] = 1, -- 疾咒师
-    [448601] = 2, -- 日怒
-    [431044] = 3, -- 霜火
+        [21] = { type = "block", name = "施法技能" },
+        [22] = { type = "block", name = "敌人人数" },
+
+        [31] = { type = "aura", name = "热能真空", auraName = "热能真空", showKey = "remaining" },
+        [32] = { type = "aura", name = "冰川尖刺！", auraName = "冰川尖刺！", showKey = "remaining" },
+        [33] = { type = "aura", name = "冰冷智慧", auraName = "冰冷智慧", showKey = "remaining" },
+        [34] = { type = "aura", name = "冰冻之雨", auraName = "冰冻之雨", showKey = "remaining" },
+        [35] = { type = "aura", name = "寒冰指", auraName = "寒冰指", showKey = "remaining" },
+        [36] = { type = "aura", name = "寒冰指层数", auraName = "寒冰指", showKey = "count" },
+    },
 }
 
-function fu.updateSpecInfo()
-    local specIndex = C_SpecializationInfo.GetSpecialization()
-    fu.powerType = nil
-    fu.blocks = nil
-    fu.countBars = nil
-    fu.group_blocks = nil
-    fu.assistant_spells = nil
-    if specIndex == 1 then
-
-    elseif specIndex == 2 then
-
-    elseif specIndex == 3 then
-        fu.powerType = "MANA"
-        fu.blocks = {
-            ["施法技能"] = 22,
-            ["敌人人数"] = 23,
-            auras = {
-                ["热能真空"] = {
-                    index = 31,
-                    auraRef = fu.Auras["热能真空"],
-                    showKey = "remaining",
-                },
-                ["冰川尖刺！"] = {
-                    index = 32,
-                    auraRef = fu.Auras["冰川尖刺！"],
-                    showKey = "remaining",
-                },
-                ["冰冷智慧"] = {
-                    index = 33,
-                    auraRef = fu.Auras["冰冷智慧"],
-                    showKey = "remaining",
-                },
-                ["冰冻之雨"] = {
-                    index = 34,
-                    auraRef = fu.Auras["冰冻之雨"],
-                    showKey = "remaining",
-                },
-                ["寒冰指"] = {
-                    index = 35,
-                    auraRef = fu.Auras["寒冰指"],
-                    showKey = "remaining",
-                },
-                ["寒冰指层数"] = {
-                    index = 36,
-                    auraRef = fu.Auras["寒冰指"],
-                    showKey = "count",
-                },
-            },
-        }
-        fu.spellCooldown = {
-            [475] = { index = 41, name = "解除诅咒" },
-            [110959] = { index = 42, name = "强化隐形术" },
-            [122] = { index = 43, name = "冰霜新星" },
-            [2139] = { index = 44, name = "法术反制" },
-            [31661] = { index = 45, name = "龙息术" },
-            [1248829] = { index = 46, name = "暴风雪" },
-            [190356] = { index = 47, name = "暴风雪" },
-            [84714] = { index = 48, name = "寒冰宝珠" },
-            [205021] = { index = 49, name = "冰霜射线" },
-            [11426] = { index = 50, name = "寒冰护体" },
-            [44614] = { index = 51, name = "冰风暴", charge = 52 },
-        }
-    end
-end
-
-function fu.CreateClassMacro()
-    local dynamicSpells = { "解除诅咒" }
-    local specialSpells = {}
-    local staticSpells = {
+Fuyutsui.MacrosList = {
+    dynamicSpells = { "解除诅咒" },
+    specialSpells = {},
+    staticSpells = {
         [1] = "寒冰屏障",
         [2] = "解除诅咒",
         [3] = "强化隐形术",
@@ -133,6 +139,5 @@ function fu.CreateClassMacro()
 
         [54] = "灼烧",
         [55] = "造餐术",
-    }
-    fu.CreateMacro(dynamicSpells, staticSpells, specialSpells)
-end
+    },
+}

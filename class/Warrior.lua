@@ -1,90 +1,127 @@
 local _, fu = ...
 if fu.classId ~= 1 then return end
-fu.HarmfulSpellId = 355
 
-fu.heroSpell = {
-    [436358] = 1, -- 巨神兵
-    [444767] = 2, -- 屠戮者
-    [434969] = 3, -- 山丘领主
+Fuyutsui.ClassBlocks = {
+    [1] = {
+        [1]  = { type = "block", name = "锚点" },
+        [2]  = { type = "block", name = "职业" },
+        [3]  = { type = "block", name = "专精" },
+        [4]  = { type = "block", name = "有效性" },
+        [5]  = { type = "block", name = "战斗" },
+        [6]  = { type = "block", name = "移动" },
+        [7]  = { type = "block", name = "施法" },
+        [8]  = { type = "block", name = "引导" },
+        [9]  = { type = "block", name = "蓄力" },
+        [10] = { type = "block", name = "蓄力层数" },
+        [11] = { type = "block", name = "生命值" },
+        [12] = { type = "block", name = "能量值" },
+        [13] = { type = "block", name = "一键辅助" },
+        [14] = { type = "block", name = "法术失败" },
+        [15] = { type = "block", name = "目标类型" },
+        [16] = { type = "block", name = "队伍类型" },
+        [17] = { type = "block", name = "队伍人数" },
+        [18] = { type = "block", name = "首领战" },
+        [19] = { type = "block", name = "难度" },
+        [20] = { type = "block", name = "英雄天赋" },
+
+        [21] = { type = "block", name = "目标生命值" },
+        [22] = { type = "block", name = "敌人人数" },
+
+
+        [31] = { type = "spell", spellId = 202168, name = "胜利在望" },
+        [32] = { type = "spell", spellId = 376079, name = "勇士之矛" },
+        [33] = { type = "spell", spellId = 6544, name = "英勇飞跃" },
+        [34] = { type = "spell", spellId = 97462, name = "集结呐喊" },
+        [35] = { type = "spell", spellId = 46968, name = "震荡波" },
+        [36] = { type = "spell", spellId = 107570, name = "风暴之锤" },
+        [37] = { type = "spell", spellId = 384110, name = "破裂投掷" },
+        [38] = { type = "spell", spellId = 64382, name = "碎裂投掷" },
+        [39] = { type = "spell", spellId = 5246, name = "破胆怒吼" },
+    },
+    [2] = {
+        [1]  = { type = "block", name = "锚点" },
+        [2]  = { type = "block", name = "职业" },
+        [3]  = { type = "block", name = "专精" },
+        [4]  = { type = "block", name = "有效性" },
+        [5]  = { type = "block", name = "战斗" },
+        [6]  = { type = "block", name = "移动" },
+        [7]  = { type = "block", name = "施法" },
+        [8]  = { type = "block", name = "引导" },
+        [9]  = { type = "block", name = "蓄力" },
+        [10] = { type = "block", name = "蓄力层数" },
+        [11] = { type = "block", name = "生命值" },
+        [12] = { type = "block", name = "能量值" },
+        [13] = { type = "block", name = "一键辅助" },
+        [14] = { type = "block", name = "法术失败" },
+        [15] = { type = "block", name = "目标类型" },
+        [16] = { type = "block", name = "队伍类型" },
+        [17] = { type = "block", name = "队伍人数" },
+        [18] = { type = "block", name = "首领战" },
+        [19] = { type = "block", name = "难度" },
+        [20] = { type = "block", name = "英雄天赋" },
+        [21] = { type = "block", name = "敌人人数" },
+
+        [31] = { type = "spell", spellId = 202168, name = "胜利在望" },
+        [32] = { type = "spell", spellId = 376079, name = "勇士之矛" },
+        [33] = { type = "spell", spellId = 6544, name = "英勇飞跃" },
+        [34] = { type = "spell", spellId = 97462, name = "集结呐喊" },
+        [35] = { type = "spell", spellId = 46968, name = "震荡波" },
+        [36] = { type = "spell", spellId = 107570, name = "风暴之锤" },
+        [37] = { type = "spell", spellId = 384110, name = "破裂投掷" },
+        [38] = { type = "spell", spellId = 64382, name = "碎裂投掷" },
+        [39] = { type = "spell", spellId = 5246, name = "破胆怒吼" },
+        [40] = { type = "spell", spellId = 1719, name = "鲁莽" },
+    },
+    [3] = {
+        [1]  = { type = "block", name = "锚点" },
+        [2]  = { type = "block", name = "职业" },
+        [3]  = { type = "block", name = "专精" },
+        [4]  = { type = "block", name = "有效性" },
+        [5]  = { type = "block", name = "战斗" },
+        [6]  = { type = "block", name = "移动" },
+        [7]  = { type = "block", name = "施法" },
+        [8]  = { type = "block", name = "引导" },
+        [9]  = { type = "block", name = "蓄力" },
+        [10] = { type = "block", name = "蓄力层数" },
+        [11] = { type = "block", name = "生命值" },
+        [12] = { type = "block", name = "能量值" },
+        [13] = { type = "block", name = "一键辅助" },
+        [14] = { type = "block", name = "法术失败" },
+        [15] = { type = "block", name = "目标类型" },
+        [16] = { type = "block", name = "队伍类型" },
+        [17] = { type = "block", name = "队伍人数" },
+        [18] = { type = "block", name = "首领战" },
+        [19] = { type = "block", name = "难度" },
+        [20] = { type = "block", name = "英雄天赋" },
+
+        [21] = { type = "block", name = "目标生命值" },
+        [22] = { type = "block", name = "敌人人数" },
+
+        [25] = { type = "aura", name = "盾牌格挡", auraName = "盾牌格挡", showKey = "remaining" },
+
+        [31] = { type = "spell", spellId = 202168, name = "胜利在望" },
+        [32] = { type = "spell", spellId = 376079, name = "勇士之矛" },
+        [33] = { type = "spell", spellId = 6544, name = "英勇飞跃" },
+        [34] = { type = "spell", spellId = 97462, name = "集结呐喊" },
+        [35] = { type = "spell", spellId = 46968, name = "震荡波" },
+        [36] = { type = "spell", spellId = 107570, name = "风暴之锤" },
+        [37] = { type = "spell", spellId = 384110, name = "破裂投掷" },
+        [38] = { type = "spell", spellId = 64382, name = "碎裂投掷" },
+        [39] = { type = "spell", spellId = 5246, name = "破胆怒吼" },
+
+        [40] = { type = "spell", spellId = 2565, name = "盾牌格挡" },
+        [41] = { type = "spell", spellId = 2565, name = "盾牌格挡", charge = true },
+        [42] = { type = "spell", spellId = 385952, name = "盾牌冲锋" },
+        [43] = { type = "spell", spellId = 107574, name = "天神下凡" },
+        [44] = { type = "spell", spellId = 1160, name = "挫志怒吼" },
+
+    },
 }
 
-function fu.updateSpecInfo()
-    local specIndex = C_SpecializationInfo.GetSpecialization()
-    fu.powerType = nil
-    fu.blocks = nil
-    fu.countBars = nil
-    fu.group_blocks = nil
-    if specIndex == 1 then
-        fu.blocks = {
-            ["目标生命值"] = 21,
-            ["敌人人数"] = 22,
-            auras = {
-
-            },
-        }
-        fu.spellCooldown = {
-            [202168] = { index = 31, name = "胜利在望" },
-            [376079] = { index = 32, name = "勇士之矛" },
-            [6544] = { index = 33, name = "英勇飞跃" },
-            [97462] = { index = 34, name = "集结呐喊" },
-            [46968] = { index = 35, name = "震荡波" },
-            [107570] = { index = 36, name = "风暴之锤" },
-            [384110] = { index = 37, name = "破裂投掷" },
-            [64382] = { index = 38, name = "碎裂投掷" },
-            [5246] = { index = 39, name = "破胆怒吼" },
-        }
-    elseif specIndex == 2 then
-        fu.blocks = {
-            ["敌人人数"] = 21,
-            auras = {
-
-            }
-        }
-        fu.spellCooldown = {
-            [202168] = { index = 31, name = "胜利在望" },
-            [376079] = { index = 32, name = "勇士之矛" },
-            [6544] = { index = 33, name = "英勇飞跃" },
-            [97462] = { index = 34, name = "集结呐喊" },
-            [46968] = { index = 35, name = "震荡波" },
-            [107570] = { index = 36, name = "风暴之锤" },
-            [384110] = { index = 37, name = "破裂投掷" },
-            [64382] = { index = 38, name = "碎裂投掷" },
-            [5246] = { index = 39, name = "破胆怒吼" },
-            [1719] = { index = 40, name = "鲁莽" },
-        }
-    elseif specIndex == 3 then
-        fu.blocks = {
-            ["目标生命值"] = 21,
-            ["敌人人数"] = 22,
-            auras = {
-                ["盾牌格挡"] = {
-                    index = 25,
-                    auraRef = fu.Auras["盾牌格挡"],
-                    showKey = "remaining",
-                },
-            },
-        }
-        fu.spellCooldown = {
-            [202168] = { index = 31, name = "胜利在望" },
-            [376079] = { index = 32, name = "勇士之矛" },
-            [6544] = { index = 33, name = "英勇飞跃" },
-            [97462] = { index = 34, name = "集结呐喊" },
-            [46968] = { index = 35, name = "震荡波" },
-            [107570] = { index = 36, name = "风暴之锤" },
-            [384110] = { index = 37, name = "破裂投掷" },
-            [64382] = { index = 38, name = "碎裂投掷" },
-            [5246] = { index = 39, name = "破胆怒吼" },
-            [2565] = { index = 40, name = "盾牌格挡", charge = 41 },
-            [385952] = { index = 42, name = "盾牌冲锋" },
-            [107574] = { index = 43, name = "天神下凡" },
-            [1160] = { index = 44, name = "挫志怒吼" },
-        }
-    end
-end
-
-function fu.CreateClassMacro()
-    local dynamicSpells = {}
-    local staticSpells = {
+Fuyutsui.MacrosList = {
+    dynamicSpells = {},
+    specialSpells = {},
+    staticSpells = {
         [1] = "英勇投掷",
         [2] = "战斗怒吼",
         [3] = "猛击",
@@ -122,6 +159,5 @@ function fu.CreateClassMacro()
         [35] = "挫志怒吼",
         [36] = "无视苦痛",
         [37] = "[@player]破坏者",
-    }
-    fu.CreateMacro(dynamicSpells, staticSpells, _)
-end
+    },
+}

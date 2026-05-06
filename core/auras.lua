@@ -933,30 +933,25 @@ function Fuyutsui:updateAuraByIcon(spellID)
     end
 end
 
+-- 首次登录遍历所有Icon光环
 function Fuyutsui:updateAuraIconByEnteringWorld()
-    for name, info in pairs(Fuyutsui.Auras) do
-        if info.isIcon then
-            if info.addAuras then
-                for spellId, i in pairs(info.addAuras) do
-                    if i.event == e["图标改变"] then
-                        updateAuraByIconMap(info.addAuras, spellId)
-                    end
-                end
-            end
-            if info.updateAuras then
-                for spellId, i in pairs(info.updateAuras) do
-                    if i.event == e["图标改变"] then
-                        updateAuraByIconMap(i.updateAuras, spellId)
-                    end
-                end
-            end
-            if info.removeAuras then
-                for spellId, i in pairs(info.removeAuras) do
-                    if i.event == e["图标改变"] then
-                        updateAuraByIconMap(i.removeAuras, spellId)
-                    end
-                end
-            end
+    local ev = e["图标改变"]
+    local addBySpell = addAuras[ev]
+    local updateBySpell = updateAuras[ev]
+    local removeBySpell = removeAuras[ev]
+    if addBySpell then
+        for spellId, info in pairs(addBySpell) do
+            updateAuraByIconMap(addBySpell[spellId], spellId)
+        end
+    end
+    if updateBySpell then
+        for spellId, info in pairs(updateBySpell) do
+            updateAuraByIconMap(updateBySpell[spellId], spellId)
+        end
+    end
+    if removeBySpell then
+        for spellId, info in pairs(removeBySpell) do
+            updateAuraByIconMap(removeBySpell[spellId], spellId)
         end
     end
 end

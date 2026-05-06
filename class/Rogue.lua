@@ -1,73 +1,151 @@
 local _, fu = ...
 if fu.classId ~= 4 then return end
 
-fu.heroSpell = {
-    [457052] = 1, -- 死亡猎手
-    [452536] = 2, -- 命缚者
-    [441146] = 3, -- 欺诈者
+Fuyutsui.ClassBlocks = {
+    [1] = {
+        [1] = { type = "block", name = "锚点" },
+        [2] = { type = "block", name = "职业" },
+        [3] = { type = "block", name = "专精" },
+        [4] = { type = "block", name = "有效性" },
+        [5] = { type = "block", name = "战斗" },
+        [6] = { type = "block", name = "移动" },
+        [7] = { type = "block", name = "施法" },
+        [8] = { type = "block", name = "引导" },
+        [9] = { type = "block", name = "蓄力" },
+        [10] = { type = "block", name = "蓄力层数" },
+        [11] = { type = "block", name = "生命值" },
+        [12] = { type = "block", name = "能量值" },
+        [13] = { type = "block", name = "一键辅助" },
+        [14] = { type = "block", name = "法术失败" },
+        [15] = { type = "block", name = "目标类型" },
+        [16] = { type = "block", name = "队伍类型" },
+        [17] = { type = "block", name = "队伍人数" },
+        [18] = { type = "block", name = "首领战" },
+        [19] = { type = "block", name = "难度" },
+        [20] = { type = "block", name = "英雄天赋" },
+
+        [31] = { type = "spell", spellId = 5938, name = "毒刃" },
+        [32] = { type = "spell", spellId = 2094, name = "致盲" },
+        [33] = { type = "spell", spellId = 1966, name = "佯攻" },
+        [34] = { type = "spell", spellId = 1856, name = "消失" },
+        [35] = { type = "spell", spellId = 1833, name = "偷袭" },
+        [36] = { type = "spell", spellId = 114018, name = "潜伏帷幕" },
+        [37] = { type = "spell", spellId = 381623, name = "菊花茶" },
+        [38] = { type = "spell", spellId = 5277, name = "闪避" },
+        [39] = { type = "spell", spellId = 185311, name = "猩红之瓶" },
+        [40] = { type = "spell", spellId = 1725, name = "扰乱" },
+        [41] = { type = "spell", spellId = 2983, name = "疾跑" },
+        [42] = { type = "spell", spellId = 1776, name = "凿击" },
+        [43] = { type = "spell", spellId = 408, name = "肾击" },
+        [44] = { type = "spell", spellId = 31224, name = "暗影斗篷" },
+        [45] = { type = "spell", spellId = 1766, name = "脚踢" },
+
+        [46] = { type = "spell", spellId = 360194, name = "死亡印记" },
+        [47] = { type = "spell", spellId = 1293340, name = "死亡印记" },
+        [48] = { type = "spell", spellId = 703, name = "锁喉" },
+        [49] = { type = "spell", spellId = 385627, name = "君王之灾" },
+        [50] = { type = "spell", spellId = 36554, name = "暗影步" },
+
+    },
+    [2] = {
+        [1] = { type = "block", name = "锚点" },
+        [2] = { type = "block", name = "职业" },
+        [3] = { type = "block", name = "专精" },
+        [4] = { type = "block", name = "有效性" },
+        [5] = { type = "block", name = "战斗" },
+        [6] = { type = "block", name = "移动" },
+        [7] = { type = "block", name = "施法" },
+        [8] = { type = "block", name = "引导" },
+        [9] = { type = "block", name = "蓄力" },
+        [10] = { type = "block", name = "蓄力层数" },
+        [11] = { type = "block", name = "生命值" },
+        [12] = { type = "block", name = "能量值" },
+        [13] = { type = "block", name = "一键辅助" },
+        [14] = { type = "block", name = "法术失败" },
+        [15] = { type = "block", name = "目标类型" },
+        [16] = { type = "block", name = "队伍类型" },
+        [17] = { type = "block", name = "队伍人数" },
+        [18] = { type = "block", name = "首领战" },
+        [19] = { type = "block", name = "难度" },
+        [20] = { type = "block", name = "英雄天赋" },
+
+        [31] = { type = "spell", spellId = 5938, name = "毒刃" },
+        [32] = { type = "spell", spellId = 2094, name = "致盲" },
+        [33] = { type = "spell", spellId = 1966, name = "佯攻" },
+        [34] = { type = "spell", spellId = 1856, name = "消失" },
+        [35] = { type = "spell", spellId = 1833, name = "偷袭" },
+        [36] = { type = "spell", spellId = 114018, name = "潜伏帷幕" },
+        [37] = { type = "spell", spellId = 381623, name = "菊花茶" },
+        [38] = { type = "spell", spellId = 5277, name = "闪避" },
+        [39] = { type = "spell", spellId = 185311, name = "猩红之瓶" },
+        [40] = { type = "spell", spellId = 1725, name = "扰乱" },
+        [41] = { type = "spell", spellId = 2983, name = "疾跑" },
+        [42] = { type = "spell", spellId = 1776, name = "凿击" },
+        [43] = { type = "spell", spellId = 408, name = "肾击" },
+        [44] = { type = "spell", spellId = 31224, name = "暗影斗篷" },
+        [45] = { type = "spell", spellId = 1766, name = "脚踢" },
+
+        [46] = { type = "spell", spellId = 13750, name = "冲动" },
+        [47] = { type = "spell", spellId = 51690, name = "影舞步" },
+        [48] = { type = "spell", spellId = 271877, name = "刀锋冲刺" },
+        [49] = { type = "spell", spellId = 315341, name = "正中眉心" },
+        [50] = { type = "spell", spellId = 13877, name = "剑刃乱舞" },
+        [51] = { type = "spell", spellId = 195475, name = "抓钩" },
+        [52] = { type = "spell", spellId = 195475, name = "抓钩", charge = true },
+        [53] = { type = "spell", spellId = 1214909, name = "命运骨骰" },
+
+
+    },
+    [3] = {
+        [1] = { type = "block", name = "锚点" },
+        [2] = { type = "block", name = "职业" },
+        [3] = { type = "block", name = "专精" },
+        [4] = { type = "block", name = "有效性" },
+        [5] = { type = "block", name = "战斗" },
+        [6] = { type = "block", name = "移动" },
+        [7] = { type = "block", name = "施法" },
+        [8] = { type = "block", name = "引导" },
+        [9] = { type = "block", name = "蓄力" },
+        [10] = { type = "block", name = "蓄力层数" },
+        [11] = { type = "block", name = "生命值" },
+        [12] = { type = "block", name = "能量值" },
+        [13] = { type = "block", name = "一键辅助" },
+        [14] = { type = "block", name = "法术失败" },
+        [15] = { type = "block", name = "目标类型" },
+        [16] = { type = "block", name = "队伍类型" },
+        [17] = { type = "block", name = "队伍人数" },
+        [18] = { type = "block", name = "首领战" },
+        [19] = { type = "block", name = "难度" },
+        [20] = { type = "block", name = "英雄天赋" },
+
+        [31] = { type = "spell", spellId = 5938, name = "毒刃" },
+        [32] = { type = "spell", spellId = 2094, name = "致盲" },
+        [33] = { type = "spell", spellId = 1966, name = "佯攻" },
+        [34] = { type = "spell", spellId = 1856, name = "消失" },
+        [35] = { type = "spell", spellId = 1833, name = "偷袭" },
+        [36] = { type = "spell", spellId = 114018, name = "潜伏帷幕" },
+        [37] = { type = "spell", spellId = 381623, name = "菊花茶" },
+        [38] = { type = "spell", spellId = 5277, name = "闪避" },
+        [39] = { type = "spell", spellId = 185311, name = "猩红之瓶" },
+        [40] = { type = "spell", spellId = 1725, name = "扰乱" },
+        [41] = { type = "spell", spellId = 2983, name = "疾跑" },
+        [42] = { type = "spell", spellId = 1776, name = "凿击" },
+        [43] = { type = "spell", spellId = 408, name = "肾击" },
+        [44] = { type = "spell", spellId = 31224, name = "暗影斗篷" },
+        [45] = { type = "spell", spellId = 1766, name = "脚踢" },
+        [46] = { type = "spell", spellId = 36554, name = "暗影步" },
+        [47] = { type = "spell", spellId = 280719, name = "影分身" },
+        [48] = { type = "spell", spellId = 121471, name = "暗影之刃" },
+        [49] = { type = "spell", spellId = 185313, name = "暗影之舞" },
+        [50] = { type = "spell", spellId = 185313, name = "暗影之舞", charge = true },
+
+
+    },
 }
-
-fu.spellCooldown = {
-    [5938]   = { index = 31, name = "毒刃" },
-    [2094]   = { index = 32, name = "致盲" },
-    [1966]   = { index = 33, name = "佯攻" },
-    [1856]   = { index = 34, name = "消失" },
-    [1833]   = { index = 35, name = "偷袭" },
-    [114018] = { index = 36, name = "潜伏帷幕" },
-    [381623] = { index = 37, name = "菊花茶" },
-    [5277]   = { index = 38, name = "闪避" },
-    [185311] = { index = 39, name = "猩红之瓶" },
-    [1725]   = { index = 40, name = "扰乱" },
-    [2983]   = { index = 41, name = "疾跑" },
-    [1776]   = { index = 42, name = "凿击" },
-    [408]    = { index = 43, name = "肾击" },
-    [31224]  = { index = 44, name = "暗影斗篷" },
-    [1766]   = { index = 45, name = "脚踢" },
-}
-
-function fu.updateSpecInfo()
-    local specIndex = C_SpecializationInfo.GetSpecialization()
-    fu.powerType = nil
-    fu.blocks = nil
-    fu.countBars = nil
-    fu.group_blocks = nil
-    if specIndex == 1 then
-        fu.blocks = {
-
-        }
-
-        fu.spellCooldown[360194] = { index = 46, name = "死亡印记" }
-        fu.spellCooldown[1293340] = { index = 47, name = "死亡印记" }
-        fu.spellCooldown[703] = { index = 48, name = "锁喉" }
-        fu.spellCooldown[385627] = { index = 49, name = "君王之灾" }
-        fu.spellCooldown[36554] = { index = 50, name = "暗影步" }
-    elseif specIndex == 2 then
-        fu.blocks = {
-
-        }
-
-        fu.spellCooldown[13750] = { index = 46, name = "冲动" }
-        fu.spellCooldown[51690] = { index = 47, name = "影舞步" }
-        fu.spellCooldown[271877] = { index = 48, name = "刀锋冲刺" }
-        fu.spellCooldown[315341] = { index = 49, name = "正中眉心" }
-        fu.spellCooldown[13877] = { index = 50, name = "剑刃乱舞" }
-        fu.spellCooldown[195475] = { index = 51, name = "抓钩", charge = 52 }
-        fu.spellCooldown[1214909] = { index = 53, name = "命运骨骰" }
-    elseif specIndex == 3 then
-        fu.blocks = {
-
-        }
-        fu.spellCooldown[36554] = { index = 46, name = "暗影步" }
-        fu.spellCooldown[280719] = { index = 47, name = "影分身" }
-        fu.spellCooldown[121471] = { index = 48, name = "暗影之刃" }
-        fu.spellCooldown[185313] = { index = 49, name = "暗影之舞", charge = 50 }
-    end
-end
-
-function fu.CreateClassMacro()
-    local dynamicSpells = {}
-    local specialSpells = {}
-    local staticSpells = {
+Fuyutsui.MacrosList = {
+    dynamicSpells = {},
+    specialSpells = {},
+    staticSpells = {
         [1] = "毒刃",
         [2] = "致盲",
         [3] = "暗影斗篷",
@@ -126,7 +204,5 @@ function fu.CreateClassMacro()
         [56] = "飞镖投掷",
         [57] = "赤喉之咬",
         [58] = "影袭",
-    }
-
-    fu.CreateMacro(dynamicSpells, staticSpells, specialSpells)
-end
+    },
+}

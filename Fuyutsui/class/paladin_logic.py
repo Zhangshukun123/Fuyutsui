@@ -288,7 +288,7 @@ def run_paladin_logic(state_dict, spec_name):
             elif state_dict.get("闪耀之光") > 0 and 生命值 < 80:
                 current_step = "施放 荣耀圣令"
                 action_hotkey = get_hotkey(0, "荣耀圣令")
-            elif tup and spells.get(tup[0], 0) <= 1:
+            elif tup:
                 current_step = f"施放 {tup[0]}"
                 action_hotkey = get_hotkey(0, tup[1])
             else:

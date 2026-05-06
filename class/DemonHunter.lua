@@ -1,82 +1,152 @@
 local _, fu = ...
 if fu.classId ~= 12 then return end
 
-fu.heroSpell = {
-    [442290] = 1,  -- 奥达奇收割者
-    [452402] = 2,  -- 邪痕枭雄
-    [1253304] = 3, -- 歼灭者
+Fuyutsui.ClassBlocks = {
+    [1] = {
+        [1]  = { type = "block", name = "锚点" },
+        [2]  = { type = "block", name = "职业" },
+        [3]  = { type = "block", name = "专精" },
+        [4]  = { type = "block", name = "有效性" },
+        [5]  = { type = "block", name = "战斗" },
+        [6]  = { type = "block", name = "移动" },
+        [7]  = { type = "block", name = "施法" },
+        [8]  = { type = "block", name = "引导" },
+        [9]  = { type = "block", name = "蓄力" },
+        [10] = { type = "block", name = "蓄力层数" },
+        [11] = { type = "block", name = "生命值" },
+        [12] = { type = "block", name = "能量值" },
+        [13] = { type = "block", name = "一键辅助" },
+        [14] = { type = "block", name = "法术失败" },
+        [15] = { type = "block", name = "目标类型" },
+        [16] = { type = "block", name = "队伍类型" },
+        [17] = { type = "block", name = "队伍人数" },
+        [18] = { type = "block", name = "首领战" },
+        [19] = { type = "block", name = "难度" },
+        [20] = { type = "block", name = "英雄天赋" },
+
+        [21] = { type = "block", name = "敌人人数" },
+
+        [40] = { type = "spell", spellId = 196718, name = "黑暗" },
+        [41] = { type = "spell", spellId = 198793, name = "复仇回避" },
+        [42] = { type = "spell", spellId = 185123, name = "投掷利刃 " },
+        [43] = { type = "spell", spellId = 185123, name = "投掷利刃", charge = true },
+        [44] = { type = "spell", spellId = 207684, name = "悲苦咒符" },
+        [45] = { type = "spell", spellId = 217832, name = "禁锢" },
+        [46] = { type = "spell", spellId = 258920, name = "献祭光环" },
+
+        [47] = { type = "spell", spellId = 179057, name = "混乱新星" },
+        [48] = { type = "spell", spellId = 191427, name = "恶魔变形" },
+        [49] = { type = "spell", spellId = 232893, name = "邪能之刃" },
+        [50] = { type = "spell", spellId = 188499, name = "刃舞" },
+        [51] = { type = "spell", spellId = 162794, name = "混乱打击" },
+        [52] = { type = "spell", spellId = 198589, name = "疾影" },
+        [53] = { type = "spell", spellId = 370965, name = "恶魔追击" },
+        [54] = { type = "spell", spellId = 198013, name = "眼棱" },
+        [55] = { type = "spell", spellId = 195072, name = "邪能冲撞" },
+        [56] = { type = "spell", spellId = 258860, name = "精华破碎" },
+
+    },
+    [2] = {
+        [1]  = { type = "block", name = "锚点" },
+        [2]  = { type = "block", name = "职业" },
+        [3]  = { type = "block", name = "专精" },
+        [4]  = { type = "block", name = "有效性" },
+        [5]  = { type = "block", name = "战斗" },
+        [6]  = { type = "block", name = "移动" },
+        [7]  = { type = "block", name = "施法" },
+        [8]  = { type = "block", name = "引导" },
+        [9]  = { type = "block", name = "蓄力" },
+        [10] = { type = "block", name = "蓄力层数" },
+        [11] = { type = "block", name = "生命值" },
+        [12] = { type = "block", name = "能量值" },
+        [13] = { type = "block", name = "一键辅助" },
+        [14] = { type = "block", name = "法术失败" },
+        [15] = { type = "block", name = "目标类型" },
+        [16] = { type = "block", name = "队伍类型" },
+        [17] = { type = "block", name = "队伍人数" },
+        [18] = { type = "block", name = "首领战" },
+        [19] = { type = "block", name = "难度" },
+        [20] = { type = "block", name = "英雄天赋" },
+
+        [21] = { type = "block", name = "敌人人数" },
+
+        [40] = { type = "spell", spellId = 196718, name = "黑暗" },
+        [41] = { type = "spell", spellId = 198793, name = "复仇回避" },
+        [42] = { type = "spell", spellId = 185123, name = "投掷利刃 " },
+        [43] = { type = "spell", spellId = 185123, name = "投掷利刃", charge = true },
+        [44] = { type = "spell", spellId = 207684, name = "悲苦咒符" },
+        [45] = { type = "spell", spellId = 217832, name = "禁锢" },
+        [46] = { type = "spell", spellId = 258920, name = "献祭光环" },
+        [47] = { type = "spell", spellId = 179057, name = "混乱新星" },
+        [48] = { type = "spell", spellId = 187827, name = "恶魔变形" },
+        [49] = { type = "spell", spellId = 232893, name = "邪能之刃" },
+        [50] = { type = "spell", spellId = 189110, name = "地狱火撞击" },
+        [51] = { type = "spell", spellId = 189110, name = "地狱火撞击", charge = true },
+        [52] = { type = "spell", spellId = 203720, name = "恶魔尖刺" },
+        [53] = { type = "spell", spellId = 204021, name = "烈火烙印" },
+        [54] = { type = "spell", spellId = 204021, name = "烈火烙印", charge = true },
+        [55] = { type = "spell", spellId = 247454, name = "幽魂炸弹" },
+        [56] = { type = "spell", spellId = 207407, name = "灵魂切削" },
+        [57] = { type = "spell", spellId = 204596, name = "烈焰咒符" },
+        [58] = { type = "spell", spellId = 390163, name = "怨念咒符" },
+        [59] = { type = "spell", spellId = 228447, name = "灵魂裂劈" },
+        [60] = { type = "spell", spellId = 263642, name = "破裂" },
+        [61] = { type = "spell", spellId = 263642, name = "破裂", charge = true },
+        [62] = { type = "spell", spellId = 212084, name = "邪能毁灭" },
+        [63] = { type = "spell", spellId = 202137, name = "沉默咒符" },
+
+    },
+    [3] = {
+        [1]  = { type = "block", name = "锚点" },
+        [2]  = { type = "block", name = "职业" },
+        [3]  = { type = "block", name = "专精" },
+        [4]  = { type = "block", name = "有效性" },
+        [5]  = { type = "block", name = "战斗" },
+        [6]  = { type = "block", name = "移动" },
+        [7]  = { type = "block", name = "施法" },
+        [8]  = { type = "block", name = "引导" },
+        [9]  = { type = "block", name = "蓄力" },
+        [10] = { type = "block", name = "蓄力层数" },
+        [11] = { type = "block", name = "生命值" },
+        [12] = { type = "block", name = "能量值" },
+        [13] = { type = "block", name = "一键辅助" },
+        [14] = { type = "block", name = "法术失败" },
+        [15] = { type = "block", name = "目标类型" },
+        [16] = { type = "block", name = "队伍类型" },
+        [17] = { type = "block", name = "队伍人数" },
+        [18] = { type = "block", name = "首领战" },
+        [19] = { type = "block", name = "难度" },
+        [20] = { type = "block", name = "英雄天赋" },
+
+        [21] = { type = "block", name = "敌人人数" },
+
+        [40] = { type = "spell", spellId = 196718, name = "黑暗" },
+        [41] = { type = "spell", spellId = 198793, name = "复仇回避" },
+        [42] = { type = "spell", spellId = 185123, name = "投掷利刃 " },
+        [43] = { type = "spell", spellId = 185123, name = "投掷利刃", charge = true },
+        [44] = { type = "spell", spellId = 207684, name = "悲苦咒符" },
+        [45] = { type = "spell", spellId = 217832, name = "禁锢" },
+        [46] = { type = "spell", spellId = 258920, name = "献祭光环" },
+        [47] = { type = "spell", spellId = 1234195, name = "虚空新星" },
+        [48] = { type = "spell", spellId = 1217605, name = "虚空变形" },
+        [49] = { type = "spell", spellId = 1245412, name = "虚空之刃" },
+        [50] = { type = "spell", spellId = 1234796, name = "变换 " },
+        [51] = { type = "spell", spellId = 1234796, name = "变换", charge = true },
+        [52] = { type = "spell", spellId = 1226019, name = "收割" },
+        [53] = { type = "spell", spellId = 473662, name = "吞噬" },
+        [54] = { type = "spell", spellId = 198589, name = "疾影" },
+        [55] = { type = "spell", spellId = 473728, name = "虚空射线" },
+        [56] = { type = "spell", spellId = 1246167, name = "恶魔追击" },
+        [57] = { type = "spell", spellId = 1239123, name = "饥渴斩击" },
+        [58] = { type = "spell", spellId = 1245453, name = "剔除" },
+
+    },
 }
 
-fu.spellCooldown = {
-    [196718] = { index = 40, name = "黑暗" },
-    [198793] = { index = 41, name = "复仇回避" },
-    [185123] = { index = 42, name = "投掷利刃", charge = 43 },
-    [207684] = { index = 44, name = "悲苦咒符" },
-    [217832] = { index = 45, name = "禁锢" },
-    [258920] = { index = 46, name = "献祭光环" },
-}
-
-function fu.updateSpecInfo()
-    local specIndex = C_SpecializationInfo.GetSpecialization()
-    fu.powerType = nil
-    fu.blocks = nil
-    fu.countBars = nil
-    fu.group_blocks = nil
-    fu.assistant_spells = nil
-    if specIndex == 1 then
-        fu.blocks = {
-            ["敌人人数"] = 21,
-        }
-        fu.spellCooldown[179057] = { index = 47, name = "混乱新星" }
-        fu.spellCooldown[191427] = { index = 48, name = "恶魔变形" }
-        fu.spellCooldown[232893] = { index = 49, name = "邪能之刃" }
-        fu.spellCooldown[188499] = { index = 50, name = "刃舞" }
-        fu.spellCooldown[162794] = { index = 51, name = "混乱打击" }
-        fu.spellCooldown[198589] = { index = 52, name = "疾影" }
-        fu.spellCooldown[370965] = { index = 53, name = "恶魔追击" }
-        fu.spellCooldown[198013] = { index = 54, name = "眼棱" }
-        fu.spellCooldown[195072] = { index = 55, name = "邪能冲撞" }
-        fu.spellCooldown[258860] = { index = 56, name = "精华破碎" }
-    elseif specIndex == 2 then
-        fu.blocks = {
-            ["敌人人数"] = 21,
-        }
-        fu.spellCooldown[179057] = { index = 47, name = "混乱新星" }
-        fu.spellCooldown[187827] = { index = 48, name = "恶魔变形" }
-        fu.spellCooldown[232893] = { index = 49, name = "邪能之刃" }
-        fu.spellCooldown[189110] = { index = 50, name = "地狱火撞击", charge = 51 }
-        fu.spellCooldown[203720] = { index = 52, name = "恶魔尖刺" }
-        fu.spellCooldown[204021] = { index = 53, name = "烈火烙印", charge = 54 }
-        fu.spellCooldown[247454] = { index = 55, name = "幽魂炸弹" }
-        fu.spellCooldown[207407] = { index = 56, name = "灵魂切削" }
-        fu.spellCooldown[204596] = { index = 57, name = "烈焰咒符" }
-        fu.spellCooldown[390163] = { index = 58, name = "怨念咒符" }
-        fu.spellCooldown[228447] = { index = 59, name = "灵魂裂劈" }
-        fu.spellCooldown[263642] = { index = 60, name = "破裂", charge = 61 }
-        fu.spellCooldown[212084] = { index = 62, name = "邪能毁灭" }
-        fu.spellCooldown[202137] = { index = 63, name = "沉默咒符" }
-    elseif specIndex == 3 then
-        fu.blocks = {
-            ["敌人人数"] = 21,
-        }
-        fu.spellCooldown[1234195] = { index = 47, name = "虚空新星" }
-        fu.spellCooldown[1217605] = { index = 48, name = "虚空变形" }
-        fu.spellCooldown[1245412] = { index = 49, name = "虚空之刃" }
-        fu.spellCooldown[1234796] = { index = 50, name = "变换", charge = 51 }
-        fu.spellCooldown[1226019] = { index = 52, name = "收割" }
-        fu.spellCooldown[473662] = { index = 53, name = "吞噬" }
-        fu.spellCooldown[198589] = { index = 54, name = "疾影" }
-        fu.spellCooldown[473728] = { index = 55, name = "虚空射线" }
-        fu.spellCooldown[1246167] = { index = 56, name = "恶魔追击" }
-        fu.spellCooldown[1239123] = { index = 57, name = "饥渴斩击" }
-        fu.spellCooldown[1245453] = { index = 58, name = "剔除" }
-    end
-end
-
-function fu.CreateClassMacro()
-    local dynamicSpells = {}
-    local specialSpells = { [19] = "/castsequence reset=3 烈火烙印,x", }
-    local staticSpells = {
+Fuyutsui.MacrosList = {
+    dynamicSpells = {},
+    specialSpells = { [19] = "/castsequence reset=3 烈火烙印,x", },
+    staticSpells = {
         [1] = "复仇回避",
         [2] = "投掷利刃",
         [3] = "[@cursor]悲苦咒符",
@@ -114,6 +184,5 @@ function fu.CreateClassMacro()
         [35] = "恶魔追击",
         [36] = "饥渴斩击",
         [37] = "黑暗",
-    }
-    fu.CreateMacro(dynamicSpells, staticSpells, specialSpells)
-end
+    },
+}

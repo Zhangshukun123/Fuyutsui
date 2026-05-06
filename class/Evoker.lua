@@ -1,57 +1,59 @@
 local _, fu = ...
 if fu.classId ~= 13 then return end
 
-fu.heroSpell = {
-    [1264269] = 1, -- 塑焰者
-    [436335] = 2,  -- 鳞长
-    [438587] = 2,  -- 鳞长
-    [431442] = 2,  -- 时空守卫
+Fuyutsui.ClassBlocks = {
+    [1] = {
+        [1] = { type = "block", name = "锚点" },
+        [2] = { type = "block", name = "职业" },
+        [3] = { type = "block", name = "专精" },
+        [4] = { type = "block", name = "有效性" },
+        [5] = { type = "block", name = "战斗" },
+        [6] = { type = "block", name = "移动" },
+        [7] = { type = "block", name = "施法" },
+        [8] = { type = "block", name = "引导" },
+        [9] = { type = "block", name = "蓄力" },
+        [10] = { type = "block", name = "蓄力层数" },
+        [11] = { type = "block", name = "生命值" },
+        [12] = { type = "block", name = "能量值" },
+        [13] = { type = "block", name = "一键辅助" },
+        [14] = { type = "block", name = "法术失败" },
+        [15] = { type = "block", name = "目标类型" },
+        [16] = { type = "block", name = "队伍类型" },
+        [17] = { type = "block", name = "队伍人数" },
+        [18] = { type = "block", name = "首领战" },
+        [19] = { type = "block", name = "难度" },
+        [20] = { type = "block", name = "英雄天赋" },
+
+        [21] = { type = "block", name = "施法技能" },
+
+        [31] = { type = "spell", spellId = 365585, name = "净除" },
+        [32] = { type = "spell", spellId = 363916, name = "黑曜鳞片" },
+        [33] = { type = "spell", spellId = 363916, name = "黑曜鳞片", charge = true },
+        [34] = { type = "spell", spellId = 358385, name = "山崩" },
+        [35] = { type = "spell", spellId = 360995, name = "青翠之拥" },
+        [36] = { type = "spell", spellId = 357210, name = "深呼吸" },
+        [37] = { type = "spell", spellId = 374227, name = "微风" },
+        [38] = { type = "spell", spellId = 358267, name = "悬空" },
+        [39] = { type = "spell", spellId = 358267, name = "悬空", charge = true },
+        [40] = { type = "spell", spellId = 368970, name = "扫尾" },
+        [41] = { type = "spell", spellId = 370553, name = "扭转天平" },
+        [42] = { type = "spell", spellId = 370665, name = "营救" },
+        [43] = { type = "spell", spellId = 374968, name = "时间螺旋" },
+        [44] = { type = "spell", spellId = 406732, name = "空间悖论" },
+
+        [45] = { type = "spell", spellId = 359073, name = "永恒之涌" },
+        [46] = { type = "spell", spellId = 351338, name = "镇压" },
+        [47] = { type = "spell", spellId = 375087, name = "狂龙之怒" },
+        [48] = { type = "spell", spellId = 357208, name = "火焰吐息" },
+
+    },
+    [2] = {},
+    [3] = {},
 }
-
-fu.spellCooldown = {
-    [365585] = { index = 31, name = "净除" },
-    [363916] = { index = 32, name = "黑曜鳞片", charge = 33 },
-    [358385] = { index = 34, name = "山崩" },
-    [360995] = { index = 35, name = "青翠之拥" },
-    [357210] = { index = 36, name = "深呼吸" },
-    [374227] = { index = 37, name = "微风" },
-    [358267] = { index = 38, name = "悬空", charge = 39 },
-    [368970] = { index = 40, name = "扫尾", },
-    [370553] = { index = 41, name = "扭转天平", },
-    [370665] = { index = 42, name = "营救", },
-    [374968] = { index = 43, name = "时间螺旋", },
-    [406732] = { index = 44, name = "空间悖论", },
-}
-
-function fu.updateSpecInfo()
-    local specIndex = C_SpecializationInfo.GetSpecialization()
-    fu.powerType = nil
-    fu.blocks = nil
-    fu.countBars = nil
-    fu.group_blocks = nil
-    if specIndex == 1 then
-        fu.blocks = {
-            ["施法技能"] = 21,
-        }
-        fu.spellCooldown[359073] = { index = 45, name = "永恒之涌" }
-        fu.spellCooldown[351338] = { index = 46, name = "镇压" }
-        fu.spellCooldown[375087] = { index = 47, name = "狂龙之怒" }
-        fu.spellCooldown[357208] = { index = 48, name = "火焰吐息" }
-    elseif specIndex == 2 then
-        fu.blocks = {
-
-        }
-    elseif specIndex == 3 then
-        fu.blocks = {
-
-        }
-    end
-end
-
-function fu.CreateClassMacro()
-    local dynamicSpells = { "活化烈焰", "青翠之拥", "回响", "逆转", "净除", "翡翠之花" }
-    local specialSpells = {}
-    local staticSpells = {
+Fuyutsui.MacrosList = {
+    dynamicSpells = { "活化烈焰", "青翠之拥", "回响", "逆转", "净除", "翡翠之花" },
+    specialSpells = {},
+    staticSpells = {
         [1] = "净除",
         [2] = "火焰吐息",
         [3] = "青铜龙的祝福",
@@ -76,7 +78,5 @@ function fu.CreateClassMacro()
         [22] = "时间螺旋",
         [23] = "空间悖论",
         [24] = "营救",
-    }
-
-    fu.CreateMacro(dynamicSpells, staticSpells, specialSpells)
-end
+    },
+}

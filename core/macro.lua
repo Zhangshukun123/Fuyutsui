@@ -45,7 +45,7 @@ local function createMacro(name, key, macro)
     -- print(name, key, macro)
 end
 
-function fu.CreateMacro(dynamicData, staticData, specialData)
+function Fuyutsui:CreateMacro(dynamicData, staticData, specialData)
     dynamicData = dynamicData or {}
     staticData = staticData or {}
     specialData = specialData or {}

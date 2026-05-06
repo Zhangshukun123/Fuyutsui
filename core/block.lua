@@ -75,14 +75,13 @@ local createdBars = {}
 local spellIdToBar = {} -- 新增：用于根据 spellId 查找已存在的条
 local nextAvailableIndex = 2
 
+local events = { "SPELL_UPDATE_USES", "PLAYER_ENTERING_WORLD" }
 ---@param minValue number 最小值
 ---@param maxValue number 最大值
 ---@param spellId number 法术ID
----@param events table 事件表
-function Fuyutsui:CreateAutoLayoutBar(minValue, maxValue, spellId, events)
-    -- --- 新增：重复性检查 ---
+function Fuyutsui:CreateAutoLayoutBar(minValue, maxValue, spellId)
+    -- 重复性检查
     if spellIdToBar[spellId] then
-        -- 如果已经存在该 spellId 的条，直接返回，不执行任何操作
         return spellIdToBar[spellId]
     end
 
@@ -122,16 +121,14 @@ function Fuyutsui:CreateAutoLayoutBar(minValue, maxValue, spellId, events)
         bar:SetValue(val)
     end
 
-    if events and type(events) == "table" then
-        for _, event in ipairs(events) do
-            bar:RegisterEvent(event)
-        end
-        bar:SetScript("OnEvent", Refresh)
+    for _, event in ipairs(events) do
+        bar:RegisterEvent(event)
     end
+    bar:SetScript("OnEvent", Refresh)
+
 
     Refresh()
 
-    -- --- 记录数据 ---
     tinsert(createdBars, bar)
     spellIdToBar[spellId] = bar -- 记录此 spellId 已被创建
 
