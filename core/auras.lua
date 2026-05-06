@@ -1,11 +1,12 @@
-local _, fu = ...
-local classId, e = fu.classId, Fuyutsui.e
+local addon, ns = ...
+local classFilename, classId = UnitClassBase("player")
+local e = Fuyutsui.e
 local addAuras, updateAuras, removeAuras = {}, {}, {} -- 添加、更新、移除光环
 
 --[[
     auras.lua — 逻辑光环状态机（按职业）
     如何在本文件里新增一条光环
-    1. 在 `auras[职业ID]` 下增加键名（中文名），与职业 Lua 里 `fu.blocks.auras` 引用的名称一致。
+    1. 在 `auras[职业ID]` 下增加键名（中文名），与职业 Lua 里 `Fuyutsui.blocks.auras` 引用的名称一致。
     2. 常用字段：
        - remaining / duration / expirationTime：倒计时；有 duration 时事件会刷新 expirationTime。
        - count, countMin, countMax：层数；配合映射表里的 step（正加负减）在「法术冷却」或「施法成功」等路径更新。

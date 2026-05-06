@@ -1,5 +1,4 @@
-local _, fu = ...
-
+local addon, ns = ...
 local actionBars = Fuyutsui.actionBars
 local keymap = Fuyutsui.keymap
 local keybindings = {}
@@ -50,7 +49,5 @@ function Fuyutsui:readKeybindings()
             ProcessActionSlot(slot)
         end
     end)
-    fu.keybindings = keybindings
+    Fuyutsui.keybindings = keybindings
 end
-
-

@@ -1,4 +1,4 @@
-local _, fu = ...
+local addon, ns = ...
 local screenWidth = GetScreenWidth()
 
 local BLOCK_FIX_CONFIG = {
@@ -20,7 +20,6 @@ colorBars:SetSize(screenWidth, BLOCK_FIX_CONFIG.blockHeight)
 colorBars:SetFrameStrata("TOOLTIP") -- 确保在最上层
 colorBars:SetFrameLevel(10000)
 -- colorBars:Raise()   -- Increases the frame's frame level above all other frames in its strata
-fu.MainAnchor = colorBars
 
 -- 存储纹理的数组 (1 到 255)
 local pixelTextures = {}
@@ -136,7 +135,7 @@ function Fuyutsui:CreateAutoLayoutBar(minValue, maxValue, spellId)
 end
 
 --- 清除所有已创建的进度条和背景
-function fu.ClearAllFuyutsuiBars()
+function Fuyutsui:ClearAllFuyutsuiBars()
     -- 1. 释放框架
     for _, bar in ipairs(createdBars) do
         bar:UnregisterAllEvents()

@@ -1,6 +1,5 @@
-local _, fu = ...
+local addon, ns = ...
 local className, classFilename, classId = UnitClass("player")
-fu.classId = classId
 Fuyutsui = LibStub("AceAddon-3.0"):NewAddon("Fuyutsui", "AceEvent-3.0", "AceConsole-3.0")
 local AC = LibStub("AceConfig-3.0") -- AceConfig-3.0 是 Ace3 库中的一个模块，用于注册和管理配置选项
 local ACD = LibStub("AceConfigDialog-3.0")
@@ -109,8 +108,9 @@ function Fuyutsui:SwitchCooldown()
     else
         print("|cff00ff00[Fuyutsui]|r 爆发已|cff00ff00开启|r")
     end
-    if fu.blocks and fu.blocks["爆发开关"] then
-        fu.CreatTexture(fu.blocks["爆发开关"], c.cooldowns / 255)
+    local st = self.blocks and self.blocks.state
+    if st and st["爆发开关"] then
+        self:CreatTexture(st["爆发开关"], c.cooldowns or 0)
     end
     SaveConfig()
 end
@@ -123,8 +123,9 @@ function Fuyutsui:SwitchAoeMode()
     elseif c.aoeMode == 1 then
         print("|cff00ff00[Fuyutsui]|r 已切换|cff00ff00单体|r模式！")
     end
-    if fu.blocks and fu.blocks["AOE开关"] then
-        fu.CreatTexture(fu.blocks["AOE开关"], c.aoeMode / 255)
+    local st = self.blocks and self.blocks.state
+    if st and st["AOE开关"] then
+        self:CreatTexture(st["AOE开关"], c.aoeMode or 0)
     end
     SaveConfig()
 end
@@ -137,8 +138,9 @@ function Fuyutsui:SwitchDpsMode()
     else
         print("|cff00ff00[Fuyutsui]|r 输出模式已修改为|cff00ff00手动编写逻辑|r")
     end
-    if fu.blocks and fu.blocks["输出模式"] then
-        fu.CreatTexture(fu.blocks["输出模式"], c.dpsMode / 255)
+    local st = self.blocks and self.blocks.state
+    if st and st["输出模式"] then
+        self:CreatTexture(st["输出模式"], c.dpsMode or 0)
     end
     SaveConfig()
 end
@@ -173,11 +175,11 @@ function Fuyutsui:SlashCommand(input, editbox)
     local c = self.db and self.db.char
     if command == "cd" then
         if not c then return end
-        c.cooldowns = (c.cooldowns == 0) and 1 / 255 or 0
+        c.cooldowns = (c.cooldowns == 0) and 1 or 0
         self:SwitchCooldown()
     elseif command == "cd on" then
         if not c then return end
-        c.cooldowns = 1 / 255
+        c.cooldowns = 1
         self:SwitchCooldown()
     elseif command == "cd off" then
         if not c then return end
@@ -185,7 +187,7 @@ function Fuyutsui:SlashCommand(input, editbox)
         self:SwitchCooldown()
     elseif command == "aoemode" then
         if not c then return end
-        c.aoeMode = (c.aoeMode == 0) and 1 / 255 or 0
+        c.aoeMode = (c.aoeMode == 0) and 1 or 0
         self:SwitchAoeMode()
     elseif command == "aoemode auto" then
         if not c then return end
@@ -193,15 +195,15 @@ function Fuyutsui:SlashCommand(input, editbox)
         self:SwitchAoeMode()
     elseif command == "aoemode aoe" then
         if not c then return end
-        c.aoeMode = 1 / 255
+        c.aoeMode = 1
         self:SwitchAoeMode()
     elseif command == "dpsmode" then
         if not c then return end
-        c.dpsMode = (c.dpsMode == 0) and 1 / 255 or 0
+        c.dpsMode = (c.dpsMode == 0) and 1 or 0
         self:SwitchDpsMode()
     elseif command == "dpsmode manual" then
         if not c then return end
-        c.dpsMode = 1 / 255
+        c.dpsMode = 1
         self:SwitchDpsMode()
     elseif command == "dpsmode assistant" then
         if not c then return end
@@ -299,7 +301,7 @@ Fuyutsui.options = {
     args = {
         intro = {
             type = "description",
-            name = "与 /fu 子命令配合；游戏内开关仍保存在「角色专用」变量 FuyutsuiDB。",
+            name = "与 /fu 子命令配合；游戏内开关仍保存在「角色专用」变量 FuyutsuiADB（db.char）。",
             fontSize = "medium",
             order = 0,
         },

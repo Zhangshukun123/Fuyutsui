@@ -1,4 +1,4 @@
-local _, fu = ...
+local addon, ns = ...
 local isSec = issecretvalue
 local GetSpellCooldownDuration = C_Spell.GetSpellCooldownDuration
 local GetSpellChargeDuration = C_Spell.GetSpellChargeDuration
@@ -83,7 +83,7 @@ end
 local succSpells = {}
 local succIndex = 1
 local function printSuccSpell(spellID)
-    if succSpells[spellID] or fu.spellsList[spellID] then return end
+    if succSpells[spellID] or Fuyutsui.spellsList[spellID] then return end
     succSpells[spellID] = true
     print("[" .. spellID .. "]" .. " = { index = " .. succIndex .. ", }, -- " .. GetSpellName(spellID))
     succIndex = succIndex + 1
@@ -628,7 +628,7 @@ end
 
 -- 更新玩家配置
 function Fuyutsui:updatePlayerConfig()
-    local c = fu.db and fu.db.char
+    local c = self.db and self.db.char
     if not c or not blocks then return end
     if blocks.state["爆发开关"] then
         Fuyutsui:CreatTexture(blocks.state["爆发开关"], c.cooldowns)
@@ -1224,13 +1224,13 @@ function Fuyutsui:UNIT_SPELLCAST_SUCCEEDED(_, unitTarget, castGUID, spellID, cas
         self:updateFailedSpellBySuccess(spellID)
         self:updateAuraBySuccess(spellID, castBarID)
         if spellID == 384255 then
-            fu.ClearAllFuyutsuiBars()
+            self:ClearAllFuyutsuiBars()
             print("切换天赋")
             C_Timer.After(1, function()
                 self:updatePlayerSpecInfo()
             end)
         elseif spellID == 200749 then
-            fu.ClearAllFuyutsuiBars()
+            self:ClearAllFuyutsuiBars()
             print("切换专精")
             C_Timer.After(1, function()
                 self:updatePlayerSpecInfo()
@@ -1345,12 +1345,7 @@ function Fuyutsui:hookChatFrameEditBox()
 end
 
 function Fuyutsui:SPELL_UPDATE_USES(_, spellID, baseSpellID)
-    fu.updateUsesSpell = spellID
-    fu.updateUsesBaseSpell = baseSpellID
-    C_Timer.After(0.3, function()
-        fu.updateUsesSpell = nil
-        fu.updateUsesBaseSpell = nil
-    end)
+
 end
 
 local rosterTimer

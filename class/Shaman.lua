@@ -1,6 +1,5 @@
-local _, fu = ...
-if fu.classId ~= 7 then return end
-
+if UnitClassBase("player") ~= "SHAMAN" then return end
+local addon, ns = ...
 Fuyutsui.ClassBlocks = {
     [1] = {
         [1] = { type = "block", name = "锚点" },

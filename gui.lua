@@ -1,4 +1,4 @@
-local addonName, fu = ...
+local addon, ns = ...
 local AC = LibStub("AceConfig-3.0")
 local ACD = LibStub("AceConfigDialog-3.0")
 
@@ -8,14 +8,16 @@ local function CharCfg()
 end
 
 local function GetClassColorStr()
-    local raid = fu.classFilename and RAID_CLASS_COLORS[fu.classFilename]
+    local fn = Fuyutsui.state and Fuyutsui.state.classFilename
+    local raid = fn and RAID_CLASS_COLORS[fn]
     return raid and raid.colorStr or "ffffffff"
 end
 
 --- 窗口底部状态栏（AceGUI Frame 的 status 区域，在标签页与关闭按钮之外）
 local function GetFooterStatusText()
-    local cls = fu.className or "?"
-    local spec = fu.specName or "?"
+    local st = Fuyutsui.state
+    local cls = (st and st.className) or "?"
+    local spec = (st and st.specName) or "?"
     return ("职业：|c%s%s|r  专精：|c%s%s|r"):format(GetClassColorStr(), cls, GetClassColorStr(), spec)
 end
 
@@ -31,34 +33,29 @@ local function addToMap(map, idx, name)
     end
 end
 
---- 分别合并 fixed+blocks+auras、spellCooldown；再写入 fu.guiIndexToBlockKey（全集，同索引仍拼接）。
---- 分表：fu.guiIndexToBlockKeyCore、fu.guiIndexToBlockKeySpell（供界面分区显示）。
-function fu.RebuildGuiIndexBlockMap()
+--- 合并 blocks.state、blocks.auras、blocks.spells；再写入 Fuyutsui.guiIndexToBlockKey（全集，同索引仍拼接）。
+--- 分表：Fuyutsui.guiIndexToBlockKeyCore、Fuyutsui.guiIndexToBlockKeySpell（供界面分区显示）。
+function Fuyutsui:RebuildGuiIndexBlockMap()
     local core = {}
     local spell = {}
-    if fu.fixedBlocks then
-        for k, v in pairs(fu.fixedBlocks) do
-            if type(v) == "number" then
-                addToMap(core, v, k)
+    local bl = Fuyutsui.blocks
+    if bl and bl.state then
+        for name, idx in pairs(bl.state) do
+            if type(idx) == "number" then
+                addToMap(core, idx, name)
             end
         end
     end
-    if fu.blocks then
-        for k, v in pairs(fu.blocks) do
-            if k ~= "auras" and type(v) == "number" then
-                addToMap(core, v, k)
-            end
-        end
-        if fu.blocks.auras then
-            for auraName, info in pairs(fu.blocks.auras) do
-                if type(info) == "table" and type(info.index) == "number" then
-                    addToMap(core, info.index, auraName)
-                end
+    if bl and bl.auras then
+        for slotIndex, info in pairs(bl.auras) do
+            if type(info) == "table" and type(slotIndex) == "number" then
+                local label = type(info.name) == "string" and info.name ~= "" and info.name or tostring(slotIndex)
+                addToMap(core, slotIndex, label)
             end
         end
     end
-    if fu.spellCooldown then
-        for _, info in pairs(fu.spellCooldown) do
+    if bl and bl.spells then
+        for _, info in pairs(bl.spells) do
             if type(info) == "table" then
                 local nm = info.name
                 if type(nm) == "string" and nm ~= "" then
@@ -73,31 +70,31 @@ function fu.RebuildGuiIndexBlockMap()
         end
     end
 
-    fu.guiIndexToBlockKeyCore = fu.guiIndexToBlockKeyCore or {}
-    fu.guiIndexToBlockKeySpell = fu.guiIndexToBlockKeySpell or {}
-    wipe(fu.guiIndexToBlockKeyCore)
-    wipe(fu.guiIndexToBlockKeySpell)
+    Fuyutsui.guiIndexToBlockKeyCore = Fuyutsui.guiIndexToBlockKeyCore or {}
+    Fuyutsui.guiIndexToBlockKeySpell = Fuyutsui.guiIndexToBlockKeySpell or {}
+    wipe(Fuyutsui.guiIndexToBlockKeyCore)
+    wipe(Fuyutsui.guiIndexToBlockKeySpell)
     for idx, name in pairs(core) do
-        fu.guiIndexToBlockKeyCore[idx] = name
+        Fuyutsui.guiIndexToBlockKeyCore[idx] = name
     end
     for idx, name in pairs(spell) do
-        fu.guiIndexToBlockKeySpell[idx] = name
+        Fuyutsui.guiIndexToBlockKeySpell[idx] = name
     end
 
-    fu.guiIndexToBlockKey = fu.guiIndexToBlockKey or {}
-    wipe(fu.guiIndexToBlockKey)
+    Fuyutsui.guiIndexToBlockKey = Fuyutsui.guiIndexToBlockKey or {}
+    wipe(Fuyutsui.guiIndexToBlockKey)
     for idx, name in pairs(core) do
-        fu.guiIndexToBlockKey[idx] = name
+        Fuyutsui.guiIndexToBlockKey[idx] = name
     end
     for idx, name in pairs(spell) do
-        local prev = fu.guiIndexToBlockKey[idx]
+        local prev = Fuyutsui.guiIndexToBlockKey[idx]
         if prev then
-            fu.guiIndexToBlockKey[idx] = prev .. " | " .. name
+            Fuyutsui.guiIndexToBlockKey[idx] = prev .. " | " .. name
         else
-            fu.guiIndexToBlockKey[idx] = name
+            Fuyutsui.guiIndexToBlockKey[idx] = name
         end
     end
-    return fu.guiIndexToBlockKey
+    return Fuyutsui.guiIndexToBlockKey
 end
 
 --- 同一映射表内按索引排序，每行一条「索引: 名称」。
@@ -117,13 +114,14 @@ local function formatMapRowsOnePerLine(map)
     return lines
 end
 
---- fu.countBars 仅用于展示，不并入 guiIndexToBlockKey；每行「键: name」。
+--- blocks.countBars 仅用于展示，不并入 guiIndexToBlockKey；每行「键: name」。
 local function formatCountBarsLines()
-    if not fu.countBars or not next(fu.countBars) then
+    local cb = Fuyutsui.blocks and Fuyutsui.blocks.countBars
+    if not cb or not next(cb) then
         return {}
     end
     local keys = {}
-    for k in pairs(fu.countBars) do
+    for k in pairs(cb) do
         tinsert(keys, k)
     end
     sort(keys, function(a, b)
@@ -135,7 +133,7 @@ local function formatCountBarsLines()
     end)
     local lines = {}
     for _, k in ipairs(keys) do
-        local v = fu.countBars[k]
+        local v = cb[k]
         local nm = (type(v) == "table" and type(v.name) == "string") and v.name or tostring(v)
         tinsert(lines, ("%s: %s"):format(tostring(k), nm))
     end
@@ -144,15 +142,15 @@ end
 
 --- 核心区、「法术冷却」、可选「施法计数」；索引区一行一条，施法计数为键与 name。
 local function BuildBlocksSummary()
-    fu.RebuildGuiIndexBlockMap()
-    local core = fu.guiIndexToBlockKeyCore
-    local spl = fu.guiIndexToBlockKeySpell
+    Fuyutsui:RebuildGuiIndexBlockMap()
+    local core = Fuyutsui.guiIndexToBlockKeyCore
+    local spl = Fuyutsui.guiIndexToBlockKeySpell
     local countLines = formatCountBarsLines()
     local hasCore = core and next(core)
     local hasSpell = spl and next(spl)
     local hasCount = #countLines > 0
     if not hasCore and not hasSpell and not hasCount then
-        return "暂无数据：fu.fixedBlocks / fu.blocks / fu.spellCooldown 尚无索引映射，且未配置 fu.countBars。"
+        return "暂无数据：Fuyutsui.blocks.state / .auras / .spells 尚无索引映射，且未配置 blocks.countBars。"
     end
     local parts = {}
     if hasCore then
@@ -184,21 +182,22 @@ end
 --- 与 core.lua 中 slash 逻辑一致：改 SavedVariables 后同步顶部像素
 function Fuyutsui:SyncBlockFromDB()
     local c = CharCfg()
-    if not c or not fu.blocks then return end
-    if fu.blocks["爆发开关"] then
-        self:CreatTexture(fu.blocks["爆发开关"], (c.cooldowns or 0) / 255)
+    local st = Fuyutsui.blocks and Fuyutsui.blocks.state
+    if not c or not st then return end
+    if st["爆发开关"] then
+        self:CreatTexture(st["爆发开关"], c.cooldowns or 0)
     end
-    if fu.blocks["AOE开关"] then
-        self:CreatTexture(fu.blocks["AOE开关"], (c.aoeMode or 0) / 255)
+    if st["AOE开关"] then
+        self:CreatTexture(st["AOE开关"], c.aoeMode or 0)
     end
-    if fu.blocks["输出模式"] then
-        self:CreatTexture(fu.blocks["输出模式"], (c.dpsMode or 0) / 255)
+    if st["输出模式"] then
+        self:CreatTexture(st["输出模式"], c.dpsMode or 0)
     end
 end
 
 local function GetVersion()
-    return C_AddOns.GetAddOnMetadata and C_AddOns.GetAddOnMetadata(addonName, "Version")
-        or GetAddOnMetadata(addonName, "Version")
+    return C_AddOns.GetAddOnMetadata and C_AddOns.GetAddOnMetadata(addon, "Version")
+        or GetAddOnMetadata(addon, "Version")
         or "?"
 end
 
@@ -225,12 +224,12 @@ Fuyutsui Tinkerer是由Fuyutsuki Electronics研发的一块|cFF00FF00免费|r网
 
 感谢所有使用和反馈本插件的用户，特别感谢Discord群组中的成员们的宝贵意见与建议，让插件得以不断完善和进步！
 
-]]):format(addonName)
+]]):format(addon)
                     end,
                 },
             },
         },
-        -- ========== 标签 2：fu.blocks 信息 ==========
+        -- ========== 标签 2：Fuyutsui.blocks 映射 ==========
         blocks = {
             type = "group",
             name = "映射表",
@@ -282,7 +281,7 @@ Fuyutsui Tinkerer是由Fuyutsuki Electronics研发的一块|cFF00FF00免费|r网
                         if Fuyutsui and Fuyutsui.SwitchCooldown then
                             Fuyutsui:SwitchCooldown()
                         else
-                            SyncBlockFromDB()
+                            Fuyutsui:SyncBlockFromDB()
                         end
                     end,
                 },
@@ -303,7 +302,7 @@ Fuyutsui Tinkerer是由Fuyutsuki Electronics研发的一块|cFF00FF00免费|r网
                         if Fuyutsui and Fuyutsui.SwitchAoeMode then
                             Fuyutsui:SwitchAoeMode()
                         else
-                            SyncBlockFromDB()
+                            Fuyutsui:SyncBlockFromDB()
                         end
                     end,
                 },
@@ -324,7 +323,7 @@ Fuyutsui Tinkerer是由Fuyutsuki Electronics研发的一块|cFF00FF00免费|r网
                         if Fuyutsui and Fuyutsui.SwitchDpsMode then
                             Fuyutsui:SwitchDpsMode()
                         else
-                            SyncBlockFromDB()
+                            Fuyutsui:SyncBlockFromDB()
                         end
                     end,
                 },
