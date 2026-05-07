@@ -301,6 +301,22 @@ local auras = {
                 },
             },
         },
+        ["祸福相依"] = {
+            remaining = 0,
+            duration = 20,
+            count = 0,
+            countMin = 0,
+            countMax = 10,
+            expirationTime = nil,
+            addAuras = {
+                [390787] = { event = e["法术冷却"], step = 1 },
+            },
+            updateAuras = nil,
+            removeAuras = {
+                [17] = { event = e["施法成功"] },
+                [1253593] = { event = e["施法成功"] }
+            },
+        },
     },
     -- 死亡骑士
     [6] = {

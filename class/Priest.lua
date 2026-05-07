@@ -22,7 +22,7 @@ Fuyutsui.ClassBlocks = {
         [18] = { type = "block", name = "首领战" },
         [19] = { type = "block", name = "难度" },
         [20] = { type = "block", name = "英雄天赋" },
-        
+
         [21] = { type = "block", name = "目标生命值" },
         [22] = { type = "block", name = "施法技能" },
         [23] = { type = "block", name = "施法目标" },
@@ -34,6 +34,8 @@ Fuyutsui.ClassBlocks = {
         [28] = { type = "aura", name = "暗影愈合", auraName = "暗影愈合", showKey = "remaining" },
         [29] = { type = "aura", name = "暗影层数", auraName = "暗影愈合", showKey = "count" },
         [30] = { type = "aura", name = "福音层数", auraName = "福音", showKey = "count" },
+        [46] = { type = "aura", name = "祸福相依", auraName = "祸福相依", showKey = "remaining" },
+        [47] = { type = "aura", name = "祸福层数", auraName = "祸福相依", showKey = "count" },
 
         [31] = { type = "spell", spellId = 8122, name = "心灵尖啸" },
         [32] = { type = "spell", spellId = 32375, name = "群体驱散" },
@@ -160,7 +162,7 @@ Fuyutsui.ClassBlocks = {
 
 Fuyutsui.MacrosList = {
     dynamicSpells = { "苦修", "快速治疗", "真言术：盾", "愈合祷言", "纯净术", "圣言术：静" },
-    specialSpells = {},
+    specialSpells = { [7] = "/castsequence reset=3 真言术：耀,x", },
     staticSpells = {
         [1] = "心灵震爆",
         [2] = "惩击",
@@ -168,7 +170,7 @@ Fuyutsui.MacrosList = {
         [4] = "真言术：韧",
         [5] = "神圣新星",
         [6] = "苦修",
-        [7] = "真言术：耀",
+        -- [7] = "真言术：耀",
         [8] = "福音",
         [9] = "终极苦修",
         [10] = "绝望祷言",
