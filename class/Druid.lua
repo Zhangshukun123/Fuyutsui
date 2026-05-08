@@ -114,6 +114,7 @@ Fuyutsui.ClassBlocks = {
         [41] = { type = "spell", spellId = 1253799, name = "碎甲咆哮" },
         [42] = { type = "spell", spellId = 1252871, name = "赤红之月" },
         [43] = { type = "spell", spellId = 6807, name = "重殴" },
+        [44] = { type = "spell", spellId = 77758, name = "痛击" },
     },
     [4] = {
         [1] = { type = "block", name = "锚点" },

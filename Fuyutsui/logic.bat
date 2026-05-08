@@ -1,3 +1,3 @@
 @echo off
-python logic_gui.py
-pause
+start /b pythonw logic_gui.py
+exit

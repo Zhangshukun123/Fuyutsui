@@ -812,6 +812,7 @@ state:
       碎甲咆哮: {step: 41, type: "int" }
       赤红之月: {step: 42, type: "int" }
       重殴: {step: 43, type: "int" }
+      痛击: {step: 44, type: "int" }
   4:
     姿态: {step: 21, type: "int" }
     目标距离: {step: 22, type: "int" }
