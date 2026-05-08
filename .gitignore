@@ -12,6 +12,10 @@
 Fuyutsui/__pycache__/
 *.pyc
 
+# 忽略 .NET 构建产物
+bin/
+obj/
+
 # 忽略 macOS 或 Windows 的系统文件
 .DS_Store
 Thumbs.db

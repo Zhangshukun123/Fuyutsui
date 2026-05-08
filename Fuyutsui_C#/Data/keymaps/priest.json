@@ -1,0 +1,1298 @@
+[
+  {
+    "id": 1,
+    "unit": 1,
+    "spell": "苦修",
+    "hotkey": "CTRL-NUMPAD1"
+  },
+  {
+    "id": 2,
+    "unit": 2,
+    "spell": "苦修",
+    "hotkey": "CTRL-NUMPAD2"
+  },
+  {
+    "id": 3,
+    "unit": 3,
+    "spell": "苦修",
+    "hotkey": "CTRL-NUMPAD3"
+  },
+  {
+    "id": 4,
+    "unit": 4,
+    "spell": "苦修",
+    "hotkey": "CTRL-NUMPAD4"
+  },
+  {
+    "id": 5,
+    "unit": 5,
+    "spell": "苦修",
+    "hotkey": "CTRL-NUMPAD5"
+  },
+  {
+    "id": 6,
+    "unit": 6,
+    "spell": "苦修",
+    "hotkey": "CTRL-NUMPAD6"
+  },
+  {
+    "id": 7,
+    "unit": 7,
+    "spell": "苦修",
+    "hotkey": "CTRL-NUMPAD7"
+  },
+  {
+    "id": 8,
+    "unit": 8,
+    "spell": "苦修",
+    "hotkey": "CTRL-NUMPAD8"
+  },
+  {
+    "id": 9,
+    "unit": 9,
+    "spell": "苦修",
+    "hotkey": "CTRL-NUMPAD9"
+  },
+  {
+    "id": 10,
+    "unit": 10,
+    "spell": "苦修",
+    "hotkey": "CTRL-NUMPAD0"
+  },
+  {
+    "id": 11,
+    "unit": 11,
+    "spell": "苦修",
+    "hotkey": "CTRL-NUMPADDECIMAL"
+  },
+  {
+    "id": 12,
+    "unit": 12,
+    "spell": "苦修",
+    "hotkey": "CTRL-NUMPADPLUS"
+  },
+  {
+    "id": 13,
+    "unit": 13,
+    "spell": "苦修",
+    "hotkey": "CTRL-NUMPADMINUS"
+  },
+  {
+    "id": 14,
+    "unit": 14,
+    "spell": "苦修",
+    "hotkey": "CTRL-NUMPADMULTIPLY"
+  },
+  {
+    "id": 15,
+    "unit": 15,
+    "spell": "苦修",
+    "hotkey": "CTRL-NUMPADDIVIDE"
+  },
+  {
+    "id": 16,
+    "unit": 16,
+    "spell": "苦修",
+    "hotkey": "CTRL-F1"
+  },
+  {
+    "id": 17,
+    "unit": 17,
+    "spell": "苦修",
+    "hotkey": "CTRL-F2"
+  },
+  {
+    "id": 18,
+    "unit": 18,
+    "spell": "苦修",
+    "hotkey": "CTRL-F3"
+  },
+  {
+    "id": 19,
+    "unit": 19,
+    "spell": "苦修",
+    "hotkey": "CTRL-F5"
+  },
+  {
+    "id": 20,
+    "unit": 20,
+    "spell": "苦修",
+    "hotkey": "CTRL-F6"
+  },
+  {
+    "id": 21,
+    "unit": 21,
+    "spell": "苦修",
+    "hotkey": "CTRL-F7"
+  },
+  {
+    "id": 22,
+    "unit": 22,
+    "spell": "苦修",
+    "hotkey": "CTRL-F8"
+  },
+  {
+    "id": 23,
+    "unit": 23,
+    "spell": "苦修",
+    "hotkey": "CTRL-F9"
+  },
+  {
+    "id": 24,
+    "unit": 24,
+    "spell": "苦修",
+    "hotkey": "CTRL-F10"
+  },
+  {
+    "id": 25,
+    "unit": 25,
+    "spell": "苦修",
+    "hotkey": "CTRL-F11"
+  },
+  {
+    "id": 26,
+    "unit": 26,
+    "spell": "苦修",
+    "hotkey": "CTRL-F12"
+  },
+  {
+    "id": 27,
+    "unit": 27,
+    "spell": "苦修",
+    "hotkey": "CTRL-,"
+  },
+  {
+    "id": 28,
+    "unit": 28,
+    "spell": "苦修",
+    "hotkey": "CTRL-."
+  },
+  {
+    "id": 29,
+    "unit": 29,
+    "spell": "苦修",
+    "hotkey": "CTRL-/"
+  },
+  {
+    "id": 30,
+    "unit": 30,
+    "spell": "苦修",
+    "hotkey": "CTRL-;"
+  },
+  {
+    "id": 31,
+    "unit": 1,
+    "spell": "快速治疗",
+    "hotkey": "CTRL-'"
+  },
+  {
+    "id": 32,
+    "unit": 2,
+    "spell": "快速治疗",
+    "hotkey": "CTRL-["
+  },
+  {
+    "id": 33,
+    "unit": 3,
+    "spell": "快速治疗",
+    "hotkey": "CTRL-]"
+  },
+  {
+    "id": 34,
+    "unit": 4,
+    "spell": "快速治疗",
+    "hotkey": "CTRL-="
+  },
+  {
+    "id": 35,
+    "unit": 5,
+    "spell": "快速治疗",
+    "hotkey": "ALT-NUMPAD1"
+  },
+  {
+    "id": 36,
+    "unit": 6,
+    "spell": "快速治疗",
+    "hotkey": "ALT-NUMPAD2"
+  },
+  {
+    "id": 37,
+    "unit": 7,
+    "spell": "快速治疗",
+    "hotkey": "ALT-NUMPAD3"
+  },
+  {
+    "id": 38,
+    "unit": 8,
+    "spell": "快速治疗",
+    "hotkey": "ALT-NUMPAD4"
+  },
+  {
+    "id": 39,
+    "unit": 9,
+    "spell": "快速治疗",
+    "hotkey": "ALT-NUMPAD5"
+  },
+  {
+    "id": 40,
+    "unit": 10,
+    "spell": "快速治疗",
+    "hotkey": "ALT-NUMPAD6"
+  },
+  {
+    "id": 41,
+    "unit": 11,
+    "spell": "快速治疗",
+    "hotkey": "ALT-NUMPAD7"
+  },
+  {
+    "id": 42,
+    "unit": 12,
+    "spell": "快速治疗",
+    "hotkey": "ALT-NUMPAD8"
+  },
+  {
+    "id": 43,
+    "unit": 13,
+    "spell": "快速治疗",
+    "hotkey": "ALT-NUMPAD9"
+  },
+  {
+    "id": 44,
+    "unit": 14,
+    "spell": "快速治疗",
+    "hotkey": "ALT-NUMPAD0"
+  },
+  {
+    "id": 45,
+    "unit": 15,
+    "spell": "快速治疗",
+    "hotkey": "ALT-NUMPADDECIMAL"
+  },
+  {
+    "id": 46,
+    "unit": 16,
+    "spell": "快速治疗",
+    "hotkey": "ALT-NUMPADPLUS"
+  },
+  {
+    "id": 47,
+    "unit": 17,
+    "spell": "快速治疗",
+    "hotkey": "ALT-NUMPADMINUS"
+  },
+  {
+    "id": 48,
+    "unit": 18,
+    "spell": "快速治疗",
+    "hotkey": "ALT-NUMPADMULTIPLY"
+  },
+  {
+    "id": 49,
+    "unit": 19,
+    "spell": "快速治疗",
+    "hotkey": "ALT-NUMPADDIVIDE"
+  },
+  {
+    "id": 50,
+    "unit": 20,
+    "spell": "快速治疗",
+    "hotkey": "ALT-F1"
+  },
+  {
+    "id": 51,
+    "unit": 21,
+    "spell": "快速治疗",
+    "hotkey": "ALT-F2"
+  },
+  {
+    "id": 52,
+    "unit": 22,
+    "spell": "快速治疗",
+    "hotkey": "ALT-F3"
+  },
+  {
+    "id": 53,
+    "unit": 23,
+    "spell": "快速治疗",
+    "hotkey": "ALT-F5"
+  },
+  {
+    "id": 54,
+    "unit": 24,
+    "spell": "快速治疗",
+    "hotkey": "ALT-F6"
+  },
+  {
+    "id": 55,
+    "unit": 25,
+    "spell": "快速治疗",
+    "hotkey": "ALT-F7"
+  },
+  {
+    "id": 56,
+    "unit": 26,
+    "spell": "快速治疗",
+    "hotkey": "ALT-F8"
+  },
+  {
+    "id": 57,
+    "unit": 27,
+    "spell": "快速治疗",
+    "hotkey": "ALT-F9"
+  },
+  {
+    "id": 58,
+    "unit": 28,
+    "spell": "快速治疗",
+    "hotkey": "ALT-F10"
+  },
+  {
+    "id": 59,
+    "unit": 29,
+    "spell": "快速治疗",
+    "hotkey": "ALT-F11"
+  },
+  {
+    "id": 60,
+    "unit": 30,
+    "spell": "快速治疗",
+    "hotkey": "ALT-F12"
+  },
+  {
+    "id": 61,
+    "unit": 1,
+    "spell": "真言术：盾",
+    "hotkey": "ALT-,"
+  },
+  {
+    "id": 62,
+    "unit": 2,
+    "spell": "真言术：盾",
+    "hotkey": "ALT-."
+  },
+  {
+    "id": 63,
+    "unit": 3,
+    "spell": "真言术：盾",
+    "hotkey": "ALT-/"
+  },
+  {
+    "id": 64,
+    "unit": 4,
+    "spell": "真言术：盾",
+    "hotkey": "ALT-;"
+  },
+  {
+    "id": 65,
+    "unit": 5,
+    "spell": "真言术：盾",
+    "hotkey": "ALT-'"
+  },
+  {
+    "id": 66,
+    "unit": 6,
+    "spell": "真言术：盾",
+    "hotkey": "ALT-["
+  },
+  {
+    "id": 67,
+    "unit": 7,
+    "spell": "真言术：盾",
+    "hotkey": "ALT-]"
+  },
+  {
+    "id": 68,
+    "unit": 8,
+    "spell": "真言术：盾",
+    "hotkey": "ALT-="
+  },
+  {
+    "id": 69,
+    "unit": 9,
+    "spell": "真言术：盾",
+    "hotkey": "SHIFT-NUMPAD1"
+  },
+  {
+    "id": 70,
+    "unit": 10,
+    "spell": "真言术：盾",
+    "hotkey": "SHIFT-NUMPAD2"
+  },
+  {
+    "id": 71,
+    "unit": 11,
+    "spell": "真言术：盾",
+    "hotkey": "SHIFT-NUMPAD3"
+  },
+  {
+    "id": 72,
+    "unit": 12,
+    "spell": "真言术：盾",
+    "hotkey": "SHIFT-NUMPAD4"
+  },
+  {
+    "id": 73,
+    "unit": 13,
+    "spell": "真言术：盾",
+    "hotkey": "SHIFT-NUMPAD5"
+  },
+  {
+    "id": 74,
+    "unit": 14,
+    "spell": "真言术：盾",
+    "hotkey": "SHIFT-NUMPAD6"
+  },
+  {
+    "id": 75,
+    "unit": 15,
+    "spell": "真言术：盾",
+    "hotkey": "SHIFT-NUMPAD7"
+  },
+  {
+    "id": 76,
+    "unit": 16,
+    "spell": "真言术：盾",
+    "hotkey": "SHIFT-NUMPAD8"
+  },
+  {
+    "id": 77,
+    "unit": 17,
+    "spell": "真言术：盾",
+    "hotkey": "SHIFT-NUMPAD9"
+  },
+  {
+    "id": 78,
+    "unit": 18,
+    "spell": "真言术：盾",
+    "hotkey": "SHIFT-NUMPAD0"
+  },
+  {
+    "id": 79,
+    "unit": 19,
+    "spell": "真言术：盾",
+    "hotkey": "SHIFT-NUMPADDECIMAL"
+  },
+  {
+    "id": 80,
+    "unit": 20,
+    "spell": "真言术：盾",
+    "hotkey": "SHIFT-NUMPADPLUS"
+  },
+  {
+    "id": 81,
+    "unit": 21,
+    "spell": "真言术：盾",
+    "hotkey": "SHIFT-NUMPADMINUS"
+  },
+  {
+    "id": 82,
+    "unit": 22,
+    "spell": "真言术：盾",
+    "hotkey": "SHIFT-NUMPADMULTIPLY"
+  },
+  {
+    "id": 83,
+    "unit": 23,
+    "spell": "真言术：盾",
+    "hotkey": "SHIFT-NUMPADDIVIDE"
+  },
+  {
+    "id": 84,
+    "unit": 24,
+    "spell": "真言术：盾",
+    "hotkey": "SHIFT-F1"
+  },
+  {
+    "id": 85,
+    "unit": 25,
+    "spell": "真言术：盾",
+    "hotkey": "SHIFT-F2"
+  },
+  {
+    "id": 86,
+    "unit": 26,
+    "spell": "真言术：盾",
+    "hotkey": "SHIFT-F3"
+  },
+  {
+    "id": 87,
+    "unit": 27,
+    "spell": "真言术：盾",
+    "hotkey": "SHIFT-F5"
+  },
+  {
+    "id": 88,
+    "unit": 28,
+    "spell": "真言术：盾",
+    "hotkey": "SHIFT-F6"
+  },
+  {
+    "id": 89,
+    "unit": 29,
+    "spell": "真言术：盾",
+    "hotkey": "SHIFT-F7"
+  },
+  {
+    "id": 90,
+    "unit": 30,
+    "spell": "真言术：盾",
+    "hotkey": "SHIFT-F8"
+  },
+  {
+    "id": 91,
+    "unit": 1,
+    "spell": "愈合祷言",
+    "hotkey": "SHIFT-F9"
+  },
+  {
+    "id": 92,
+    "unit": 2,
+    "spell": "愈合祷言",
+    "hotkey": "SHIFT-F10"
+  },
+  {
+    "id": 93,
+    "unit": 3,
+    "spell": "愈合祷言",
+    "hotkey": "SHIFT-F11"
+  },
+  {
+    "id": 94,
+    "unit": 4,
+    "spell": "愈合祷言",
+    "hotkey": "SHIFT-F12"
+  },
+  {
+    "id": 95,
+    "unit": 5,
+    "spell": "愈合祷言",
+    "hotkey": "SHIFT-,"
+  },
+  {
+    "id": 96,
+    "unit": 6,
+    "spell": "愈合祷言",
+    "hotkey": "SHIFT-."
+  },
+  {
+    "id": 97,
+    "unit": 7,
+    "spell": "愈合祷言",
+    "hotkey": "SHIFT-/"
+  },
+  {
+    "id": 98,
+    "unit": 8,
+    "spell": "愈合祷言",
+    "hotkey": "SHIFT-;"
+  },
+  {
+    "id": 99,
+    "unit": 9,
+    "spell": "愈合祷言",
+    "hotkey": "SHIFT-'"
+  },
+  {
+    "id": 100,
+    "unit": 10,
+    "spell": "愈合祷言",
+    "hotkey": "SHIFT-["
+  },
+  {
+    "id": 101,
+    "unit": 11,
+    "spell": "愈合祷言",
+    "hotkey": "SHIFT-]"
+  },
+  {
+    "id": 102,
+    "unit": 12,
+    "spell": "愈合祷言",
+    "hotkey": "SHIFT-="
+  },
+  {
+    "id": 103,
+    "unit": 13,
+    "spell": "愈合祷言",
+    "hotkey": "ALT-CTRL-NUMPAD1"
+  },
+  {
+    "id": 104,
+    "unit": 14,
+    "spell": "愈合祷言",
+    "hotkey": "ALT-CTRL-NUMPAD2"
+  },
+  {
+    "id": 105,
+    "unit": 15,
+    "spell": "愈合祷言",
+    "hotkey": "ALT-CTRL-NUMPAD3"
+  },
+  {
+    "id": 106,
+    "unit": 16,
+    "spell": "愈合祷言",
+    "hotkey": "ALT-CTRL-NUMPAD4"
+  },
+  {
+    "id": 107,
+    "unit": 17,
+    "spell": "愈合祷言",
+    "hotkey": "ALT-CTRL-NUMPAD5"
+  },
+  {
+    "id": 108,
+    "unit": 18,
+    "spell": "愈合祷言",
+    "hotkey": "ALT-CTRL-NUMPAD6"
+  },
+  {
+    "id": 109,
+    "unit": 19,
+    "spell": "愈合祷言",
+    "hotkey": "ALT-CTRL-NUMPAD7"
+  },
+  {
+    "id": 110,
+    "unit": 20,
+    "spell": "愈合祷言",
+    "hotkey": "ALT-CTRL-NUMPAD8"
+  },
+  {
+    "id": 111,
+    "unit": 21,
+    "spell": "愈合祷言",
+    "hotkey": "ALT-CTRL-NUMPAD9"
+  },
+  {
+    "id": 112,
+    "unit": 22,
+    "spell": "愈合祷言",
+    "hotkey": "ALT-CTRL-NUMPAD0"
+  },
+  {
+    "id": 113,
+    "unit": 23,
+    "spell": "愈合祷言",
+    "hotkey": "ALT-CTRL-NUMPADDECIMAL"
+  },
+  {
+    "id": 114,
+    "unit": 24,
+    "spell": "愈合祷言",
+    "hotkey": "ALT-CTRL-NUMPADPLUS"
+  },
+  {
+    "id": 115,
+    "unit": 25,
+    "spell": "愈合祷言",
+    "hotkey": "ALT-CTRL-NUMPADMINUS"
+  },
+  {
+    "id": 116,
+    "unit": 26,
+    "spell": "愈合祷言",
+    "hotkey": "ALT-CTRL-NUMPADMULTIPLY"
+  },
+  {
+    "id": 117,
+    "unit": 27,
+    "spell": "愈合祷言",
+    "hotkey": "ALT-CTRL-NUMPADDIVIDE"
+  },
+  {
+    "id": 118,
+    "unit": 28,
+    "spell": "愈合祷言",
+    "hotkey": "ALT-CTRL-F1"
+  },
+  {
+    "id": 119,
+    "unit": 29,
+    "spell": "愈合祷言",
+    "hotkey": "ALT-CTRL-F2"
+  },
+  {
+    "id": 120,
+    "unit": 30,
+    "spell": "愈合祷言",
+    "hotkey": "ALT-CTRL-F3"
+  },
+  {
+    "id": 121,
+    "unit": 1,
+    "spell": "纯净术",
+    "hotkey": "ALT-CTRL-F5"
+  },
+  {
+    "id": 122,
+    "unit": 2,
+    "spell": "纯净术",
+    "hotkey": "ALT-CTRL-F6"
+  },
+  {
+    "id": 123,
+    "unit": 3,
+    "spell": "纯净术",
+    "hotkey": "ALT-CTRL-F7"
+  },
+  {
+    "id": 124,
+    "unit": 4,
+    "spell": "纯净术",
+    "hotkey": "ALT-CTRL-F8"
+  },
+  {
+    "id": 125,
+    "unit": 5,
+    "spell": "纯净术",
+    "hotkey": "ALT-CTRL-F9"
+  },
+  {
+    "id": 126,
+    "unit": 6,
+    "spell": "纯净术",
+    "hotkey": "ALT-CTRL-F10"
+  },
+  {
+    "id": 127,
+    "unit": 7,
+    "spell": "纯净术",
+    "hotkey": "ALT-CTRL-F11"
+  },
+  {
+    "id": 128,
+    "unit": 8,
+    "spell": "纯净术",
+    "hotkey": "ALT-CTRL-F12"
+  },
+  {
+    "id": 129,
+    "unit": 9,
+    "spell": "纯净术",
+    "hotkey": "ALT-CTRL-,"
+  },
+  {
+    "id": 130,
+    "unit": 10,
+    "spell": "纯净术",
+    "hotkey": "ALT-CTRL-."
+  },
+  {
+    "id": 131,
+    "unit": 11,
+    "spell": "纯净术",
+    "hotkey": "ALT-CTRL-/"
+  },
+  {
+    "id": 132,
+    "unit": 12,
+    "spell": "纯净术",
+    "hotkey": "ALT-CTRL-;"
+  },
+  {
+    "id": 133,
+    "unit": 13,
+    "spell": "纯净术",
+    "hotkey": "ALT-CTRL-'"
+  },
+  {
+    "id": 134,
+    "unit": 14,
+    "spell": "纯净术",
+    "hotkey": "ALT-CTRL-["
+  },
+  {
+    "id": 135,
+    "unit": 15,
+    "spell": "纯净术",
+    "hotkey": "ALT-CTRL-]"
+  },
+  {
+    "id": 136,
+    "unit": 16,
+    "spell": "纯净术",
+    "hotkey": "ALT-CTRL-="
+  },
+  {
+    "id": 137,
+    "unit": 17,
+    "spell": "纯净术",
+    "hotkey": "ALT-SHIFT-NUMPAD1"
+  },
+  {
+    "id": 138,
+    "unit": 18,
+    "spell": "纯净术",
+    "hotkey": "ALT-SHIFT-NUMPAD2"
+  },
+  {
+    "id": 139,
+    "unit": 19,
+    "spell": "纯净术",
+    "hotkey": "ALT-SHIFT-NUMPAD3"
+  },
+  {
+    "id": 140,
+    "unit": 20,
+    "spell": "纯净术",
+    "hotkey": "ALT-SHIFT-NUMPAD4"
+  },
+  {
+    "id": 141,
+    "unit": 21,
+    "spell": "纯净术",
+    "hotkey": "ALT-SHIFT-NUMPAD5"
+  },
+  {
+    "id": 142,
+    "unit": 22,
+    "spell": "纯净术",
+    "hotkey": "ALT-SHIFT-NUMPAD6"
+  },
+  {
+    "id": 143,
+    "unit": 23,
+    "spell": "纯净术",
+    "hotkey": "ALT-SHIFT-NUMPAD7"
+  },
+  {
+    "id": 144,
+    "unit": 24,
+    "spell": "纯净术",
+    "hotkey": "ALT-SHIFT-NUMPAD8"
+  },
+  {
+    "id": 145,
+    "unit": 25,
+    "spell": "纯净术",
+    "hotkey": "ALT-SHIFT-NUMPAD9"
+  },
+  {
+    "id": 146,
+    "unit": 26,
+    "spell": "纯净术",
+    "hotkey": "ALT-SHIFT-NUMPAD0"
+  },
+  {
+    "id": 147,
+    "unit": 27,
+    "spell": "纯净术",
+    "hotkey": "ALT-SHIFT-NUMPADDECIMAL"
+  },
+  {
+    "id": 148,
+    "unit": 28,
+    "spell": "纯净术",
+    "hotkey": "ALT-SHIFT-NUMPADPLUS"
+  },
+  {
+    "id": 149,
+    "unit": 29,
+    "spell": "纯净术",
+    "hotkey": "ALT-SHIFT-NUMPADMINUS"
+  },
+  {
+    "id": 150,
+    "unit": 30,
+    "spell": "纯净术",
+    "hotkey": "ALT-SHIFT-NUMPADMULTIPLY"
+  },
+  {
+    "id": 151,
+    "unit": 1,
+    "spell": "圣言术：静",
+    "hotkey": "ALT-SHIFT-NUMPADDIVIDE"
+  },
+  {
+    "id": 152,
+    "unit": 2,
+    "spell": "圣言术：静",
+    "hotkey": "ALT-SHIFT-F1"
+  },
+  {
+    "id": 153,
+    "unit": 3,
+    "spell": "圣言术：静",
+    "hotkey": "ALT-SHIFT-F2"
+  },
+  {
+    "id": 154,
+    "unit": 4,
+    "spell": "圣言术：静",
+    "hotkey": "ALT-SHIFT-F3"
+  },
+  {
+    "id": 155,
+    "unit": 5,
+    "spell": "圣言术：静",
+    "hotkey": "ALT-SHIFT-F5"
+  },
+  {
+    "id": 156,
+    "unit": 6,
+    "spell": "圣言术：静",
+    "hotkey": "ALT-SHIFT-F6"
+  },
+  {
+    "id": 157,
+    "unit": 7,
+    "spell": "圣言术：静",
+    "hotkey": "ALT-SHIFT-F7"
+  },
+  {
+    "id": 158,
+    "unit": 8,
+    "spell": "圣言术：静",
+    "hotkey": "ALT-SHIFT-F8"
+  },
+  {
+    "id": 159,
+    "unit": 9,
+    "spell": "圣言术：静",
+    "hotkey": "ALT-SHIFT-F9"
+  },
+  {
+    "id": 160,
+    "unit": 10,
+    "spell": "圣言术：静",
+    "hotkey": "ALT-SHIFT-F10"
+  },
+  {
+    "id": 161,
+    "unit": 11,
+    "spell": "圣言术：静",
+    "hotkey": "ALT-SHIFT-F11"
+  },
+  {
+    "id": 162,
+    "unit": 12,
+    "spell": "圣言术：静",
+    "hotkey": "ALT-SHIFT-F12"
+  },
+  {
+    "id": 163,
+    "unit": 13,
+    "spell": "圣言术：静",
+    "hotkey": "ALT-SHIFT-,"
+  },
+  {
+    "id": 164,
+    "unit": 14,
+    "spell": "圣言术：静",
+    "hotkey": "ALT-SHIFT-."
+  },
+  {
+    "id": 165,
+    "unit": 15,
+    "spell": "圣言术：静",
+    "hotkey": "ALT-SHIFT-/"
+  },
+  {
+    "id": 166,
+    "unit": 16,
+    "spell": "圣言术：静",
+    "hotkey": "ALT-SHIFT-;"
+  },
+  {
+    "id": 167,
+    "unit": 17,
+    "spell": "圣言术：静",
+    "hotkey": "ALT-SHIFT-'"
+  },
+  {
+    "id": 168,
+    "unit": 18,
+    "spell": "圣言术：静",
+    "hotkey": "ALT-SHIFT-["
+  },
+  {
+    "id": 169,
+    "unit": 19,
+    "spell": "圣言术：静",
+    "hotkey": "ALT-SHIFT-]"
+  },
+  {
+    "id": 170,
+    "unit": 20,
+    "spell": "圣言术：静",
+    "hotkey": "ALT-SHIFT-="
+  },
+  {
+    "id": 171,
+    "unit": 21,
+    "spell": "圣言术：静",
+    "hotkey": "CTRL-SHIFT-NUMPAD1"
+  },
+  {
+    "id": 172,
+    "unit": 22,
+    "spell": "圣言术：静",
+    "hotkey": "CTRL-SHIFT-NUMPAD2"
+  },
+  {
+    "id": 173,
+    "unit": 23,
+    "spell": "圣言术：静",
+    "hotkey": "CTRL-SHIFT-NUMPAD3"
+  },
+  {
+    "id": 174,
+    "unit": 24,
+    "spell": "圣言术：静",
+    "hotkey": "CTRL-SHIFT-NUMPAD4"
+  },
+  {
+    "id": 175,
+    "unit": 25,
+    "spell": "圣言术：静",
+    "hotkey": "CTRL-SHIFT-NUMPAD5"
+  },
+  {
+    "id": 176,
+    "unit": 26,
+    "spell": "圣言术：静",
+    "hotkey": "CTRL-SHIFT-NUMPAD6"
+  },
+  {
+    "id": 177,
+    "unit": 27,
+    "spell": "圣言术：静",
+    "hotkey": "CTRL-SHIFT-NUMPAD7"
+  },
+  {
+    "id": 178,
+    "unit": 28,
+    "spell": "圣言术：静",
+    "hotkey": "CTRL-SHIFT-NUMPAD8"
+  },
+  {
+    "id": 179,
+    "unit": 29,
+    "spell": "圣言术：静",
+    "hotkey": "CTRL-SHIFT-NUMPAD9"
+  },
+  {
+    "id": 180,
+    "unit": 30,
+    "spell": "圣言术：静",
+    "hotkey": "CTRL-SHIFT-NUMPAD0"
+  },
+  {
+    "id": 181,
+    "unit": 0,
+    "spell": "心灵震爆",
+    "hotkey": "CTRL-SHIFT-NUMPADDECIMAL"
+  },
+  {
+    "id": 182,
+    "unit": 0,
+    "spell": "惩击",
+    "hotkey": "CTRL-SHIFT-NUMPADPLUS"
+  },
+  {
+    "id": 183,
+    "unit": 0,
+    "spell": "暗言术：痛",
+    "hotkey": "CTRL-SHIFT-NUMPADMINUS"
+  },
+  {
+    "id": 184,
+    "unit": 0,
+    "spell": "真言术：韧",
+    "hotkey": "CTRL-SHIFT-NUMPADMULTIPLY"
+  },
+  {
+    "id": 185,
+    "unit": 0,
+    "spell": "神圣新星",
+    "hotkey": "CTRL-SHIFT-NUMPADDIVIDE"
+  },
+  {
+    "id": 186,
+    "unit": 0,
+    "spell": "苦修",
+    "hotkey": "CTRL-SHIFT-F1"
+  },
+  {
+    "id": 187,
+    "unit": 0,
+    "spell": "耀",
+    "hotkey": "CTRL-SHIFT-F2"
+  },
+  {
+    "id": 188,
+    "unit": 0,
+    "spell": "福音",
+    "hotkey": "CTRL-SHIFT-F3"
+  },
+  {
+    "id": 189,
+    "unit": 0,
+    "spell": "终极苦修",
+    "hotkey": "CTRL-SHIFT-F5"
+  },
+  {
+    "id": 190,
+    "unit": 0,
+    "spell": "绝望祷言",
+    "hotkey": "CTRL-SHIFT-F6"
+  },
+  {
+    "id": 191,
+    "unit": 0,
+    "spell": "暗言术：灭",
+    "hotkey": "CTRL-SHIFT-F7"
+  },
+  {
+    "id": 192,
+    "unit": 0,
+    "spell": "吸血鬼之触",
+    "hotkey": "CTRL-SHIFT-F8"
+  },
+  {
+    "id": 193,
+    "unit": 0,
+    "spell": "暗影形态",
+    "hotkey": "CTRL-SHIFT-F9"
+  },
+  {
+    "id": 194,
+    "unit": 0,
+    "spell": "暗言术：癫",
+    "hotkey": "CTRL-SHIFT-F10"
+  },
+  {
+    "id": 195,
+    "unit": 0,
+    "spell": "精神鞭笞",
+    "hotkey": "CTRL-SHIFT-F11"
+  },
+  {
+    "id": 196,
+    "unit": 0,
+    "spell": "虚空形态",
+    "hotkey": "CTRL-SHIFT-F12"
+  },
+  {
+    "id": 197,
+    "unit": 0,
+    "spell": "虚空洪流",
+    "hotkey": "CTRL-SHIFT-,"
+  },
+  {
+    "id": 198,
+    "unit": 0,
+    "spell": "触须猛击",
+    "hotkey": "CTRL-SHIFT-."
+  },
+  {
+    "id": 199,
+    "unit": 0,
+    "spell": "虚空冲击",
+    "hotkey": "CTRL-SHIFT-/"
+  },
+  {
+    "id": 200,
+    "unit": 0,
+    "spell": "虚空齐射",
+    "hotkey": "CTRL-SHIFT-;"
+  },
+  {
+    "id": 201,
+    "unit": 0,
+    "spell": "圣言术：罚",
+    "hotkey": "CTRL-SHIFT-'"
+  },
+  {
+    "id": 202,
+    "unit": 0,
+    "spell": "神圣之火",
+    "hotkey": "CTRL-SHIFT-["
+  },
+  {
+    "id": 203,
+    "unit": 0,
+    "spell": "治疗祷言",
+    "hotkey": "CTRL-SHIFT-]"
+  },
+  {
+    "id": 204,
+    "unit": 0,
+    "spell": "神圣化身",
+    "hotkey": "CTRL-SHIFT-="
+  },
+  {
+    "id": 205,
+    "unit": 0,
+    "spell": "奥术洪流",
+    "hotkey": "ALT-CTRL-SHIFT-NUMPAD1"
+  },
+  {
+    "id": 206,
+    "unit": 0,
+    "spell": "心灵尖啸",
+    "hotkey": "ALT-CTRL-SHIFT-NUMPAD2"
+  },
+  {
+    "id": 207,
+    "unit": 0,
+    "spell": "群体驱散",
+    "hotkey": "ALT-CTRL-SHIFT-NUMPAD3"
+  },
+  {
+    "id": 208,
+    "unit": 0,
+    "spell": "真言术：障",
+    "hotkey": "ALT-CTRL-SHIFT-NUMPAD4"
+  },
+  {
+    "id": 209,
+    "unit": 0,
+    "spell": "神圣赞美诗",
+    "hotkey": "ALT-CTRL-SHIFT-NUMPAD5"
+  },
+  {
+    "id": 210,
+    "unit": 0,
+    "spell": "光晕",
+    "hotkey": "ALT-CTRL-SHIFT-NUMPAD6"
+  },
+  {
+    "id": 211,
+    "unit": 0,
+    "spell": "纯净术",
+    "hotkey": "ALT-CTRL-SHIFT-NUMPAD7"
+  },
+  {
+    "id": 212,
+    "unit": 0,
+    "spell": "快速治疗",
+    "hotkey": "ALT-CTRL-SHIFT-NUMPAD8"
+  },
+  {
+    "id": 213,
+    "unit": 0,
+    "spell": "真言术：盾",
+    "hotkey": "ALT-CTRL-SHIFT-NUMPAD9"
+  },
+  {
+    "id": 214,
+    "unit": 0,
+    "spell": "愈合祷言",
+    "hotkey": "ALT-CTRL-SHIFT-NUMPAD0"
+  },
+  {
+    "id": 215,
+    "unit": 0,
+    "spell": "圣言术：静",
+    "hotkey": "ALT-CTRL-SHIFT-NUMPADDECIMAL"
+  },
+  {
+    "id": 216,
+    "unit": 0,
+    "spell": "真言术：耀",
+    "hotkey": "ALT-CTRL-SHIFT-NUMPADPLUS"
+  }
+]

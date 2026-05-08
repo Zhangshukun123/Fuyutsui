@@ -1,0 +1,236 @@
+[
+  {
+    "id": 1,
+    "unit": 0,
+    "spell": "亡者复生",
+    "hotkey": "CTRL-NUMPAD1"
+  },
+  {
+    "id": 2,
+    "unit": 0,
+    "spell": "亡者大军",
+    "hotkey": "CTRL-NUMPAD2"
+  },
+  {
+    "id": 3,
+    "unit": 0,
+    "spell": "凋零缠绕",
+    "hotkey": "CTRL-NUMPAD3"
+  },
+  {
+    "id": 4,
+    "unit": 0,
+    "spell": "天灾打击",
+    "hotkey": "CTRL-NUMPAD4"
+  },
+  {
+    "id": 5,
+    "unit": 0,
+    "spell": "扩散",
+    "hotkey": "CTRL-NUMPAD5"
+  },
+  {
+    "id": 6,
+    "unit": 0,
+    "spell": "爆发",
+    "hotkey": "CTRL-NUMPAD6"
+  },
+  {
+    "id": 7,
+    "unit": 0,
+    "spell": "脓疮打击",
+    "hotkey": "CTRL-NUMPAD7"
+  },
+  {
+    "id": 8,
+    "unit": 0,
+    "spell": "腐化",
+    "hotkey": "CTRL-NUMPAD8"
+  },
+  {
+    "id": 9,
+    "unit": 0,
+    "spell": "黑暗突变",
+    "hotkey": "CTRL-NUMPAD9"
+  },
+  {
+    "id": 10,
+    "unit": 0,
+    "spell": "灵魂收割",
+    "hotkey": "CTRL-NUMPAD0"
+  },
+  {
+    "id": 11,
+    "unit": 0,
+    "spell": "灵界打击",
+    "hotkey": "CTRL-NUMPADDECIMAL"
+  },
+  {
+    "id": 12,
+    "unit": 0,
+    "spell": "心脏打击",
+    "hotkey": "CTRL-NUMPADPLUS"
+  },
+  {
+    "id": 13,
+    "unit": 0,
+    "spell": "枯萎凋零",
+    "hotkey": "CTRL-NUMPADMINUS"
+  },
+  {
+    "id": 14,
+    "unit": 0,
+    "spell": "死神的抚摸",
+    "hotkey": "CTRL-NUMPADMULTIPLY"
+  },
+  {
+    "id": 15,
+    "unit": 0,
+    "spell": "符文刃舞",
+    "hotkey": "CTRL-NUMPADDIVIDE"
+  },
+  {
+    "id": 16,
+    "unit": 0,
+    "spell": "精髓分裂",
+    "hotkey": "CTRL-F1"
+  },
+  {
+    "id": 17,
+    "unit": 0,
+    "spell": "血液沸腾",
+    "hotkey": "CTRL-F2"
+  },
+  {
+    "id": 18,
+    "unit": 0,
+    "spell": "吸血鬼之血",
+    "hotkey": "CTRL-F3"
+  },
+  {
+    "id": 19,
+    "unit": 0,
+    "spell": "冰封之韧",
+    "hotkey": "CTRL-F5"
+  },
+  {
+    "id": 20,
+    "unit": 0,
+    "spell": "巫妖之躯",
+    "hotkey": "CTRL-F6"
+  },
+  {
+    "id": 21,
+    "unit": 0,
+    "spell": "反魔法领域",
+    "hotkey": "CTRL-F7"
+  },
+  {
+    "id": 22,
+    "unit": 0,
+    "spell": "窒息",
+    "hotkey": "CTRL-F8"
+  },
+  {
+    "id": 23,
+    "unit": 0,
+    "spell": "致盲冰雨",
+    "hotkey": "CTRL-F9"
+  },
+  {
+    "id": 24,
+    "unit": 0,
+    "spell": "血魔之握",
+    "hotkey": "CTRL-F10"
+  },
+  {
+    "id": 25,
+    "unit": 0,
+    "spell": "憎恶附肢",
+    "hotkey": "CTRL-F11"
+  },
+  {
+    "id": 26,
+    "unit": 0,
+    "spell": "死神印记",
+    "hotkey": "CTRL-F12"
+  },
+  {
+    "id": 27,
+    "unit": 0,
+    "spell": "冰川突进",
+    "hotkey": "CTRL-,"
+  },
+  {
+    "id": 28,
+    "unit": 0,
+    "spell": "冰霜巨龙之怒",
+    "hotkey": "CTRL-."
+  },
+  {
+    "id": 29,
+    "unit": 0,
+    "spell": "冷酷严冬",
+    "hotkey": "CTRL-/"
+  },
+  {
+    "id": 30,
+    "unit": 0,
+    "spell": "冰霜之柱",
+    "hotkey": "CTRL-;"
+  },
+  {
+    "id": 31,
+    "unit": 0,
+    "spell": "冰霜打击",
+    "hotkey": "CTRL-'"
+  },
+  {
+    "id": 32,
+    "unit": 0,
+    "spell": "凛风冲击",
+    "hotkey": "CTRL-["
+  },
+  {
+    "id": 33,
+    "unit": 0,
+    "spell": "冰霜之镰",
+    "hotkey": "CTRL-]"
+  },
+  {
+    "id": 34,
+    "unit": 0,
+    "spell": "冰龙吐息",
+    "hotkey": "CTRL-="
+  },
+  {
+    "id": 35,
+    "unit": 0,
+    "spell": "湮灭",
+    "hotkey": "ALT-NUMPAD1"
+  },
+  {
+    "id": 36,
+    "unit": 0,
+    "spell": "符文武器增效",
+    "hotkey": "ALT-NUMPAD2"
+  },
+  {
+    "id": 37,
+    "unit": 0,
+    "spell": "符文打击",
+    "hotkey": "ALT-NUMPAD3"
+  },
+  {
+    "id": 38,
+    "unit": 0,
+    "spell": "死亡之握",
+    "hotkey": "ALT-NUMPAD4"
+  },
+  {
+    "id": 39,
+    "unit": 0,
+    "spell": "吞噬",
+    "hotkey": "ALT-NUMPAD5"
+  }
+]

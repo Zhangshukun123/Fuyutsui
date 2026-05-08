@@ -1,0 +1,350 @@
+[
+  {
+    "id": 1,
+    "unit": 0,
+    "spell": "毒刃",
+    "hotkey": "CTRL-NUMPAD1"
+  },
+  {
+    "id": 2,
+    "unit": 0,
+    "spell": "致盲",
+    "hotkey": "CTRL-NUMPAD2"
+  },
+  {
+    "id": 3,
+    "unit": 0,
+    "spell": "暗影斗篷",
+    "hotkey": "CTRL-NUMPAD3"
+  },
+  {
+    "id": 4,
+    "unit": 0,
+    "spell": "凿击",
+    "hotkey": "CTRL-NUMPAD4"
+  },
+  {
+    "id": 5,
+    "unit": 0,
+    "spell": "嫁祸诀窍",
+    "hotkey": "CTRL-NUMPAD5"
+  },
+  {
+    "id": 6,
+    "unit": 0,
+    "spell": "闪避",
+    "hotkey": "CTRL-NUMPAD6"
+  },
+  {
+    "id": 7,
+    "unit": 0,
+    "spell": "迟钝药膏",
+    "hotkey": "CTRL-NUMPAD7"
+  },
+  {
+    "id": 8,
+    "unit": 0,
+    "spell": "萎缩药膏",
+    "hotkey": "CTRL-NUMPAD8"
+  },
+  {
+    "id": 9,
+    "unit": 0,
+    "spell": "菊花茶",
+    "hotkey": "CTRL-NUMPAD9"
+  },
+  {
+    "id": 10,
+    "unit": 0,
+    "spell": "肾击",
+    "hotkey": "CTRL-NUMPAD0"
+  },
+  {
+    "id": 11,
+    "unit": 0,
+    "spell": "佯攻",
+    "hotkey": "CTRL-NUMPADDECIMAL"
+  },
+  {
+    "id": 12,
+    "unit": 0,
+    "spell": "偷袭",
+    "hotkey": "CTRL-NUMPADPLUS"
+  },
+  {
+    "id": 13,
+    "unit": 0,
+    "spell": "消失",
+    "hotkey": "CTRL-NUMPADMINUS"
+  },
+  {
+    "id": 14,
+    "unit": 0,
+    "spell": "切割",
+    "hotkey": "CTRL-NUMPADMULTIPLY"
+  },
+  {
+    "id": 15,
+    "unit": 0,
+    "spell": "潜伏帷幕",
+    "hotkey": "CTRL-NUMPADDIVIDE"
+  },
+  {
+    "id": 16,
+    "unit": 0,
+    "spell": "扰乱",
+    "hotkey": "CTRL-F1"
+  },
+  {
+    "id": 17,
+    "unit": 0,
+    "spell": "猩红之瓶",
+    "hotkey": "CTRL-F2"
+  },
+  {
+    "id": 18,
+    "unit": 0,
+    "spell": "疾跑",
+    "hotkey": "CTRL-F3"
+  },
+  {
+    "id": 19,
+    "unit": 0,
+    "spell": "闷棍",
+    "hotkey": "CTRL-F5"
+  },
+  {
+    "id": 20,
+    "unit": 0,
+    "spell": "速效药膏",
+    "hotkey": "CTRL-F6"
+  },
+  {
+    "id": 21,
+    "unit": 0,
+    "spell": "致伤药膏",
+    "hotkey": "CTRL-F7"
+  },
+  {
+    "id": 22,
+    "unit": 0,
+    "spell": "夺命药膏",
+    "hotkey": "CTRL-F8"
+  },
+  {
+    "id": 23,
+    "unit": 0,
+    "spell": "增效药膏",
+    "hotkey": "CTRL-F9"
+  },
+  {
+    "id": 24,
+    "unit": 0,
+    "spell": "减速药膏",
+    "hotkey": "CTRL-F10"
+  },
+  {
+    "id": 25,
+    "unit": 0,
+    "spell": "刀扇",
+    "hotkey": "CTRL-F11"
+  },
+  {
+    "id": 26,
+    "unit": 0,
+    "spell": "死亡印记",
+    "hotkey": "CTRL-F12"
+  },
+  {
+    "id": 27,
+    "unit": 0,
+    "spell": "死亡印记",
+    "hotkey": "CTRL-,"
+  },
+  {
+    "id": 28,
+    "unit": 0,
+    "spell": "锁喉",
+    "hotkey": "CTRL-."
+  },
+  {
+    "id": 29,
+    "unit": 0,
+    "spell": "剧毒之刃",
+    "hotkey": "CTRL-/"
+  },
+  {
+    "id": 30,
+    "unit": 0,
+    "spell": "割裂",
+    "hotkey": "CTRL-;"
+  },
+  {
+    "id": 31,
+    "unit": 0,
+    "spell": "毁伤",
+    "hotkey": "CTRL-'"
+  },
+  {
+    "id": 32,
+    "unit": 0,
+    "spell": "君王之灾",
+    "hotkey": "CTRL-["
+  },
+  {
+    "id": 33,
+    "unit": 0,
+    "spell": "毒伤",
+    "hotkey": "CTRL-]"
+  },
+  {
+    "id": 34,
+    "unit": 0,
+    "spell": "暗影步",
+    "hotkey": "CTRL-="
+  },
+  {
+    "id": 35,
+    "unit": 0,
+    "spell": "猩红风暴",
+    "hotkey": "ALT-NUMPAD1"
+  },
+  {
+    "id": 36,
+    "unit": 0,
+    "spell": "伏击",
+    "hotkey": "ALT-NUMPAD2"
+  },
+  {
+    "id": 37,
+    "unit": 0,
+    "spell": "脚踢",
+    "hotkey": "ALT-NUMPAD3"
+  },
+  {
+    "id": 38,
+    "unit": 0,
+    "spell": "冲动",
+    "hotkey": "ALT-NUMPAD4"
+  },
+  {
+    "id": 39,
+    "unit": 0,
+    "spell": "影舞步",
+    "hotkey": "ALT-NUMPAD5"
+  },
+  {
+    "id": 40,
+    "unit": 0,
+    "spell": "正中眉心",
+    "hotkey": "ALT-NUMPAD6"
+  },
+  {
+    "id": 41,
+    "unit": 0,
+    "spell": "刀锋冲刺",
+    "hotkey": "ALT-NUMPAD7"
+  },
+  {
+    "id": 42,
+    "unit": 0,
+    "spell": "手枪射击",
+    "hotkey": "ALT-NUMPAD8"
+  },
+  {
+    "id": 43,
+    "unit": 0,
+    "spell": "剑刃乱舞",
+    "hotkey": "ALT-NUMPAD9"
+  },
+  {
+    "id": 44,
+    "unit": 0,
+    "spell": "抓钩",
+    "hotkey": "ALT-NUMPAD0"
+  },
+  {
+    "id": 45,
+    "unit": 0,
+    "spell": "命运骨骰",
+    "hotkey": "ALT-NUMPADDECIMAL"
+  },
+  {
+    "id": 46,
+    "unit": 0,
+    "spell": "斩击",
+    "hotkey": "ALT-NUMPADPLUS"
+  },
+  {
+    "id": 47,
+    "unit": 0,
+    "spell": "时运继延",
+    "hotkey": "ALT-NUMPADMINUS"
+  },
+  {
+    "id": 48,
+    "unit": 0,
+    "spell": "伺机待发",
+    "hotkey": "ALT-NUMPADMULTIPLY"
+  },
+  {
+    "id": 49,
+    "unit": 0,
+    "spell": "黑火药",
+    "hotkey": "ALT-NUMPADDIVIDE"
+  },
+  {
+    "id": 50,
+    "unit": 0,
+    "spell": "影分身",
+    "hotkey": "ALT-F1"
+  },
+  {
+    "id": 51,
+    "unit": 0,
+    "spell": "暗影之刃",
+    "hotkey": "ALT-F2"
+  },
+  {
+    "id": 52,
+    "unit": 0,
+    "spell": "背刺",
+    "hotkey": "ALT-F3"
+  },
+  {
+    "id": 53,
+    "unit": 0,
+    "spell": "暗影之舞",
+    "hotkey": "ALT-F5"
+  },
+  {
+    "id": 54,
+    "unit": 0,
+    "spell": "袖剑风暴",
+    "hotkey": "ALT-F6"
+  },
+  {
+    "id": 55,
+    "unit": 0,
+    "spell": "暗影打击",
+    "hotkey": "ALT-F7"
+  },
+  {
+    "id": 56,
+    "unit": 0,
+    "spell": "飞镖投掷",
+    "hotkey": "ALT-F8"
+  },
+  {
+    "id": 57,
+    "unit": 0,
+    "spell": "赤喉之咬",
+    "hotkey": "ALT-F9"
+  },
+  {
+    "id": 58,
+    "unit": 0,
+    "spell": "影袭",
+    "hotkey": "ALT-F10"
+  }
+]

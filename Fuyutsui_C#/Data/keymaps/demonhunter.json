@@ -1,0 +1,224 @@
+[
+  {
+    "id": 1,
+    "unit": 0,
+    "spell": "复仇回避",
+    "hotkey": "CTRL-NUMPAD1"
+  },
+  {
+    "id": 2,
+    "unit": 0,
+    "spell": "投掷利刃",
+    "hotkey": "CTRL-NUMPAD2"
+  },
+  {
+    "id": 3,
+    "unit": 0,
+    "spell": "悲苦咒符",
+    "hotkey": "CTRL-NUMPAD3"
+  },
+  {
+    "id": 4,
+    "unit": 0,
+    "spell": "禁锢",
+    "hotkey": "CTRL-NUMPAD4"
+  },
+  {
+    "id": 5,
+    "unit": 0,
+    "spell": "献祭光环",
+    "hotkey": "CTRL-NUMPAD5"
+  },
+  {
+    "id": 6,
+    "unit": 0,
+    "spell": "混乱新星",
+    "hotkey": "CTRL-NUMPAD6"
+  },
+  {
+    "id": 7,
+    "unit": 0,
+    "spell": "恶魔变形",
+    "hotkey": "CTRL-NUMPAD7"
+  },
+  {
+    "id": 8,
+    "unit": 0,
+    "spell": "邪能之刃",
+    "hotkey": "CTRL-NUMPAD8"
+  },
+  {
+    "id": 9,
+    "unit": 0,
+    "spell": "刃舞",
+    "hotkey": "CTRL-NUMPAD9"
+  },
+  {
+    "id": 10,
+    "unit": 0,
+    "spell": "混乱打击",
+    "hotkey": "CTRL-NUMPAD0"
+  },
+  {
+    "id": 11,
+    "unit": 0,
+    "spell": "疾影",
+    "hotkey": "CTRL-NUMPADDECIMAL"
+  },
+  {
+    "id": 12,
+    "unit": 0,
+    "spell": "恶魔追击",
+    "hotkey": "CTRL-NUMPADPLUS"
+  },
+  {
+    "id": 13,
+    "unit": 0,
+    "spell": "眼棱",
+    "hotkey": "CTRL-NUMPADMINUS"
+  },
+  {
+    "id": 14,
+    "unit": 0,
+    "spell": "邪能冲撞",
+    "hotkey": "CTRL-NUMPADMULTIPLY"
+  },
+  {
+    "id": 15,
+    "unit": 0,
+    "spell": "精华破碎",
+    "hotkey": "CTRL-NUMPADDIVIDE"
+  },
+  {
+    "id": 16,
+    "unit": 0,
+    "spell": "恶魔变形",
+    "hotkey": "CTRL-F1"
+  },
+  {
+    "id": 17,
+    "unit": 0,
+    "spell": "地狱火撞击",
+    "hotkey": "CTRL-F2"
+  },
+  {
+    "id": 18,
+    "unit": 0,
+    "spell": "恶魔尖刺",
+    "hotkey": "CTRL-F3"
+  },
+  {
+    "id": 19,
+    "unit": 0,
+    "spell": "烈火烙印",
+    "hotkey": "CTRL-F5"
+  },
+  {
+    "id": 20,
+    "unit": 0,
+    "spell": "幽魂炸弹",
+    "hotkey": "CTRL-F6"
+  },
+  {
+    "id": 21,
+    "unit": 0,
+    "spell": "灵魂切削",
+    "hotkey": "CTRL-F7"
+  },
+  {
+    "id": 22,
+    "unit": 0,
+    "spell": "烈焰咒符",
+    "hotkey": "CTRL-F8"
+  },
+  {
+    "id": 23,
+    "unit": 0,
+    "spell": "怨念咒符",
+    "hotkey": "CTRL-F9"
+  },
+  {
+    "id": 24,
+    "unit": 0,
+    "spell": "灵魂裂劈",
+    "hotkey": "CTRL-F10"
+  },
+  {
+    "id": 25,
+    "unit": 0,
+    "spell": "破裂",
+    "hotkey": "CTRL-F11"
+  },
+  {
+    "id": 26,
+    "unit": 0,
+    "spell": "邪能毁灭",
+    "hotkey": "CTRL-F12"
+  },
+  {
+    "id": 27,
+    "unit": 0,
+    "spell": "沉默咒符",
+    "hotkey": "CTRL-,"
+  },
+  {
+    "id": 28,
+    "unit": 0,
+    "spell": "虚空新星",
+    "hotkey": "CTRL-."
+  },
+  {
+    "id": 29,
+    "unit": 0,
+    "spell": "虚空变形",
+    "hotkey": "CTRL-/"
+  },
+  {
+    "id": 30,
+    "unit": 0,
+    "spell": "虚空之刃",
+    "hotkey": "CTRL-;"
+  },
+  {
+    "id": 31,
+    "unit": 0,
+    "spell": "变换",
+    "hotkey": "CTRL-'"
+  },
+  {
+    "id": 32,
+    "unit": 0,
+    "spell": "收割",
+    "hotkey": "CTRL-["
+  },
+  {
+    "id": 33,
+    "unit": 0,
+    "spell": "吞噬",
+    "hotkey": "CTRL-]"
+  },
+  {
+    "id": 34,
+    "unit": 0,
+    "spell": "虚空射线",
+    "hotkey": "CTRL-="
+  },
+  {
+    "id": 35,
+    "unit": 0,
+    "spell": "恶魔追击",
+    "hotkey": "ALT-NUMPAD1"
+  },
+  {
+    "id": 36,
+    "unit": 0,
+    "spell": "饥渴斩击",
+    "hotkey": "ALT-NUMPAD2"
+  },
+  {
+    "id": 37,
+    "unit": 0,
+    "spell": "黑暗",
+    "hotkey": "ALT-NUMPAD3"
+  }
+]

@@ -1,0 +1,368 @@
+[
+  {
+    "id": 1,
+    "unit": 0,
+    "spell": "恐惧",
+    "hotkey": "CTRL-NUMPAD1"
+  },
+  {
+    "id": 2,
+    "unit": 0,
+    "spell": "死亡缠绕",
+    "hotkey": "CTRL-NUMPAD2"
+  },
+  {
+    "id": 3,
+    "unit": 0,
+    "spell": "暗影之怒",
+    "hotkey": "CTRL-NUMPAD3"
+  },
+  {
+    "id": 4,
+    "unit": 0,
+    "spell": "内爆",
+    "hotkey": "CTRL-NUMPAD4"
+  },
+  {
+    "id": 5,
+    "unit": 0,
+    "spell": "召唤恶魔暴君",
+    "hotkey": "CTRL-NUMPAD5"
+  },
+  {
+    "id": 6,
+    "unit": 0,
+    "spell": "魔典：邪能破坏者",
+    "hotkey": "CTRL-NUMPAD6"
+  },
+  {
+    "id": 7,
+    "unit": 0,
+    "spell": "召唤末日守卫",
+    "hotkey": "CTRL-NUMPAD7"
+  },
+  {
+    "id": 8,
+    "unit": 0,
+    "spell": "古尔丹之手",
+    "hotkey": "CTRL-NUMPAD8"
+  },
+  {
+    "id": 9,
+    "unit": 0,
+    "spell": "召唤恐惧猎犬",
+    "hotkey": "CTRL-NUMPAD9"
+  },
+  {
+    "id": 10,
+    "unit": 0,
+    "spell": "召唤恶魔卫士",
+    "hotkey": "CTRL-NUMPAD0"
+  },
+  {
+    "id": 11,
+    "unit": 0,
+    "spell": "恶魔之箭",
+    "hotkey": "CTRL-NUMPADDECIMAL"
+  },
+  {
+    "id": 12,
+    "unit": 0,
+    "spell": "暗影箭",
+    "hotkey": "CTRL-NUMPADPLUS"
+  },
+  {
+    "id": 13,
+    "unit": 0,
+    "spell": "召唤地狱猎犬",
+    "hotkey": "CTRL-NUMPADMINUS"
+  },
+  {
+    "id": 14,
+    "unit": 0,
+    "spell": "召唤小鬼",
+    "hotkey": "CTRL-NUMPADMULTIPLY"
+  },
+  {
+    "id": 15,
+    "unit": 0,
+    "spell": "虚弱灾厄",
+    "hotkey": "CTRL-NUMPADDIVIDE"
+  },
+  {
+    "id": 16,
+    "unit": 0,
+    "spell": "语言灾厄",
+    "hotkey": "CTRL-F1"
+  },
+  {
+    "id": 17,
+    "unit": 0,
+    "spell": "陨灭",
+    "hotkey": "CTRL-F2"
+  },
+  {
+    "id": 18,
+    "unit": 0,
+    "spell": "狱火箭",
+    "hotkey": "CTRL-F3"
+  },
+  {
+    "id": 19,
+    "unit": 0,
+    "spell": "灵魂石",
+    "hotkey": "CTRL-F5"
+  },
+  {
+    "id": 20,
+    "unit": 0,
+    "spell": "邪能统御",
+    "hotkey": "CTRL-F6"
+  },
+  {
+    "id": 21,
+    "unit": 0,
+    "spell": "黑暗契约",
+    "hotkey": "CTRL-F7"
+  },
+  {
+    "id": 22,
+    "unit": 0,
+    "spell": "恶魔之箭",
+    "hotkey": "CTRL-F8"
+  },
+  {
+    "id": 23,
+    "unit": 0,
+    "spell": "魔典：小鬼领主",
+    "hotkey": "CTRL-F9"
+  },
+  {
+    "id": 24,
+    "unit": 0,
+    "spell": "法术封锁",
+    "hotkey": "CTRL-F10"
+  },
+  {
+    "id": 25,
+    "unit": 0,
+    "spell": "吞噬魔法",
+    "hotkey": "CTRL-F11"
+  },
+  {
+    "id": 26,
+    "unit": 0,
+    "spell": "爆燃冲刺",
+    "hotkey": "CTRL-F12"
+  },
+  {
+    "id": 27,
+    "unit": 0,
+    "spell": "放逐术",
+    "hotkey": "CTRL-,"
+  },
+  {
+    "id": 28,
+    "unit": 0,
+    "spell": "疲劳诅咒",
+    "hotkey": "CTRL-."
+  },
+  {
+    "id": 29,
+    "unit": 0,
+    "spell": "语言诅咒",
+    "hotkey": "CTRL-/"
+  },
+  {
+    "id": 30,
+    "unit": 0,
+    "spell": "恶魔传送门",
+    "hotkey": "CTRL-;"
+  },
+  {
+    "id": 31,
+    "unit": 0,
+    "spell": "灵魂燃烧",
+    "hotkey": "CTRL-'"
+  },
+  {
+    "id": 32,
+    "unit": 0,
+    "spell": "恐惧嚎叫",
+    "hotkey": "CTRL-["
+  },
+  {
+    "id": 33,
+    "unit": 0,
+    "spell": "恶魔法阵",
+    "hotkey": "CTRL-]"
+  },
+  {
+    "id": 34,
+    "unit": 0,
+    "spell": "恶魔法阵：传送",
+    "hotkey": "CTRL-="
+  },
+  {
+    "id": 35,
+    "unit": 0,
+    "spell": "制造灵魂之井",
+    "hotkey": "ALT-NUMPAD1"
+  },
+  {
+    "id": 36,
+    "unit": 0,
+    "spell": "召唤仪式",
+    "hotkey": "ALT-NUMPAD2"
+  },
+  {
+    "id": 37,
+    "unit": 0,
+    "spell": "腐蚀术",
+    "hotkey": "ALT-NUMPAD3"
+  },
+  {
+    "id": 38,
+    "unit": 0,
+    "spell": "吸取生命",
+    "hotkey": "ALT-NUMPAD4"
+  },
+  {
+    "id": 39,
+    "unit": 0,
+    "spell": "召唤黑眼",
+    "hotkey": "ALT-NUMPAD5"
+  },
+  {
+    "id": 40,
+    "unit": 0,
+    "spell": "痛苦无常",
+    "hotkey": "ALT-NUMPAD6"
+  },
+  {
+    "id": 41,
+    "unit": 0,
+    "spell": "幽冥收割",
+    "hotkey": "ALT-NUMPAD7"
+  },
+  {
+    "id": 42,
+    "unit": 0,
+    "spell": "腐蚀之种",
+    "hotkey": "ALT-NUMPAD8"
+  },
+  {
+    "id": 43,
+    "unit": 0,
+    "spell": "痛楚",
+    "hotkey": "ALT-NUMPAD9"
+  },
+  {
+    "id": 44,
+    "unit": 0,
+    "spell": "鬼影缠身",
+    "hotkey": "ALT-NUMPAD0"
+  },
+  {
+    "id": 45,
+    "unit": 0,
+    "spell": "枯萎",
+    "hotkey": "ALT-NUMPADDECIMAL"
+  },
+  {
+    "id": 46,
+    "unit": 0,
+    "spell": "怨毒",
+    "hotkey": "ALT-NUMPADPLUS"
+  },
+  {
+    "id": 47,
+    "unit": 0,
+    "spell": "召唤地狱火",
+    "hotkey": "ALT-NUMPADMINUS"
+  },
+  {
+    "id": 48,
+    "unit": 0,
+    "spell": "暗影灼烧",
+    "hotkey": "ALT-NUMPADMULTIPLY"
+  },
+  {
+    "id": 49,
+    "unit": 0,
+    "spell": "混乱之箭",
+    "hotkey": "ALT-NUMPADDIVIDE"
+  },
+  {
+    "id": 50,
+    "unit": 0,
+    "spell": "火焰之雨",
+    "hotkey": "ALT-F1"
+  },
+  {
+    "id": 51,
+    "unit": 0,
+    "spell": "灵魂之火",
+    "hotkey": "ALT-F2"
+  },
+  {
+    "id": 52,
+    "unit": 0,
+    "spell": "烧尽",
+    "hotkey": "ALT-F3"
+  },
+  {
+    "id": 53,
+    "unit": 0,
+    "spell": "燃烧",
+    "hotkey": "ALT-F5"
+  },
+  {
+    "id": 54,
+    "unit": 0,
+    "spell": "献祭",
+    "hotkey": "ALT-F6"
+  },
+  {
+    "id": 55,
+    "unit": 0,
+    "spell": "引导恶魔之火",
+    "hotkey": "ALT-F7"
+  },
+  {
+    "id": 56,
+    "unit": 0,
+    "spell": "浩劫",
+    "hotkey": "ALT-F8"
+  },
+  {
+    "id": 57,
+    "unit": 0,
+    "spell": "火焰之雨",
+    "hotkey": "ALT-F9"
+  },
+  {
+    "id": 58,
+    "unit": 0,
+    "spell": "大灾变",
+    "hotkey": "ALT-F10"
+  },
+  {
+    "id": 59,
+    "unit": 0,
+    "spell": "吸取灵魂",
+    "hotkey": "ALT-F11"
+  },
+  {
+    "id": 60,
+    "unit": 0,
+    "spell": "召唤虚空行者",
+    "hotkey": "ALT-F12"
+  },
+  {
+    "id": 61,
+    "unit": 0,
+    "spell": "召唤萨亚德",
+    "hotkey": "ALT-,"
+  }
+]

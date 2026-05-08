@@ -426,6 +426,7 @@ end
 -- 11. 更新玩家血量信息
 function Fuyutsui:updatePlayerHealth()
     local healthPercent = UnitHealthPercent("player", false, curve100)
+    ---@diagnostic disable-next-line: param-type-mismatch
     local _, _, b = healthPercent:GetRGB()
     state.healthPercent = b
     self:CreatTexture(blocks.state["生命值"], state.healthPercent)
@@ -435,6 +436,7 @@ end
 function Fuyutsui:updatePlayerPower(powerType)
     if (state.powerType and powerType == state.powerType) or state.powerType == nil or powerType == nil then
         local powerPercent = UnitPowerPercent("player", enumPowerType[state.powerType], nil, curve100)
+        ---@diagnostic disable-next-line: param-type-mismatch
         local _, _, b = powerPercent:GetRGB()
         state.powerPercent = b
         Fuyutsui:CreatTexture(blocks.state["能量值"], state.powerPercent)
@@ -708,6 +710,7 @@ function Fuyutsui:updateSpellCooldown()
         if cdDurationObj and cdInfo then
             local result = cdDurationObj:EvaluateRemainingDuration(curve255, 1)
             fallbackColor:SetRGBA(0, index, 1)
+            ---@diagnostic disable-next-line: param-type-mismatch
             local value = EvaluateColorFromBoolean(cdInfo.isEnabled, result, fallbackColor)
             local _, _, b = value:GetRGB()
             if cdInfo.isOnGCD then b = 0 end
@@ -846,6 +849,7 @@ function Fuyutsui:updateUnitHealthInfo(unit)
     local index = blocks.groups.start + (obj.index - 1) * blocks.groups.num + blocks.groups.healthPercent
     obj.curve = creatColorCurveScaling(100 + obj.inComingHeals - obj.healAbsorb)
     local healthPercent = UnitHealthPercent(unit, false, obj.curve)
+    ---@diagnostic disable-next-line: param-type-mismatch
     local _, _, b = healthPercent:GetRGB()
     obj.healthPercent = b
     Fuyutsui:CreatTexture(index, obj.healthPercent)

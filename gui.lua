@@ -2,7 +2,6 @@ local addon, ns = ...
 local AC = LibStub("AceConfig-3.0")
 local ACD = LibStub("AceConfigDialog-3.0")
 
-
 local function CharCfg()
     return Fuyutsui.db and Fuyutsui.db.char
 end

@@ -1,0 +1,224 @@
+[
+  {
+    "id": 1,
+    "unit": 0,
+    "spell": "英勇投掷",
+    "hotkey": "CTRL-NUMPAD1"
+  },
+  {
+    "id": 2,
+    "unit": 0,
+    "spell": "战斗怒吼",
+    "hotkey": "CTRL-NUMPAD2"
+  },
+  {
+    "id": 3,
+    "unit": 0,
+    "spell": "猛击",
+    "hotkey": "CTRL-NUMPAD3"
+  },
+  {
+    "id": 4,
+    "unit": 0,
+    "spell": "撕裂",
+    "hotkey": "CTRL-NUMPAD4"
+  },
+  {
+    "id": 5,
+    "unit": 0,
+    "spell": "斩杀",
+    "hotkey": "CTRL-NUMPAD5"
+  },
+  {
+    "id": 6,
+    "unit": 0,
+    "spell": "剑刃风暴",
+    "hotkey": "CTRL-NUMPAD6"
+  },
+  {
+    "id": 7,
+    "unit": 0,
+    "spell": "崩摧",
+    "hotkey": "CTRL-NUMPAD7"
+  },
+  {
+    "id": 8,
+    "unit": 0,
+    "spell": "致死打击",
+    "hotkey": "CTRL-NUMPAD8"
+  },
+  {
+    "id": 9,
+    "unit": 0,
+    "spell": "巨人打击",
+    "hotkey": "CTRL-NUMPAD9"
+  },
+  {
+    "id": 10,
+    "unit": 0,
+    "spell": "顺劈斩",
+    "hotkey": "CTRL-NUMPAD0"
+  },
+  {
+    "id": 11,
+    "unit": 0,
+    "spell": "压制",
+    "hotkey": "CTRL-NUMPADDECIMAL"
+  },
+  {
+    "id": 12,
+    "unit": 0,
+    "spell": "横扫攻击",
+    "hotkey": "CTRL-NUMPADPLUS"
+  },
+  {
+    "id": 13,
+    "unit": 0,
+    "spell": "天神下凡",
+    "hotkey": "CTRL-NUMPADMINUS"
+  },
+  {
+    "id": 14,
+    "unit": 0,
+    "spell": "旋风斩",
+    "hotkey": "CTRL-NUMPADMULTIPLY"
+  },
+  {
+    "id": 15,
+    "unit": 0,
+    "spell": "斩杀",
+    "hotkey": "CTRL-NUMPADDIVIDE"
+  },
+  {
+    "id": 16,
+    "unit": 0,
+    "spell": "嗜血",
+    "hotkey": "CTRL-F1"
+  },
+  {
+    "id": 17,
+    "unit": 0,
+    "spell": "暴怒",
+    "hotkey": "CTRL-F2"
+  },
+  {
+    "id": 18,
+    "unit": 0,
+    "spell": "奥丁之怒",
+    "hotkey": "CTRL-F3"
+  },
+  {
+    "id": 19,
+    "unit": 0,
+    "spell": "怒击",
+    "hotkey": "CTRL-F5"
+  },
+  {
+    "id": 20,
+    "unit": 0,
+    "spell": "雷霆一击",
+    "hotkey": "CTRL-F6"
+  },
+  {
+    "id": 21,
+    "unit": 0,
+    "spell": "复仇",
+    "hotkey": "CTRL-F7"
+  },
+  {
+    "id": 22,
+    "unit": 0,
+    "spell": "胜利在望",
+    "hotkey": "CTRL-F8"
+  },
+  {
+    "id": 23,
+    "unit": 0,
+    "spell": "勇士之矛",
+    "hotkey": "CTRL-F9"
+  },
+  {
+    "id": 24,
+    "unit": 0,
+    "spell": "英勇飞跃",
+    "hotkey": "CTRL-F10"
+  },
+  {
+    "id": 25,
+    "unit": 0,
+    "spell": "集结呐喊",
+    "hotkey": "CTRL-F11"
+  },
+  {
+    "id": 26,
+    "unit": 0,
+    "spell": "震荡波",
+    "hotkey": "CTRL-F12"
+  },
+  {
+    "id": 27,
+    "unit": 0,
+    "spell": "风暴之锤",
+    "hotkey": "CTRL-,"
+  },
+  {
+    "id": 28,
+    "unit": 0,
+    "spell": "盾牌猛击",
+    "hotkey": "CTRL-."
+  },
+  {
+    "id": 29,
+    "unit": 0,
+    "spell": "破裂投掷",
+    "hotkey": "CTRL-/"
+  },
+  {
+    "id": 30,
+    "unit": 0,
+    "spell": "碎裂投掷",
+    "hotkey": "CTRL-;"
+  },
+  {
+    "id": 31,
+    "unit": 0,
+    "spell": "破胆怒吼",
+    "hotkey": "CTRL-'"
+  },
+  {
+    "id": 32,
+    "unit": 0,
+    "spell": "鲁莽",
+    "hotkey": "CTRL-["
+  },
+  {
+    "id": 33,
+    "unit": 0,
+    "spell": "盾牌格挡",
+    "hotkey": "CTRL-]"
+  },
+  {
+    "id": 34,
+    "unit": 0,
+    "spell": "盾牌冲锋",
+    "hotkey": "CTRL-="
+  },
+  {
+    "id": 35,
+    "unit": 0,
+    "spell": "挫志怒吼",
+    "hotkey": "ALT-NUMPAD1"
+  },
+  {
+    "id": 36,
+    "unit": 0,
+    "spell": "无视苦痛",
+    "hotkey": "ALT-NUMPAD2"
+  },
+  {
+    "id": 37,
+    "unit": 0,
+    "spell": "破坏者",
+    "hotkey": "ALT-NUMPAD3"
+  }
+]
