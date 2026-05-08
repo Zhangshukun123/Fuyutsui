@@ -706,6 +706,30 @@ local auras = {
     },
     -- 德鲁伊
     [11] = {
+        ["星河守护者"] = {
+            remaining = 0,
+            duration = 15,
+            expirationTime = nil,
+            addAuras = {
+                [213708] = { event = e["法术冷却"] },
+            },
+            updateAuras = nil,
+            removeAuras = {
+                [8921] = { event = e["施法成功"] },
+            },
+        },
+        ["淤血"] = {
+            remaining = 0,
+            duration = 10,
+            expirationTime = nil,
+            addAuras = {
+                [93622] = { event = e["法术冷却"] },
+            },
+            updateAuras = nil,
+            removeAuras = {
+                [33917] = { event = e["施法成功"] },
+            },
+        },
         ["塞纳留斯的梦境"] = {
             remaining = 0,
             duration = 10,

@@ -795,7 +795,9 @@ state:
     梦境层数: {step: 25, type: "int" }
     铁鬃: {step: 26, type: "int" }
     狂暴回复: {step: 27, type: "int" }
-
+    星河守护者: {step: 28, type: "int" }
+    淤血: {step: 29, type: "int" }
+    
     spells:
       树皮术: {step: 31, type: "int" }
       台风: {step: 32, type: "int" }
@@ -807,7 +809,9 @@ state:
       生存本能: {step: 38, type: "int" }
       化身: {step: 39, type: "int" }
       野性之心: {step: 40, type: "int" }
-
+      碎甲咆哮: {step: 41, type: "int" }
+      赤红之月: {step: 42, type: "int" }
+      重殴: {step: 43, type: "int" }
   4:
     姿态: {step: 21, type: "int" }
     目标距离: {step: 22, type: "int" }

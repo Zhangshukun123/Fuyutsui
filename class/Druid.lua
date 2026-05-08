@@ -97,6 +97,8 @@ Fuyutsui.ClassBlocks = {
         [25] = { type = "aura", name = "塞纳留斯的梦境层数", auraName = "塞纳留斯的梦境", showKey = "count" },
         [26] = { type = "aura", name = "铁鬃", auraName = "铁鬃", showKey = "remaining" },
         [27] = { type = "aura", name = "狂暴回复", auraName = "狂暴回复", showKey = "remaining" },
+        [28] = { type = "aura", name = "星河守护者", auraName = "星河守护者", showKey = "remaining" },
+        [29] = { type = "aura", name = "淤血", auraName = "淤血", showKey = "remaining" },
 
         [31] = { type = "spell", spellId = 22812, name = "树皮术" },
         [32] = { type = "spell", spellId = 132469, name = "台风" },
@@ -109,7 +111,9 @@ Fuyutsui.ClassBlocks = {
         [38] = { type = "spell", spellId = 61336, name = "生存本能" },
         [39] = { type = "spell", spellId = 102558, name = "化身：乌索克的守护者" },
         [40] = { type = "spell", spellId = 1261867, name = "野性之心" },
-
+        [41] = { type = "spell", spellId = 1253799, name = "碎甲咆哮" },
+        [42] = { type = "spell", spellId = 1252871, name = "赤红之月" },
+        [43] = { type = "spell", spellId = 6807, name = "重殴" },
     },
     [4] = {
         [1] = { type = "block", name = "锚点" },
@@ -173,7 +177,10 @@ Fuyutsui.ClassBlocks = {
 }
 Fuyutsui.MacrosList = {
     dynamicSpells = { "回春术", "愈合", "生命绽放", "迅捷治愈", "自然之愈" },
-    specialSpells = { [17] = "/cancelaura [spec:4]猎豹形态\n/cast 万灵之召", },
+    specialSpells = {
+        [17] = "/cancelaura [spec:4]猎豹形态\n/cast 万灵之召",
+        [22] = "/castsequence reset=0.5 铁鬃,x"
+    },
     staticSpells = {
         [1]  = "[nostance:2]猎豹形态(变形)",
         [2]  = "[nostance:1]熊形态(变形)",
@@ -195,7 +202,7 @@ Fuyutsui.MacrosList = {
         [19] = "[@player]激活",
         [20] = "野性之心",
         [21] = "野性冲锋",
-        [22] = "铁鬃",
+        -- [22] = "铁鬃",
         [23] = "摧折",
         [24] = "明月普照",
         [25] = "狂暴回复",
@@ -226,5 +233,7 @@ Fuyutsui.MacrosList = {
         [50] = "狂暴",
         [51] = "啃噬",
         [52] = "野性狂乱",
+        [53] = "碎甲咆哮",
+        [54] = "重殴",
     },
 }

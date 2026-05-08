@@ -58,6 +58,8 @@ action_map = {
     49: ("野性狂乱", "野性狂乱"),
     50: ("横扫", "横扫"),
     51: ("毁灭", "凶猛撕咬"),
+    52: ("碎甲咆哮", "碎甲咆哮"),
+    53: ("重殴", "重殴"),
 }
 
 # 找到失败法术，必须是法术有冷却时间，并且冷却时间为 0
@@ -71,23 +73,20 @@ def _get_failed_spell(state_dict):
 
 def run_druid_logic(state_dict, spec_name):
     spells = state_dict.get("spells") or {}
-
     战斗 = state_dict.get("战斗", False)
     移动 = state_dict.get("移动", False)
-    施法 = state_dict.get("施法", 0)
-    引导 = state_dict.get("引导", 0)
-    蓄力 = state_dict.get("蓄力", 0)
-    蓄力层数 = state_dict.get("蓄力层数", 0)
-    生命值 = state_dict.get("生命值", 0)
-    能量值 = state_dict.get("能量值", 0)
-    一键辅助 = state_dict.get("一键辅助", 0)
-    法术失败 = state_dict.get("法术失败", 0)
-    目标类型 = state_dict.get("目标类型", 0)
-    队伍类型 = state_dict.get("队伍类型", 0)
-    队伍人数 = state_dict.get("队伍人数", 0)
-    首领战 = state_dict.get("首领战", 0)
-    难度 = state_dict.get("难度", 0)
-    英雄天赋 = state_dict.get("英雄天赋", 0)
+    施法 = int(state_dict.get("施法", 0))
+    引导 = int(state_dict.get("引导", 0))
+    生命值 = int(state_dict.get("生命值", 0))
+    能量值 = int(state_dict.get("能量值", 0))
+    一键辅助 = int(state_dict.get("一键辅助", 0))
+    法术失败 = int(state_dict.get("法术失败", 0))
+    目标类型 = int(state_dict.get("目标类型", 0))
+    队伍类型 = int(state_dict.get("队伍类型", 0))
+    队伍人数 = int(state_dict.get("队伍人数", 0))
+    首领战 = int(state_dict.get("首领战", 0))
+    难度 = int(state_dict.get("难度", 0))
+    英雄天赋 = int(state_dict.get("英雄天赋", 0))
 
     失败法术 = _get_failed_spell(state_dict)
     tup = action_map.get(一键辅助)
@@ -95,11 +94,11 @@ def run_druid_logic(state_dict, spec_name):
     current_step = "无匹配技能"
     unit_info = {}
 
-    姿态 = state_dict.get("姿态", 0)
+    姿态 = int(state_dict.get("姿态", 0))
 
     if spec_name == "平衡":
-        目标生命值 = state_dict.get("目标生命值", 0)
-        敌人人数 = state_dict.get("敌人人数", 0)
+        目标生命值 = int(state_dict.get("目标生命值", 0))
+        敌人人数 = int(state_dict.get("敌人人数", 0))
         if 一键辅助 == 35:
             current_step = "施放 枭兽形态"
             action_hotkey = get_hotkey(0, "枭兽形态")
@@ -110,9 +109,10 @@ def run_druid_logic(state_dict, spec_name):
             action_hotkey = get_hotkey(0, tup[1])
         else:
             current_step = "无匹配技能"
+
     elif spec_name == "野性":
-        目标生命值 = state_dict.get("目标生命值", 0)
-        敌人人数 = state_dict.get("敌人人数", 0)
+        目标生命值 = int(state_dict.get("目标生命值", 0))
+        敌人人数 = int(state_dict.get("敌人人数", 0))
         if 一键辅助 == 38:
             current_step = "施放 猎豹形态"
             action_hotkey = get_hotkey(0, "猎豹形态")
@@ -125,12 +125,28 @@ def run_druid_logic(state_dict, spec_name):
             current_step = "无匹配技能"
 
     elif spec_name == "守护":
-        狂暴充能 = spells.get("狂暴充能")
-        狂暴回复 = spells.get("狂暴回复")
-        铁鬃 = state_dict.get("铁鬃")
-        梦境层数 = state_dict.get("梦境层数")
-        目标距离 = state_dict.get("目标距离", 0)
-        队伍人数 = state_dict.get("队伍人数")
+        目标生命值 = int(state_dict.get("目标生命值", 0))
+        敌人人数 = int(state_dict.get("敌人人数", 0))
+
+        梦境 = int(state_dict.get("梦境", 0))
+        梦境层数 = int(state_dict.get("梦境层数", 0))
+        铁鬃 = int(state_dict.get("铁鬃", 0))
+        狂暴buff = int(state_dict.get("狂暴回复", 0))
+        星河守护者 = int(state_dict.get("星河守护者", 0))
+        淤血 = int(state_dict.get("淤血", 0))
+
+        树皮术_cd = int(spells.get("树皮术", -1))
+        台风_cd = int(spells.get("台风", -1))
+        夺魂咆哮_cd = int(spells.get("夺魂咆哮", -1))
+        乌索尔旋风_cd = int(spells.get("乌索尔旋风", -1))
+        狂暴充能_cd = int(spells.get("狂暴充能", -1))
+        狂暴回复_cd = int(spells.get("狂暴回复", -1))
+        生存本能_cd = int(spells.get("生存本能", -1))
+        化身_cd = int(spells.get("化身", -1))
+        野性之心_cd = int(spells.get("野性之心", -1))
+        碎甲咆哮_cd = int(spells.get("碎甲咆哮", -1))
+        赤红之月_cd = int(spells.get("赤红之月", -1))
+        重殴_cd = int(spells.get("重殴", -1))
 
         if 引导 > 0:
             current_step = "在引导,不执行任何操作"
@@ -141,18 +157,37 @@ def run_druid_logic(state_dict, spec_name):
             if 姿态 != 5:
                 current_step = "施放 熊形态"
                 action_hotkey = get_hotkey(0, "熊形态")
-            elif 生命值 < 85 and 能量值 > 10 and 狂暴充能 < 3 and 狂暴回复 == 0:
+            elif 生命值 < 85 and 能量值 > 10 and 狂暴充能_cd < 3 and 狂暴回复_cd == 0:
                 current_step = "施放 狂暴充能"
                 action_hotkey = get_hotkey(0, "狂暴回复")
-            elif 生命值 < 60 and 能量值 > 10 and 狂暴回复 < 1:
+            elif 生命值 < 60 and 能量值 > 10 and 狂暴回复_cd < 1:
                 current_step = "施放 狂暴回复"
                 action_hotkey = get_hotkey(0, "狂暴回复")
-            elif ((铁鬃 < 2 and 能量值 > 40) or 能量值 > 80):
+            elif 碎甲咆哮_cd == 0 and 能量值 > 70:
+                current_step = "施放 碎甲咆哮"
+                action_hotkey = get_hotkey(0, "碎甲咆哮")
+            elif 铁鬃 < 2 and 能量值 > 40 :
                 current_step = "施放 铁鬃"
                 action_hotkey = get_hotkey(0, "铁鬃")
-            elif 梦境层数 > 0 and 狂暴回复 > 15:
+            elif 能量值 > 70 and 生命值 < 60:
+                current_step = "施放 铁鬃"
+                action_hotkey = get_hotkey(0, "铁鬃")
+            elif 重殴_cd == 0 and 能量值 > 70 :
+                current_step = "施放 重殴"
+                action_hotkey = get_hotkey(0, "重殴")
+            elif 梦境层数 > 0 and 狂暴回复_cd > 15:
                 current_step = "施放 愈合"
                 action_hotkey = get_hotkey(1, "愈合")
+            elif 赤红之月_cd == 0:
+                current_step = "施放 赤红之月"
+                action_hotkey = get_hotkey(0, "月火术")
+            elif 星河守护者 > 0:
+                current_step = "施放 月火术"
+                action_hotkey = get_hotkey(0, "月火术")
+            elif 淤血 > 0:
+                current_step = "施放 裂伤"
+                action_hotkey = get_hotkey(0, "裂伤")
+            
             elif tup:
                 current_step = f"施放 {tup[0]}"
                 action_hotkey = get_hotkey(0, tup[1])

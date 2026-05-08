@@ -200,3 +200,5 @@
 200: {unit: 0, 技能: "狂暴", 热键: "CTRL-SHIFT-;"}
 201: {unit: 0, 技能: "啃噬", 热键: "CTRL-SHIFT-'"}
 202: {unit: 0, 技能: "野性狂乱", 热键: "CTRL-SHIFT-["}
+203: {unit: 0, 技能: "碎甲咆哮", 热键: "CTRL-SHIFT-]"}
+204: {unit: 0, 技能: "重殴", 热键: "CTRL-SHIFT-="}
