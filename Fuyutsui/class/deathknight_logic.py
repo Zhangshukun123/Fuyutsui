@@ -155,7 +155,7 @@ def run_deathknight_logic(state_dict, spec_name):
                 current_step = "施放 灵界打击"
                 action_hotkey = get_hotkey(0, "灵界打击")
                 # 一键辅助
-            elif 输出模式 == 0:
+            elif 输出模式 == 0 and tup:
                 current_step = f"施放 {tup[0]}"
                 action_hotkey = get_hotkey(0, tup[1])
                 # 手写逻辑
