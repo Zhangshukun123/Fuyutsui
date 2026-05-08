@@ -546,21 +546,39 @@ def create_gui():
     main_frame.pack(fill="both", expand=True, padx=12, pady=12)
 
     # ---- 1. 职业/专精 + 开关 ----
+    # 顶栏两行共用水平内边距，与右侧「信息」等按钮的 pack 边距一致，避免与第二行「按住」列右缘错位
+    TOP_BAR_PADX = 14
+    TOP_BAR_RIGHT_BTN_PADX = (0, 8)
+    # 「职业:」与「按键」首列左缘对齐（相对 inner_top / toggle_row 内容区）
+    TOP_BAR_LEFT_INDENT = 14
+    TOP_BAR_SIZE = 13
     top_frame = ctk.CTkFrame(main_frame, fg_color=BG_FRAME, corner_radius=8)
     top_frame.pack(fill="x", pady=(0, 6))
 
     inner_top = ctk.CTkFrame(top_frame, fg_color="transparent")
-    inner_top.pack(fill="x", padx=12, pady=(10, 4))
+    inner_top.pack(fill="x", padx=TOP_BAR_PADX, pady=(10, 4))
 
-    class_prefix_label = ctk.CTkLabel(inner_top, text="职业:", font=("Microsoft YaHei", 14, "bold"), text_color=FG_LIGHT)
-    class_prefix_label.pack(side="left", padx=(12, 0))
-    class_name_label = ctk.CTkLabel(inner_top, text="-", font=("Microsoft YaHei", 14, "bold"), text_color=FG_LIGHT)
+    class_prefix_label = ctk.CTkLabel(inner_top, text="职业:", font=("Microsoft YaHei", TOP_BAR_SIZE, "bold"), text_color=FG_LIGHT)
+    class_prefix_label.pack(side="left", padx=(TOP_BAR_LEFT_INDENT, 0))
+    class_name_label = ctk.CTkLabel(inner_top, text="-", font=("Microsoft YaHei", TOP_BAR_SIZE, "bold"), text_color=FG_LIGHT)
     class_name_label.pack(side="left", padx=(6, 0))
-    spec_label = ctk.CTkLabel(inner_top, text="专精: -", font=("Microsoft YaHei", 14, "bold"), text_color=FG_LIGHT)
+    spec_label = ctk.CTkLabel(inner_top, text="专精: -", font=("Microsoft YaHei", TOP_BAR_SIZE, "bold"), text_color=FG_LIGHT)
     spec_label.pack(side="left", padx=(12, 0))
 
+    status_label = ctk.CTkLabel(
+        inner_top,
+        text="状态: 关闭",
+        font=("Microsoft YaHei", TOP_BAR_SIZE, "bold"),
+        text_color=RED,
+    )
+    status_label.pack(side="left", padx=(12, 0))
+
     toggle_row = ctk.CTkFrame(top_frame, fg_color="transparent")
-    toggle_row.pack(fill="x", padx=12, pady=(0, 10))
+    toggle_row.pack(fill="x", padx=TOP_BAR_PADX, pady=(0, 10))
+
+    mode_btn_frame = ctk.CTkFrame(toggle_row, fg_color="transparent", border_width=0)
+    toggle_row_spacer = ctk.CTkFrame(toggle_row, fg_color="transparent", border_width=0)
+    mode_btn_frame.pack(side="right", padx=TOP_BAR_RIGHT_BTN_PADX)
 
     binding_in_progress = False
 
@@ -678,16 +696,16 @@ def create_gui():
 
     bind_btn = ctk.CTkButton(
         toggle_row,
-        text="绑定按键",
+        text="按键",
         command=start_binding_key,
         font=("Microsoft YaHei", 12),
         fg_color=BG_DARK,
         text_color=FG_LIGHT,
         hover_color="#3d3d3d",
         corner_radius=8,
-        width=90,
+        width=50,
     )
-    bind_btn.pack(side="left", padx=(0, 8))
+    bind_btn.pack(side="left", padx=(10, 8))
 
     bound_key_label = ctk.CTkLabel(
         toggle_row,
@@ -695,22 +713,7 @@ def create_gui():
         font=("Microsoft YaHei", 12),
         text_color=FG_DIM,
     )
-    bound_key_label.pack(side="left")
-
-    status_label = ctk.CTkLabel(
-        toggle_row,
-        text="状态: 关闭",
-        font=("Microsoft YaHei", 12),
-        text_color=RED,
-    )
-    status_label.pack(side="right")
-
-    # ---- 额外：发送模式（开关/单击/按住）----
-    mode_row = ctk.CTkFrame(top_frame, fg_color="transparent")
-    mode_row.pack(fill="x", padx=12, pady=(0, 10))
-
-    mode_label = ctk.CTkLabel(mode_row, text="发送模式:", font=("Microsoft YaHei", 12), text_color=FG_LIGHT)
-    mode_label.pack(side="left")
+    bound_key_label.pack(side="left", padx=(0, 8))
 
     # 使用 GUI 按钮控制全局发送模式，并在切换时立即停止当前发送
     def set_send_mode(mode: str):
@@ -729,43 +732,45 @@ def create_gui():
         hold_btn.configure(text_color=GREEN if active == "hold" else FG_LIGHT)
 
     switch_btn = ctk.CTkButton(
-        mode_row,
+        mode_btn_frame,
         text="开关",
         command=lambda: set_send_mode("switch"),
         font=("Microsoft YaHei", 12),
-        width=80,
+        width=50,
         fg_color=BG_DARK,
         text_color=GREEN if _send_mode == "switch" else FG_LIGHT,
         hover_color="#3d3d3d",
         corner_radius=8,
     )
-    switch_btn.pack(side="left", padx=(12, 6))
+    switch_btn.pack(side="left", padx=(0, 2))
 
     click_btn = ctk.CTkButton(
-        mode_row,
+        mode_btn_frame,
         text="单击",
         command=lambda: set_send_mode("click"),
         font=("Microsoft YaHei", 12),
-        width=80,
+        width=50,
         fg_color=BG_DARK,
         text_color=GREEN if _send_mode == "click" else FG_LIGHT,
         hover_color="#3d3d3d",
         corner_radius=8,
     )
-    click_btn.pack(side="left", padx=(6, 6))
+    click_btn.pack(side="left", padx=(2, 2))
 
     hold_btn = ctk.CTkButton(
-        mode_row,
+        mode_btn_frame,
         text="按住",
         command=lambda: set_send_mode("hold"),
         font=("Microsoft YaHei", 12),
-        width=80,
+        width=50,
         fg_color=BG_DARK,
         text_color=GREEN if _send_mode == "hold" else FG_LIGHT,
         hover_color="#3d3d3d",
         corner_radius=8,
     )
-    hold_btn.pack(side="left", padx=(6, 6))
+    hold_btn.pack(side="left", padx=(2, 0))
+
+    toggle_row_spacer.pack(side="left", fill="x", expand=True)
 
     # ---- 3. 显示队伍（弹窗）----
     def open_team_window():
@@ -1087,7 +1092,7 @@ def create_gui():
     # 顶部：实时信息、显示队伍
     live_info_btn = ctk.CTkButton(
         inner_top,
-        text="实时信息",
+        text="信息",
         command=open_live_info_window,
         font=("Microsoft YaHei", 12),
         width=50,
@@ -1096,12 +1101,12 @@ def create_gui():
         hover_color="#3d3d3d",
         corner_radius=8,
     )
-    live_info_btn.pack(side="right", padx=(0, 8))
+    live_info_btn.pack(side="right", padx=TOP_BAR_RIGHT_BTN_PADX)
     _live_info_btn_ref[0] = live_info_btn
 
     ctk.CTkButton(
         inner_top,
-        text="显示队伍",
+        text="队伍",
         command=open_team_window,
         font=("Microsoft YaHei", 12),
         width=50,
@@ -1123,9 +1128,6 @@ def create_gui():
             text_color=CLASS_NAME_COLORS.get(class_name, FG_LIGHT),
         )
         spec_label.configure(text=f"专精: {spec or '-'}")
-        if spec is None:
-            root.after(GUI_UPDATE_MS, update_display)
-            return
 
         # 发送模式显示：单击模式固定显示“状态: 单击”并高亮
         if mode == "click":
