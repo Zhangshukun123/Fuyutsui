@@ -14,7 +14,8 @@ local keys = {
     "NUMPAD6", "NUMPAD7", "NUMPAD8", "NUMPAD9", "NUMPAD0",
     "NUMPADDECIMAL", "NUMPADPLUS", "NUMPADMINUS", "NUMPADMULTIPLY", "NUMPADDIVIDE",
     "F1", "F2", "F3", "F5", "F6", "F7", "F8", "F9", "F10", "F11", "F12",
-    ",", ".", "/", ";", "'", "[", "]", "="
+    ",", ".", "/", ";", "'", "[", "]", "\\",
+    "8", "9", "0", "-", "="
 }
 
 do
@@ -62,7 +63,8 @@ function Fuyutsui:CreateMacro(dynamicData, staticData, specialData)
             if spell then
                 local raidIdx = ((i - 1) % 30) + 1
                 if raidIdx == 1 then
-                    macroBody = format("/cast [group:raid,@raid1]%s;[group:party,@player]%s;[nogroup,@player]%s", spell, spell,
+                    macroBody = format("/cast [group:raid,@raid1]%s;[group:party,@player]%s;[nogroup,@player]%s", spell,
+                        spell,
                         spell)
                 elseif raidIdx <= 5 then
                     macroBody = format("/cast [group:raid,@raid%d]%s;[group:party,@party%d]%s", raidIdx, spell,

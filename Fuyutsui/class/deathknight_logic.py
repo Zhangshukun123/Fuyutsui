@@ -176,7 +176,7 @@ def run_deathknight_logic(state_dict, spec_name):
                     current_step = "施放 亡者大军"
                     action_hotkey = get_hotkey(0, "亡者大军")
                     # 确保"黑暗突变"会等待"亡者大军"CD
-                elif 黑暗突变 == 0 and 亡者大军 > 40:
+                elif 黑暗突变 == 0 and 亡者大军 > 38:
                     current_step = "施放 黑暗突变"
                     action_hotkey = get_hotkey(0, "黑暗突变")
                     # 优先灵魂收割
@@ -184,11 +184,11 @@ def run_deathknight_logic(state_dict, spec_name):
                     current_step = "施放 灵魂收割"
                     action_hotkey = get_hotkey(0, "灵魂收割")
                     # 只有在"施放黑暗突变时" 和 没有 "割魂索命" 时, 施放腐化
-                elif 腐化 == 0 and 割魂索命 == 0 and 目标生命值 > 35 and 黑暗突变 > 30 and 食尸鬼层数 < 8:
+                elif 腐化 == 0 and 割魂索命 == 0 and 黑暗突变 > 30 and 食尸鬼层数 < 8:
                     current_step = "施放 腐化"
                     action_hotkey = get_hotkey(0, "腐化")
                     # 确保腐化充能不溢出
-                elif 腐化 == 0 and 腐化充能 == 0 and 目标生命值 > 35 and 食尸鬼层数 < 8:
+                elif 腐化 == 0 and 腐化充能 == 0 and 食尸鬼层数 < 8:
                     current_step = "施放 腐化"
                     action_hotkey = get_hotkey(0, "腐化")
                     # 保持脓疮毒镰buff

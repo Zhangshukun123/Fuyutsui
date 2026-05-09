@@ -942,3 +942,35 @@ state:
       镇压: {step: 46, type: "int"}
       狂龙之怒: {step: 47, type: "int"}
       火焰吐息: {step: 48, type: "int"}
+  3:
+    施法技能: {step: 21, type: "int" }
+    精华能量: {step: 22, type: "int" }
+
+    spells:
+      净除: {step: 31, type: "int" }
+      黑曜鳞片: {step: 32, type: "int" }
+      黑曜充能: {step: 33, type: "int" }
+      山崩: {step: 34, type: "int" }
+      青翠之拥: {step: 35, type: "int" }
+      深呼吸: {step: 36, type: "int" }
+      微风: {step: 37, type: "int" }
+      悬空: {step: 38, type: "int" }
+      悬空充能: {step: 39, type: "int"}
+      扫尾: {step: 40, type: "int"}
+      扭转天平: {step: 41, type: "int"}
+      营救: {step: 42, type: "int"}
+      时间螺旋: {step: 43, type: "int"}
+      空间悖论: {step: 44, type: "int"}
+      火焰吐息: {step: 45, type: "int"}
+      地壳激变: {step: 46, type: "int"}
+      先知先觉: {step: 47, type: "int"}
+      黑檀之力: {step: 48, type: "int"}
+      亘古吐息: {step: 49, type: "int"}
+      先知先觉层数: {step: 50, type: "int"}
+    group:
+      start: 70
+      num: 4
+      生命值: {step: 1, type: "int" }
+      职责: {step: 2, type: "int" }
+      驱散: {step: 3, type: "int" }
+      先知先觉: {step: 4, type: "int" }
