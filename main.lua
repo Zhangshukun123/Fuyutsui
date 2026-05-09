@@ -439,22 +439,26 @@ function Fuyutsui:updatePlayerPower(powerType)
         ---@diagnostic disable-next-line: param-type-mismatch
         local _, _, b = powerPercent:GetRGB()
         state.powerPercent = b
-        Fuyutsui:CreatTexture(blocks.state["能量值"], state.powerPercent)
+        self:CreatTexture(blocks.state["能量值"], state.powerPercent)
     end
     if powerType == "COMBO_POINTS" and blocks and blocks.state["连击点"] then
         local power = UnitPower("player", 4)
         state.comboPoints = power / 255 or 0
-        Fuyutsui:CreatTexture(blocks.state["连击点"], state.comboPoints)
+        self:CreatTexture(blocks.state["连击点"], state.comboPoints)
     end
     if powerType == "HOLY_POWER" and blocks and blocks.state["神圣能量"] then
         local power = UnitPower("player", 9)
         state.holyPower = power / 255 or 0
-        Fuyutsui:CreatTexture(blocks.state["神圣能量"], state.holyPower)
+        self:CreatTexture(blocks.state["神圣能量"], state.holyPower)
+    end
+    if powerType == "ESSENCE" and blocks and blocks.state["精华能量"] then
+        local power = UnitPower("player", 19)
+        self:CreatTexture(blocks["精华能量"], power / 255)
     end
     if powerType == "SOUL_SHARDS" and blocks and blocks.state["灵魂碎片"] then
         local power = UnitPower("player", 7)
         state.soulShards = power / 255 or 0
-        Fuyutsui:CreatTexture(blocks.state["灵魂碎片"], state.soulShards)
+        self:CreatTexture(blocks.state["灵魂碎片"], state.soulShards)
     end
 end
 

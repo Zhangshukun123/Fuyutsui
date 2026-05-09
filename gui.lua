@@ -225,7 +225,16 @@ Fuyutsui.options = {
 Fuyutsui Tinkerer是由Fuyutsuki Electronics研发的一块|cFF00FF00免费|r网络接入仓，大概能提升你在夜之城的战斗体验。
 
 感谢所有使用和反馈本插件的用户，特别感谢Discord群组中的成员们的宝贵意见与建议，让插件得以不断完善和进步！
+感谢以下用户对Fuyutsuki的贡献,排名不分先后：
+- @Wayne Bian
+- @ck002ck002
 
+- @Beer Mcdonald
+- @Zhiqiang Zhou
+- @Yingbo Wang
+- @Yingbo Wang
+
+- @Discord群组中的成员
 ]]):format(addon)
                     end,
                 },
