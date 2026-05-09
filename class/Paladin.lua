@@ -32,6 +32,8 @@ Fuyutsui.ClassBlocks = {
         [26] = { type = "aura", name = "圣光灌注", auraName = "圣光灌注", showKey = "remaining" },
         [27] = { type = "aura", name = "灌注层数", auraName = "圣光灌注", showKey = "count" },
         [28] = { type = "aura", name = "神性层数", auraName = "神性之手", showKey = "count" },
+        [29] = { type = "aura", name = "美德道标", auraName = "美德道标", showKey = "remaining" },
+        [30] = { type = "block", name = "爆发开关" },
 
         [31] = { type = "spell", spellId = 115750, name = "盲目之光" },
         [32] = { type = "spell", spellId = 853, name = "制裁之锤" },
@@ -151,6 +153,8 @@ Fuyutsui.ClassBlocks = {
         [26] = { type = "aura", name = "复仇之怒", auraName = "复仇之怒", showKey = "remaining" },
         [27] = { type = "aura", name = "处决宣判", auraName = "处决宣判", showKey = "remaining" },
         [28] = { type = "aura", name = "圣光之锤", auraName = "圣光之锤", showKey = "remaining" },
+        [29] = { type = "block", name = "敌人人数" },
+        [30] = { type = "block", name = "目标距离" },
 
         [31] = { type = "spell", spellId = 115750, name = "盲目之光" },
         [32] = { type = "spell", spellId = 853, name = "制裁之锤" },
@@ -167,6 +171,7 @@ Fuyutsui.ClassBlocks = {
         [42] = { type = "spell", spellId = 184575, name = "公正之剑" },
         [43] = { type = "spell", spellId = 343527, name = "处决宣判" },
         [44] = { type = "spell", spellId = 255937, name = "灰烬觉醒" },
+        [45] = { type = "spell", spellId = 31884, name = "复仇之怒" },
 
         [70] = {
             type = "group",

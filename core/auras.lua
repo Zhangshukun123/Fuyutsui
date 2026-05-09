@@ -135,7 +135,7 @@ local auras = {
         },
         ["复仇之怒"] = {
             remaining = 0,
-            duration = 15,
+            duration = 24,
             expirationTime = nil,
             addAuras = {
                 [31884] = { event = e["法术冷却"] },
@@ -162,7 +162,9 @@ local auras = {
                 [427441] = { event = e["法术冷却"] },
             },
             updateAuras = nil,
-            removeAuras = nil,
+            removeAuras = {
+                [427453] = { event = e["施法成功"] }, -- 施放圣光之锤后清除buff
+            },
         },
         ["神圣军备"] = {
             remaining = 0,
@@ -182,6 +184,16 @@ local auras = {
                     overrideSpellID = 432472,
                 },
             },
+        },
+        ["美德道标"] = {
+            remaining = 0,
+            duration = 9,
+            expirationTime = nil,
+            addAuras = {
+                [200025] = { event = e["法术冷却"] },
+            },
+            updateAuras = nil,
+            removeAuras = nil,
         },
     },
     -- 猎人
