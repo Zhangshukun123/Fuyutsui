@@ -104,7 +104,7 @@ Fuyutsui.ClassBlocks = {
         [35] = { type = "spell", spellId = 232633, name = "奥术洪流" },
 
         [36] = { type = "spell", spellId = 33076, name = "愈合祷言" },
-        [37] = { type = "spell", spellId = 33076, name = "愈合祷言" },
+        [37] = { type = "spell", spellId = 33076, name = "愈合祷言", charge = true },
         [38] = { type = "spell", spellId = 2050, name = "圣言术：静" },
         [39] = { type = "spell", spellId = 2050, name = "圣言术：静" },
         [40] = { type = "spell", spellId = 88625, name = "圣言术：罚" },

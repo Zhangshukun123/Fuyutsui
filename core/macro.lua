@@ -15,7 +15,7 @@ local keys = {
     "NUMPADDECIMAL", "NUMPADPLUS", "NUMPADMINUS", "NUMPADMULTIPLY", "NUMPADDIVIDE",
     "F1", "F2", "F3", "F5", "F6", "F7", "F8", "F9", "F10", "F11", "F12",
     ",", ".", "/", ";", "'", "[", "]", "\\",
-    "8", "9", "0", "7", "="
+    "7", "8", "9", "0", "="
 }
 
 do

@@ -221,10 +221,10 @@ end
 
 -- 载入玩家blocks配置
 function Fuyutsui:loadPlayerBlocks(specIndex)
-    if not specIndex or not Fuyutsui.ClassBlocks then
+    if not specIndex or not self.ClassBlocks then
         return
     end
-    local t = Fuyutsui.ClassBlocks[specIndex]
+    local t = self.ClassBlocks[specIndex]
     if not t then return end
     blocks = {
         state = {},
@@ -272,7 +272,7 @@ function Fuyutsui:loadPlayerBlocks(specIndex)
             end
         end
     end
-    Fuyutsui.blocks = blocks
+    self.blocks = blocks
 end
 
 -- 载入玩家宏
@@ -289,7 +289,7 @@ function Fuyutsui:GetCharacterInfo()
     self.db.char.level = UnitLevel("player")
     self.state.name = UnitName("player")
     self.state.GUID = UnitGUID("player")
-    self.state.classColor = RAID_CLASS_COLORS[Fuyutsui.state.classFilename].colorStr
+    self.state.classColor = RAID_CLASS_COLORS[self.state.classFilename].colorStr
 end
 
 -- 2. 首次登录获取玩家专精信息
@@ -322,7 +322,7 @@ function Fuyutsui:updatePlayerSpecInfo()
     self.state.specID = specID
     self.state.specName = specName
     self.state.specRole = role
-    self.state.specRange = Fuyutsui.rangeSpecID[specID]
+    self.state.specRange = self.rangeSpecID[specID]
     self:loadPlayerBlocks(self.state.specIndex) -- 载入玩家blocks配置
 
     self:updateSpellKnown()                     -- 更新法术已知状态
@@ -555,14 +555,14 @@ function Fuyutsui:updateGroupType()
         index = 46
     end
     state.groupType = index / 255 or 0
-    Fuyutsui:CreatTexture(blocks.state["队伍类型"], state.groupType)
+    self:CreatTexture(blocks.state["队伍类型"], state.groupType)
 end
 
 -- 17. 更新玩家队伍人数
 function Fuyutsui:updateGroupCount()
     local count = GetNumGroupMembers()
     state.groupCount = count / 255 or 0
-    Fuyutsui:CreatTexture(blocks.state["队伍人数"], state.groupCount)
+    self:CreatTexture(blocks.state["队伍人数"], state.groupCount)
 end
 
 -- 18. 19. 更新boss战ID和难度
@@ -576,7 +576,7 @@ function Fuyutsui:updateEncounterID(encounterID, difficultyID)
             17 = "团本随机", -- Looking (Raid)
             23 = "5人本史诗", -- Mythic (Dungeon)
         ]]
-    local id = Fuyutsui.bossID and Fuyutsui.bossID[encounterID] or 0
+    local id = self.bossID and self.bossID[encounterID] or 0
     if id then
         state.bossID = id / 255 or 0
         self:CreatTexture(blocks.state["首领战"], state.bossID)
@@ -590,14 +590,14 @@ end
 
 -- 20. 更新玩家英雄天赋
 function Fuyutsui:updateHeroTalent()
-    if Fuyutsui.heroTalents and blocks.state["英雄天赋"] then
-        Fuyutsui.state.heroTalent = 0
-        for spellID, info in pairs(Fuyutsui.heroTalents) do
+    if self.heroTalents and blocks.state["英雄天赋"] then
+        self.state.heroTalent = 0
+        for spellID, info in pairs(self.heroTalents) do
             if IsSpellKnown(spellID) or IsSpellInSpellBook(spellID) then
-                Fuyutsui.state.heroTalent = info
+                self.state.heroTalent = info
             end
         end
-        self:CreatTexture(blocks.state["英雄天赋"], Fuyutsui.state.heroTalent / 255)
+        self:CreatTexture(blocks.state["英雄天赋"], self.state.heroTalent / 255)
     end
 end
 
@@ -620,18 +620,18 @@ function Fuyutsui:updatePlayerCasting(spellId)
     if not blocks then return end
     if blocks.state["施法目标"] then
         if state.castTargetIndex then
-            Fuyutsui:CreatTexture(blocks.state["施法目标"], state.castTargetIndex)
+            self:CreatTexture(blocks.state["施法目标"], state.castTargetIndex)
         else
-            Fuyutsui:CreatTexture(blocks.state["施法目标"], 0)
+            self:CreatTexture(blocks.state["施法目标"], 0)
         end
     end
     if blocks.state["施法技能"] then
         local castingSpell = spellsList[spellId] and spellsList[spellId].index or 0
         state.castingSpell = castingSpell / 255 or 0
         if castingSpell then
-            Fuyutsui:CreatTexture(blocks.state["施法技能"], state.castingSpell)
+            self:CreatTexture(blocks.state["施法技能"], state.castingSpell)
         else
-            Fuyutsui:CreatTexture(blocks.state["施法技能"], 0)
+            self:CreatTexture(blocks.state["施法技能"], 0)
         end
     end
 end
@@ -659,7 +659,7 @@ function Fuyutsui:updatePlayerStagger()
         local maxHealth = UnitHealthMax(unit)
         local staggerPercent = damage / maxHealth * 100
         state.staggerPercent = staggerPercent / 255 or 0
-        Fuyutsui:CreatTexture(blocks.state["酒池"], state.staggerPercent)
+        self:CreatTexture(blocks.state["酒池"], state.staggerPercent)
     end
 end
 
@@ -674,7 +674,7 @@ function Fuyutsui:updateRune()
             end
         end
         state.runeCount = total / 255 or 0
-        Fuyutsui:CreatTexture(blocks.state["符文"], state.runeCount)
+        self:CreatTexture(blocks.state["符文"], state.runeCount)
     end
 end
 
@@ -683,7 +683,7 @@ function Fuyutsui:updateShapeshiftForm()
     local shapeshiftFormID = GetShapeshiftFormID() or 0
     state.shapeshiftFormID = shapeshiftFormID / 255
     if blocks and blocks.state["姿态"] then
-        Fuyutsui:CreatTexture(blocks.state["姿态"], state.shapeshiftFormID)
+        self:CreatTexture(blocks.state["姿态"], state.shapeshiftFormID)
     end
 end
 
@@ -691,14 +691,14 @@ local diseaseJudgeTimer = nil
 function Fuyutsui:updateDiseaseJudge()
     if blocks and blocks.state["疾病判断"] then
         state.diseaseJudge = 1 / 255 or 0
-        Fuyutsui:CreatTexture(blocks.state["疾病判断"], state.diseaseJudge)
+        self:CreatTexture(blocks.state["疾病判断"], state.diseaseJudge)
         if diseaseJudgeTimer then
             diseaseJudgeTimer:Cancel()
             diseaseJudgeTimer = nil
         end
         diseaseJudgeTimer = C_Timer.NewTimer(1, function()
             state.diseaseJudge = 0
-            Fuyutsui:CreatTexture(blocks.state["疾病判断"], state.diseaseJudge)
+            self:CreatTexture(blocks.state["疾病判断"], state.diseaseJudge)
             diseaseJudgeTimer = nil
         end)
     end
@@ -779,7 +779,7 @@ function Fuyutsui:updateTargetRangeBlock()
     end
     if blocks and blocks.state["目标距离"] and target.maxRange then
         local maxRangeValue = target.maxRange and target.maxRange / 255 or 1
-        Fuyutsui:CreatTexture(blocks.state["目标距离"], maxRangeValue)
+        self:CreatTexture(blocks.state["目标距离"], maxRangeValue)
     end
 end
 
@@ -796,7 +796,7 @@ function Fuyutsui:updateTargetHealth()
     local _, _, b = healthPercent:GetRGB()
     target.healthPercent = b or 0
     if blocks and blocks.state["目标生命值"] then
-        Fuyutsui:CreatTexture(blocks.state["目标生命值"], b)
+        self:CreatTexture(blocks.state["目标生命值"], b)
     end
 end
 
@@ -839,7 +839,7 @@ function Fuyutsui:updateEnemyCount()
     end
     state.enemyCount = count / 255 or 0
     if blocks and blocks.state["敌人人数"] then
-        Fuyutsui:CreatTexture(blocks.state["敌人人数"], state.enemyCount)
+        self:CreatTexture(blocks.state["敌人人数"], state.enemyCount)
     end
 end
 
@@ -856,7 +856,7 @@ function Fuyutsui:updateUnitHealthInfo(unit)
     ---@diagnostic disable-next-line: param-type-mismatch
     local _, _, b = healthPercent:GetRGB()
     obj.healthPercent = b
-    Fuyutsui:CreatTexture(index, obj.healthPercent)
+    self:CreatTexture(index, obj.healthPercent)
 end
 
 function Fuyutsui:updateUnitValid(unit)
@@ -883,9 +883,9 @@ function Fuyutsui:updateGroupInRange()
             local trueValue = CreateColor(0, 0, roleValue, 1)
             local booleanValue = EvaluateColorFromBoolean(inRange, trueValue, falseValue)
             local _, _, b = booleanValue:GetRGB()
-            Fuyutsui:CreatTexture(index, b)
+            self:CreatTexture(index, b)
         else
-            Fuyutsui:CreatTexture(index, 0)
+            self:CreatTexture(index, 0)
         end
         updateIndex = updateIndex + 1
         if updateIndex > numUnits then
@@ -1348,11 +1348,11 @@ function Fuyutsui:hookChatFrameEditBox()
         if editBox then
             editBox:HookScript("OnEditFocusGained", function()
                 state.isChatOpen = true
-                Fuyutsui:updatePlayerValid()
+                self:updatePlayerValid()
             end)
             editBox:HookScript("OnEditFocusLost", function()
                 state.isChatOpen = false
-                Fuyutsui:updatePlayerValid()
+                self:updatePlayerValid()
             end)
         end
     end
