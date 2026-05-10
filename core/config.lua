@@ -239,7 +239,7 @@ Fuyutsui.spellsList = {
     [853]     = { index = 4, failed = true },  -- 制裁之锤
     [1022]    = { index = 5, failed = true },  -- 保护祝福
     [642]     = { index = 6, failed = true },  -- 圣盾术
-    [375576]  = { index = 7, },                -- 圣洁鸣钟
+    [375576]  = { index = 7, failed = true },  -- 圣洁鸣钟
     [31935]   = { index = 8, },                -- 复仇者之盾
     [26573]   = { index = 9, },                -- 奉献
     [275779]  = { index = 10, },               -- 审判
