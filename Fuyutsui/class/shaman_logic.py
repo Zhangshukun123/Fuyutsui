@@ -166,9 +166,9 @@ def run_shaman_logic(state_dict, spec_name):
                 驱散单位 = 需要驱散魔法单位
         if 需要驱散诅咒单位 is not None:
             if 队伍类型 == 46 and 首领战 not in no_dispel_bosses:
-                驱散单位 = 需要驱散魔法单位
+                驱散单位 = 需要驱散诅咒单位
             elif 队伍类型 <= 40 and 首领战 in need_dispel_bosses:
-                驱散单位 = 需要驱散魔法单位
+                驱散单位 = 需要驱散诅咒单位
 
         激流单位 = None
         if 无激流最低 is not None and 无激流最低血量 is not None:
@@ -183,6 +183,11 @@ def run_shaman_logic(state_dict, spec_name):
             elif 治泉充能 > 6:
                 if count80 >= 3 or 0 < 风暴涌流 < 10 or 涌流层数 == 2:
                     插治疗之泉 = True
+        
+        unit_info = { 
+            "需要驱散魔法单位": 需要驱散魔法单位,
+            "需要驱散诅咒单位": 需要驱散诅咒单位,
+        }
 
         if 引导 > 0:
             current_step = "引导,不执行任何操作"
