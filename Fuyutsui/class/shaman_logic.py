@@ -174,6 +174,15 @@ def run_shaman_logic(state_dict, spec_name):
         if 无激流最低 is not None and 无激流最低血量 is not None:
             if 激流 == 0 and (无激流最低血量 <= 90 or 激流充能 <= 1):
                 激流单位 = 无激流最低
+        
+        插治疗之泉 = False
+        if 治疗之泉 == 0:
+            if 0 <= 治泉充能 <= 6:
+                if count90 >= 2 or 风暴涌流 < 10 or 涌流层数 == 2:
+                    插治疗之泉 = True
+            elif 治泉充能 > 6:
+                if count80 >= 3 or 风暴涌流 < 10 or 涌流层数 == 2:
+                    插治疗之泉 = True
 
         if 引导 > 0:
             current_step = "引导,不执行任何操作"
@@ -241,14 +250,11 @@ def run_shaman_logic(state_dict, spec_name):
                 elif 激流单位 is not None:
                     current_step = f"施放 激流 on {激流单位}"
                     action_hotkey = get_hotkey(int(激流单位), "激流")
+                elif 插治疗之泉:
+                        current_step = f"施放 治疗之泉图腾"
+                        action_hotkey = get_hotkey(0, "治疗之泉图腾")
                 elif 最低单位 is not None and 最低生命值 is not None and 最低生命值 <= 85:
-                    if (count80 >= 2 or count90 >= 3) and (涌流层数 > 0 or 治疗之泉 == 0):
-                        current_step = f"施放 治疗图腾 on {最低单位}"
-                        action_hotkey = get_hotkey(0, "治疗之泉图腾")
-                    elif count90 >= 2 and 治疗之泉 == 0 and 治泉充能 == 0 :
-                        current_step = f"施放 治疗之泉 on {最低单位}, 释放治疗之泉"
-                        action_hotkey = get_hotkey(0, "治疗之泉图腾")
-                    elif count70 >=3 and (生命释放buff > 0 or 自然迅捷 == 254):
+                    if count70 >=3 and (生命释放buff > 0 or 自然迅捷 == 254):
                         current_step = f"施放 治疗链 on {最低单位}, 释放治疗链"
                         action_hotkey = get_hotkey(int(最低单位), "治疗链")
                     elif 生命释放 == 0 and 最低生命值 <= 90:
@@ -261,9 +267,6 @@ def run_shaman_logic(state_dict, spec_name):
                         elif 自然迅捷 == 254:
                             current_step = f"施放 治疗波 on {最低单位}, 释放治疗波"
                             action_hotkey = get_hotkey(int(最低单位), "治疗波")
-                        elif 涌流层数 > 0 and 最低生命值 <= 35:
-                            current_step = f"施放 风暴涌流 on {最低单位}, 释放风暴涌流"
-                            action_hotkey = get_hotkey(int(最低单位), "治疗之泉图腾")
                         else :
                             current_step = f"施放 治疗波 on {最低单位}, 释放治疗波"
                             action_hotkey = get_hotkey(int(最低单位), "治疗波")
