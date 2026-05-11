@@ -619,6 +619,8 @@ state:
 
   2:
     小鬼数量: {step: bar, bar: 1, type: "int"}
+    治疗石冷却: {step: 21, type: "int" }
+    大红冷却: {step: 22, type: "int" }
     灵魂碎片: {step: 23, type: "int" }
     施法技能: {step: 24, type: "int" }
     吞噬魔法: {step: 25, type: "int" }

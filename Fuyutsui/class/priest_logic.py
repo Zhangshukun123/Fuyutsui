@@ -581,7 +581,7 @@ def _priest_shadow_logic(state_dict):
     elif 一键辅助 == 20:
         current_step = "施放 暗影形态"
         action_hotkey = get_hotkey(0, "暗影形态")
-    elif 1 <= 目标类型 <= 3 and  虚空形态 == 0 and 法术失败 == 8:
+    elif 战斗 and 1 <= 目标类型 <= 3 and 虚空形态 == 0:
         current_step = "施放 虚空形态"
         action_hotkey = get_hotkey(0, "虚空形态")
     elif 法术失败 != 0 and 失败法术 is not None:

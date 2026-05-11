@@ -750,6 +750,60 @@ function Fuyutsui:updateSpellCooldown()
     end
 end
 
+function Fuyutsui:GetItemCount()
+    self.state.HealthPotionCount = C_Item.GetItemCount(241304) + C_Item.GetItemCount(241305)
+    self.state.ManaPotionCount = C_Item.GetItemCount(241301) + C_Item.GetItemCount(241300)
+    self.state.HealthstoneCount = C_Item.GetItemCount(5512) + C_Item.GetItemCount(224464)
+end
+
+function Fuyutsui:GetItemRemainingTime(itemID)
+    local startTimeSeconds, durationSeconds, enableCooldownTimer = C_Item.GetItemCooldown(itemID)
+    if not enableCooldownTimer then return 255 end
+    if startTimeSeconds > 0 then
+        return durationSeconds - (GetTime() - startTimeSeconds)
+    else
+        return 0
+    end
+end
+
+function Fuyutsui:updateItemCoolDown()
+    if blocks then
+        if blocks.state["大红冷却"] then
+            if not self.state.HealthPotionCount then
+                self:GetItemCount()
+            end
+            local remainingTime = self:GetItemRemainingTime(241304)
+            if remainingTime and self.state.HealthPotionCount > 0 then
+                self:CreatTexture(blocks.state["大红冷却"], math.min(1, remainingTime / 255))
+            else
+                self:CreatTexture(blocks.state["大红冷却"], 1)
+            end
+        end
+        if blocks.state["大蓝冷却"] then
+            if not self.state.ManaPotionCount then
+                self:GetItemCount()
+            end
+            local remainingTime = self:GetItemRemainingTime(241301)
+            if remainingTime and self.state.ManaPotionCount > 0 then
+                self:CreatTexture(blocks.state["大蓝冷却"], math.min(1, remainingTime / 255))
+            else
+                self:CreatTexture(blocks.state["大蓝冷却"], 1)
+            end
+        end
+        if blocks.state["治疗石冷却"] then
+            if not self.state.HealthstoneCount then
+                self:GetItemCount()
+            end
+            local remainingTime = self:GetItemRemainingTime(5512)
+            if remainingTime and self.state.HealthstoneCount > 0 then
+                self:CreatTexture(blocks.state["治疗石冷却"], math.min(1, remainingTime / 255))
+            else
+                self:CreatTexture(blocks.state["治疗石冷却"], 1)
+            end
+        end
+    end
+end
+
 -- ================================================================
 --                          目标信息
 -- ================================================================
@@ -1304,6 +1358,21 @@ function Fuyutsui:SPELL_ACTIVATION_OVERLAY_HIDE(_, spellId)
     self:updateAuraByActivationOverlayHide(spellId)
 end
 
+local items = {
+    [241304] = "银月城生命药水",
+    [241305] = "银月城生命药水",
+    [241301] = "光注法力药水",
+    [241300] = "光注法力药水",
+    [5512] = "治疗石",
+    [224464] = "恶魔治疗石",
+}
+
+function Fuyutsui:ITEM_COUNT_CHANGED(_, itemID)
+    if items[itemID] then
+        self:GetItemCount()
+    end
+end
+
 function Fuyutsui:UNIT_HEALTH(_, unit)
     if unit == "player" then
         self:updatePlayerHealth()
@@ -1524,6 +1593,7 @@ function Fuyutsui:OnUpdate(elapsed)
         self:updateRune()
         self:updateTargetRangeBlock()
         self:updateEnemyCount()
+        self:updateItemCoolDown()
         self.timeElapsed = 0
     end
 end
