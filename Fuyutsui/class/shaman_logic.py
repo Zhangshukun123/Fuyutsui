@@ -178,10 +178,10 @@ def run_shaman_logic(state_dict, spec_name):
         插治疗之泉 = False
         if 治疗之泉 == 0:
             if 0 <= 治泉充能 <= 6:
-                if count90 >= 2 or 风暴涌流 < 10 or 涌流层数 == 2:
+                if count90 >= 2 or 0 < 风暴涌流 < 10 or 涌流层数 == 2:
                     插治疗之泉 = True
             elif 治泉充能 > 6:
-                if count80 >= 3 or 风暴涌流 < 10 or 涌流层数 == 2:
+                if count80 >= 3 or 0 < 风暴涌流 < 10 or 涌流层数 == 2:
                     插治疗之泉 = True
 
         if 引导 > 0:
