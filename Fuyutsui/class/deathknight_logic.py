@@ -162,16 +162,16 @@ def run_deathknight_logic(state_dict, spec_name):
             elif 生命值 <= 30 and 能量值 >= 40:
                 current_step = "施放 灵界打击"
                 action_hotkey = get_hotkey(0, "灵界打击")
-                # 一键辅助
+            # 一键辅助
             elif 输出模式 == 0 and tup:
                 current_step = f"施放 {tup[0]}"
                 action_hotkey = get_hotkey(0, tup[1])
-                # 手写逻辑
+            # 手写逻辑
             elif 输出模式 == 1:
                 if 0 <= 脓疮毒镰2 <= 1 and 脓疮毒镰 > 0:
                     current_step = "施放 脓疮毒镰"
                     action_hotkey = get_hotkey(0, "脓疮打击")
-                    # 保持脓疮毒镰buff
+                # 保持脓疮毒镰buff
                 elif 脓疮毒镰2 <= 3 and 脓疮毒镰 == 0 and 符文 >= 2:
                     current_step = "施放 脓疮打击"
                     action_hotkey = get_hotkey(0, "脓疮打击")
@@ -235,7 +235,7 @@ def run_deathknight_logic(state_dict, spec_name):
                     action_hotkey = get_hotkey(0, "脓疮打击")
                     # AOE 时, 施放"枯萎凋零"
                     # 当腐化在CD时, 且腐化层数小于3层, 且亡者指挥官有buff时, 施放"枯萎凋零"
-                elif 凋零_cd == 0 and 敌人人数 >= 3 and 移动 == False and 腐化层数 < 3 and 亡者指挥官 > 6:
+                elif 凋零_cd == 0 and 敌人人数 >= 3 and 移动 == False and 腐化层数 < 3 and 亡者指挥官 > 10:
                     current_step = "施放 枯萎凋零"
                     action_hotkey = get_hotkey(0, "枯萎凋零")
                     # 当不开启爆发且"枯萎凋零"有两层时, 直接施放.

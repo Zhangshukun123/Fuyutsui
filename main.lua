@@ -1322,7 +1322,7 @@ end
 function Fuyutsui:UNIT_SPELLCAST_SUCCEEDED(_, unitTarget, castGUID, spellID, castBarID)
     if unitTarget ~= "player" then return end
     if not isSec(spellID) then
-        printSuccSpell(spellID)
+        -- printSuccSpell(spellID)
         self:updateFailedSpellBySuccess(spellID)
         self:updateAuraBySuccess(spellID, castBarID)
         if spellID == 384255 then
