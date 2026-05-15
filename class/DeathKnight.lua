@@ -120,8 +120,12 @@ Fuyutsui.ClassBlocks = {
         [33] = { type = "aura", name = "脓疮毒镰", auraName = "脓疮毒镰", showKey = "remaining" },
         [34] = { type = "aura", name = "脓疮毒镰2", auraName = "脓疮毒镰2", showKey = "remaining" },
         [35] = { type = "aura", name = "枯萎凋零", auraName = "枯萎凋零", showKey = "remaining" },
-
         [36] = { type = "block", name = "疾病判断" },
+        [37] = { type = "aura", name = "亡者指挥官", auraName = "亡者指挥官", showKey = "remaining" },
+        [38] = { type = "aura", name = "寒冰锁链", auraName = "寒冰锁链", showKey = "remaining" },
+        [39] = { type = "aura", name = "暗影之爪层数", auraName = "暗影之爪", showKey = "count" },
+
+        [52] = { type = "aura", name = "凋萎", auraName = "凋萎", showKey = "remaining" },
 
         [40] = { type = "spell", spellId = 49576, name = "死亡之握" },
         [41] = { type = "spell", spellId = 51052, name = "反魔法领域" },

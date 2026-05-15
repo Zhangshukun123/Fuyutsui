@@ -321,7 +321,7 @@ def run_shaman_logic(state_dict, spec_name):
                 elif 净化灵魂 == 0 and 驱散单位 is not None:
                     current_step = f"施放 净化灵魂 on {驱散单位}"
                     action_hotkey = get_hotkey(int(驱散单位), "净化灵魂")
-                elif 风暴涌流 > 0:
+                elif 战斗 and 风暴涌流 > 0:
                     current_step = f"施放 治疗之泉图腾"
                     action_hotkey = get_hotkey(0, "治疗之泉图腾")
                 elif 治泉层数 == 2 and 0 <= 治泉充能 <= 6 and count90 >= 2:
@@ -351,6 +351,9 @@ def run_shaman_logic(state_dict, spec_name):
                         action_hotkey = get_hotkey(int(最低单位), "治疗波")
                     else:
                         current_step = "治疗中-无匹配技能"
+                elif 战斗 and  1 <= 目标类型 <= 3 and tup:
+                    current_step = f"施放 {tup[0]}"
+                    action_hotkey = get_hotkey(0, tup[1])
                 else:
                     current_step = "无匹配技能"
                 

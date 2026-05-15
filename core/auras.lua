@@ -431,6 +431,53 @@ local auras = {
             updateAuras = nil,
             removeAuras = nil,
         },
+        ["亡者指挥官"] = {
+            remaining = 0,
+            duration = 30,
+            expirationTime = nil,
+            addAuras = {
+                [390260] = { event = e["法术冷却"] },
+            },
+            updateAuras = nil,
+            removeAuras = nil,
+        },
+        ["寒冰锁链"] = {
+            remaining = 0,
+            duration = 8,
+            expirationTime = nil,
+            addAuras = {
+                [444826] = { event = e["法术冷却"] },
+            },
+            updateAuras = nil,
+            removeAuras = {
+                [55090] = { event = e["施法成功"] },
+            },
+        },
+        ["暗影之爪"] = {
+            remaining = 0,
+            duration = 12,
+            count = 0,
+            countMin = 0,
+            countMax = 4,
+            expirationTime = nil,
+            addAuras = {
+                [1241569] = { event = e["法术冷却"], step = 1 },
+            },
+            updateAuras = nil,
+            removeAuras = nil,
+        },
+        ["凋萎"] = {
+            remaining = 0,
+            duration = 15,
+            expirationTime = nil,
+            addAuras = {
+                [1271199] = { event = e["法术冷却"] },
+            },
+            updateAuras = nil,
+            removeAuras = {
+                [55090] = { event = e["施法成功"] },
+            },
+        },
     },
     -- 萨满祭司
     [7] = {

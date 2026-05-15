@@ -438,6 +438,10 @@ state:
     输出模式: {step: 25, type: "int" }
     AOE开关: {step: 26, type: "int" }
     疾病判断: {step: 36, type: "int" }
+    亡者指挥官: {step: 37, type: "int" }
+    寒冰锁链: {step: 38, type: "int" }
+    暗影之爪层数: {step: 39, type: "int" }
+    凋萎: {step: 52, type: "int" }
     
     次级食尸鬼: {step: 27, type: "int" }
     食尸鬼层数: {step: bar, bar: 1, type: "int"}

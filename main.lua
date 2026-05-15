@@ -1322,7 +1322,7 @@ end
 function Fuyutsui:UNIT_SPELLCAST_SUCCEEDED(_, unitTarget, castGUID, spellID, castBarID)
     if unitTarget ~= "player" then return end
     if not isSec(spellID) then
-        -- printSuccSpell(spellID)
+        printSuccSpell(spellID)
         self:updateFailedSpellBySuccess(spellID)
         self:updateAuraBySuccess(spellID, castBarID)
         if spellID == 384255 then
@@ -1349,6 +1349,7 @@ function Fuyutsui:UNIT_SPELLCAST_FAILED(_, unitTarget, castGUID, spellID, castBa
 end
 
 function Fuyutsui:SPELL_UPDATE_COOLDOWN(_, spellID)
+    -- self:Print(spellID, C_Spell.GetSpellName(spellID))
     if issecretvalue(spellID) then return end
     self:updateAuraBySpellCooldown(spellID)
 end
