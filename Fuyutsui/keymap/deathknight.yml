@@ -37,8 +37,8 @@
 37: {unit: 0, 技能: "符文打击", 热键: "CTRL-9"}
 38: {unit: 0, 技能: "死亡之握", 热键: "CTRL-0"}
 39: {unit: 0, 技能: "吞噬", 热键: "CTRL-="}
-40: {unit: 0, 技能: "", 热键: "ALT-NUMPAD1"}
-41: {unit: 0, 技能: "", 热键: "ALT-NUMPAD2"}
+40: {unit: 0, 技能: "鲁莽药水", 热键: "ALT-NUMPAD1"}
+41: {unit: 0, 技能: "银月城生命药水", 热键: "ALT-NUMPAD2"}
 42: {unit: 0, 技能: "", 热键: "ALT-NUMPAD3"}
 43: {unit: 0, 技能: "", 热键: "ALT-NUMPAD4"}
 44: {unit: 0, 技能: "", 热键: "ALT-NUMPAD5"}

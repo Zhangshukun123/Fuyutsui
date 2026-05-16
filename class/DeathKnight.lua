@@ -109,6 +109,7 @@ Fuyutsui.ClassBlocks = {
         [24] = { type = "block", name = "爆发开关" },
         [25] = { type = "block", name = "输出模式" },
         [26] = { type = "block", name = "AOE开关" },
+        [30] = { type = "block", name = "爆发药水开关" },
 
         [27] = { type = "block", name = "疾病判断" },
         [28] = { type = "block", name = "鲁莽药水冷却" },
@@ -184,6 +185,8 @@ Fuyutsui.MacrosList = {
         [36] = "符文武器增效",
         [37] = "符文打击",
         [39] = "吞噬",
+        [40] = "item:241288\n/cast item:241289", -- 鲁莽药水
+        [41] = "item:241304\n/cast item:241305", -- 银月城生命药水
     }
 
 }

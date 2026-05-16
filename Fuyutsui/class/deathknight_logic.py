@@ -141,17 +141,60 @@ def run_deathknight_logic(state_dict, spec_name):
         凋萎 = state_dict.get("凋萎", 0)
         
         # 冷却
-        亡者复生 = spells.get("亡者复生", -1)
-        亡者大军 = spells.get("亡者大军", -1)
-        腐化 = spells.get("腐化", -1)
-        腐化充能 = spells.get("腐化充能", -1)
-        黑暗突变 = spells.get("黑暗突变", -1)
-        灵魂收割 = spells.get("灵魂收割", -1)
+        亡者复生_cd = spells.get("亡者复生", -1)
+        亡者大军_cd = spells.get("亡者大军", -1)
+        腐化_cd = spells.get("腐化", -1)
+        腐化_charge = spells.get("腐化充能", -1)
+        黑暗突变_cd = spells.get("黑暗突变", -1)
+        灵魂收割_cd = spells.get("灵魂收割", -1)
         凋零_cd = spells.get("凋零冷却", -1)
         凋零_charge = spells.get("凋零充能", -1)
         # 物品
         鲁莽药水冷却 = state_dict.get("鲁莽药水冷却", -1)
         大红冷却 = state_dict.get("大红冷却", -1)
+        爆发药水开关 = state_dict.get("爆发药水开关", 0)
+
+        施放灵魂收割, 施放腐化 = False, False
+        # 腐化层数为0时, 且灵魂收割为0时, 且目标生命值小于35或割魂索命大于0时, 施放灵魂收割
+        if 腐化层数 ==0 and 灵魂收割_cd == 0 and (目标生命值 < 35 or 割魂索命 > 0):
+            施放灵魂收割 = True
+        # "亡者指挥官"即将结束时, 腐化层数为1时, 优先施放灵魂收割, 其次腐化
+        if 腐化层数 == 1 and 0 < 亡者指挥官 <= 3:
+            if 0 <= 灵魂收割_cd <= 1 and (目标生命值 < 35 or 割魂索命 > 0):
+                施放灵魂收割 = True
+            else:
+                施放腐化 = True
+        # "亡者指挥官"时, 腐化层数大于等于2时, 优先施放灵魂收割, 其次腐化
+        if 腐化层数 >= 2 and 亡者指挥官 > 1:
+            if 0 <= 灵魂收割_cd <= 1 and (目标生命值 < 35 or 割魂索命 > 0):
+                施放灵魂收割 = True
+            else:
+                施放腐化 = True
+
+        if 爆发 == 0:
+            if 腐化层数 == 2:
+                if 首领战 > 0 :
+                    if 0 <= 灵魂收割_cd <= 1 and (目标生命值 < 35 or 割魂索命 > 0):                    
+                        施放灵魂收割 = True
+                    elif 灵魂收割_cd == 0 and 亡者大军_cd > 30:
+                        施放腐化 = True
+                elif 首领战 == 0:
+                    if 0 <= 灵魂收割_cd <= 1 and (15 < 目标生命值 < 35 or 割魂索命 > 0):                   
+                        施放灵魂收割 = True
+                    elif 灵魂收割_cd == 0 and 目标生命值 > 50 and 亡者大军_cd > 30:  
+                        施放腐化 = True
+                # 三层腐化无指挥官逻辑
+            elif 腐化层数 == 3 :
+                if 首领战 > 0 :
+                    if 0 <= 灵魂收割_cd <= 1 and (目标生命值 < 35 or 割魂索命 > 0):                    
+                        施放灵魂收割 = True
+                    elif 灵魂收割_cd == 0 and 亡者大军_cd > 15:  
+                        施放腐化 = True     
+                elif 首领战 == 0:
+                    if 0 <= 灵魂收割_cd <= 1 and (5 < 目标生命值 < 35 or 割魂索命 > 0):                   
+                        施放灵魂收割 = True
+                    elif 灵魂收割_cd == 0 and 目标生命值 > 50 and 亡者大军_cd > 65:  
+                        施放腐化 = True
 
         if 引导 > 0:
             current_step = "在引导,不执行任何操作"
@@ -182,49 +225,63 @@ def run_deathknight_logic(state_dict, spec_name):
                 elif 一键辅助 == 6 or 疾病判断 == 1:
                     current_step = "施放 爆发"
                     action_hotkey = get_hotkey(0, "爆发")
+                # 药水开关为1时, 施放鲁莽药水
+                elif 爆发药水开关 == 1 and 鲁莽药水冷却 == 0 and 爆发 == 1 and 黑暗突变_cd == 0 and 亡者大军_cd == 0:
+                    current_step = "施放 鲁莽药水"
+                    action_hotkey = get_hotkey(0, "鲁莽药水")
                 # 只有"黑暗突变"和"亡者大军"2个技能CD都好了才施放"亡者大军"
-                elif 爆发 == 1 and 黑暗突变 == 0 and 亡者大军 == 0:
+                elif 爆发 == 1 and 黑暗突变_cd == 0 and 亡者大军_cd == 0:
                     current_step = "施放 亡者大军"
                     action_hotkey = get_hotkey(0, "亡者大军")
                 # 确保"黑暗突变"会等待"亡者大军"CD
-                elif 黑暗突变 == 0 and 亡者大军 > 38:
+                elif 黑暗突变_cd == 0 and 亡者大军_cd > 38:
                     current_step = "施放 黑暗突变"
                     action_hotkey = get_hotkey(0, "黑暗突变")
-                # 腐化层数为0时, 且灵魂收割为0时, 且目标生命值小于35或割魂索命大于0时, 施放灵魂收割
-                elif 腐化层数 ==0 and 灵魂收割 == 0 and (目标生命值 < 35 or 割魂索命 > 0):
+                
+                elif 施放灵魂收割:
                     current_step = "施放 灵魂收割"
                     action_hotkey = get_hotkey(0, "灵魂收割")
-                # "亡者指挥官"即将结束时, 腐化层数为1时, 优先施放灵魂收割, 其次腐化
-                elif 腐化层数 >= 1 and 0 < 亡者指挥官 <= 3:
-                    if 0 <= 灵魂收割 <= 1 and (目标生命值 < 35 or 割魂索命 > 0):
-                        current_step = "施放 灵魂收割"
-                        action_hotkey = get_hotkey(0, "灵魂收割")
-                    else:
-                        current_step = "施放 腐化"
-                        action_hotkey = get_hotkey(0, "腐化")
-                # "亡者指挥官"即将结束时, 腐化层数大于等于2时, 优先施放灵魂收割, 其次腐化
-                elif 腐化层数 >= 2 and 亡者指挥官 > 1:
-                    if 0 <= 灵魂收割 <= 1 and (目标生命值 < 35 or 割魂索命 > 0):
-                        current_step = "施放 灵魂收割"
-                        action_hotkey = get_hotkey(0, "灵魂收割")
-                    else:
-                        current_step = "施放 腐化"
-                        action_hotkey = get_hotkey(0, "腐化")
-                # 不开启爆发时, 仅在腐化层数为3时, 施放灵魂收割,
-                elif 腐化层数 == 3 and 爆发 == 0:
-                    if 0 <= 灵魂收割 <= 1:
-                        if 首领战 > 0 and (目标生命值 < 35 or 割魂索命 > 0):
-                            current_step = "施放 灵魂收割"
-                            action_hotkey = get_hotkey(0, "灵魂收割")
-                        elif 首领战 == 0 and (5 < 目标生命值 < 35 or 割魂索命 > 0):
-                            current_step = "施放 灵魂收割"
-                            action_hotkey = get_hotkey(0, "灵魂收割")
-                        else:
-                            current_step = "施放 腐化"
-                            action_hotkey = get_hotkey(0, "腐化")
-                    else:
-                        current_step = "施放 腐化"
-                        action_hotkey = get_hotkey(0, "腐化")
+                
+                elif 施放腐化:
+                    current_step = "施放 腐化"
+                    action_hotkey = get_hotkey(0, "腐化")
+                
+                # # 腐化层数为0时, 且灵魂收割为0时, 且目标生命值小于35或割魂索命大于0时, 施放灵魂收割
+                # elif 腐化层数 ==0 and 灵魂收割_cd == 0 and (目标生命值 < 35 or 割魂索命 > 0):
+                #     current_step = "施放 灵魂收割"
+                #     action_hotkey = get_hotkey(0, "灵魂收割")
+                # # "亡者指挥官"即将结束时, 腐化层数为1时, 优先施放灵魂收割, 其次腐化
+                # elif 腐化层数 >= 1 and 0 < 亡者指挥官 <= 3:
+                #     if 0 <= 灵魂收割_cd <= 1 and (目标生命值 < 35 or 割魂索命 > 0):
+                #         current_step = "施放 灵魂收割"
+                #         action_hotkey = get_hotkey(0, "灵魂收割")
+                #     else:
+                #         current_step = "施放 腐化"
+                #         action_hotkey = get_hotkey(0, "腐化")
+                # # "亡者指挥官"即将结束时, 腐化层数大于等于2时, 优先施放灵魂收割, 其次腐化
+                # elif 腐化层数 >= 2 and 亡者指挥官 > 1:
+                #     if 0 <= 灵魂收割_cd <= 1 and (目标生命值 < 35 or 割魂索命 > 0):
+                #         current_step = "施放 灵魂收割"
+                #         action_hotkey = get_hotkey(0, "灵魂收割")
+                #     else:
+                #         current_step = "施放 腐化"
+                #         action_hotkey = get_hotkey(0, "腐化")
+                # # 不开启爆发时, 仅在腐化层数为3时, 施放灵魂收割,
+                # elif 腐化层数 == 3 and 爆发 == 0:
+                #     if 0 <= 灵魂收割_cd <= 1:
+                #         if 首领战 > 0 and (目标生命值 < 35 or 割魂索命 > 0):
+                #             current_step = "施放 灵魂收割"
+                #             action_hotkey = get_hotkey(0, "灵魂收割")
+                #         elif 首领战 == 0 and (5 < 目标生命值 < 35 or 割魂索命 > 0):
+                #             current_step = "施放 灵魂收割"
+                #             action_hotkey = get_hotkey(0, "灵魂收割")
+                #         else:
+                #             current_step = "施放 腐化"
+                #             action_hotkey = get_hotkey(0, "腐化")
+                #     else:
+                #         current_step = "施放 腐化"
+                #         action_hotkey = get_hotkey(0, "腐化")
+                
                 # "禁断知识"快结束时, 优先消耗符能
                 elif 0 <禁断知识 <= 5 and 能量值 >= 30 and 敌人人数 < 3:
                     current_step = "施放 凋零缠绕"
@@ -233,7 +290,7 @@ def run_deathknight_logic(state_dict, spec_name):
                     current_step = "施放 扩散"
                     action_hotkey = get_hotkey(0, "扩散")
                 # 使用"天灾打击"打破"寒冰锁链"
-                elif 黑暗突变 > 43 and 寒冰锁链 > 0 and 符文 > 0:
+                elif 黑暗突变_cd > 43 and 寒冰锁链 > 0 and 符文 > 0:
                     current_step = "施放 天灾打击"
                     action_hotkey = get_hotkey(0, "天灾打击")
                 # 保持脓疮毒镰buff
@@ -249,7 +306,7 @@ def run_deathknight_logic(state_dict, spec_name):
                 elif 爆发 == 0 and 敌人人数 >= 3 and 移动 == False and 凋零_buff == 0 and 凋零层数 == 2:
                     current_step = "施放 枯萎凋零"
                     action_hotkey = get_hotkey(0, "枯萎凋零")
-                elif 符文 > 0 and 黑暗突变 > 25 and 能量值 < 30:
+                elif 符文 > 0 and 黑暗突变_cd > 25 and 能量值 < 30:
                     current_step = "施放 天灾打击"
                     action_hotkey = get_hotkey(0, "天灾打击")
                 # "末日突降" 或 "能量大于80" , 根据敌人数量消耗符能
@@ -270,7 +327,7 @@ def run_deathknight_logic(state_dict, spec_name):
                 elif (食尸鬼层数 == 0 or 脓疮毒镰2 == 0) and 符文 >= 2:
                     current_step = "施放 脓疮打击"
                     action_hotkey = get_hotkey(0, "脓疮打击")
-                elif 凋萎 > 0 and 黑暗突变 == 0 and 食尸鬼层数 > 0 and 符文 > 0:
+                elif 凋萎 > 0 and 黑暗突变_cd == 0 and 食尸鬼层数 > 0 and 符文 > 0:
                     current_step = "施放 天灾打击"
                     action_hotkey = get_hotkey(0, "天灾打击")
                 # 消耗 符能

@@ -186,8 +186,8 @@ function Fuyutsui:SwitchPotion()
         print("|cff00ff00[Fuyutsui]|r 药水已|cff00ff00开启|r")
     end
     local st = self.blocks and self.blocks.state
-    if st and st["药水开关"] then
-        self:CreatTexture(st["药水开关"], c.potion / 255 or 0)
+    if st and st["爆发药水开关"] then
+        self:CreatTexture(st["爆发药水开关"], c.potion / 255 or 0)
     end
     SaveConfig()
     if self.RefreshQuickToggleAppearance then
@@ -314,7 +314,7 @@ function Fuyutsui:SlashCommand(input, editbox)
         print("切换输出模式: /fu dpsmode")
         print("切换输出模式为|cff00ff00手写逻辑|r: /fu dpsmode manual")
         print("切换输出模式为|cff00ff00一键辅助|r: /fu dpsmode assistant")
-        print("药水开关: /fu potion")
+        print("爆发药水开关: /fu potion")
         print("|cff00ff00开启|r药水: /fu potion on")
         print("|cffff0000关闭|r药水: /fu potion off")
         print("临时 delay 标志（db.char.delay 置 1 持续 x 秒后归零）: /fu delay [秒]，省略秒数则为 1 秒")

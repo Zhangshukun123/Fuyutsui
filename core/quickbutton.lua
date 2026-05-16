@@ -27,6 +27,7 @@ function Fuyutsui:RefreshQuickToggleAppearance()
     local cdOn = (c.cooldowns or 0) == 1
     local aoe = c.aoeMode or 0
     local dpsAssistant = (c.dpsMode or 0) == 0
+    local potionOn = (c.potion or 0) == 1
     if f.bg then
         if cdOn then
             f.bg:SetColorTexture(0.15, 0.45, 0.2, 0.92)
@@ -38,7 +39,8 @@ function Fuyutsui:RefreshQuickToggleAppearance()
         local burst = cdOn and "|cff00ff00开|r" or "|cffff4444关|r"
         local aoeStr = (aoe == 0) and "|cff00ff00自|r" or "|cffffaa00单|r"
         local dpsStr = dpsAssistant and "|cff88ccff官|r" or "|cffcccc33手|r"
-        f.textAll:SetText(("爆%s\n群%s\n模%s"):format(burst, aoeStr, dpsStr))
+        local potionStr = potionOn and "|cff00ff00开|r" or "|cffff4444关|r"
+        f.textAll:SetText(("爆%s\n群%s\n模%s\n药%s"):format(burst, aoeStr, dpsStr, potionStr))
     end
 end
 
@@ -62,11 +64,11 @@ function Fuyutsui:InitQuickToggleButton()
 
     local c = CharCfg()
     local f = CreateFrame("Button", "FuyutsuiQuickToggle", UIParent, "BackdropTemplate")
-    f:SetSize(50, 50)
+    f:SetSize(50, 64)
     f:SetFrameStrata("MEDIUM")
     f:SetClampedToScreen(true)
     f:EnableMouse(true)
-    f:RegisterForClicks("LeftButtonUp", "RightButtonUp", "MiddleButtonUp")
+    f:RegisterForClicks("LeftButtonUp", "RightButtonUp", "MiddleButtonUp", "Button4Up")
     f:SetMovable(true)
 
     local p = c and c.quickButtonPoint
@@ -104,6 +106,7 @@ function Fuyutsui:InitQuickToggleButton()
         GameTooltip:AddLine("左键：切换爆发开/关", 1, 1, 1, true)
         GameTooltip:AddLine("右键：切换 AOE（自动 / 单体）", 1, 1, 1, true)
         GameTooltip:AddLine("中键：切换输出模式（官方辅助 / 手动逻辑）", 1, 1, 1, true)
+        GameTooltip:AddLine("鼠标按键4：切换爆发药水开/关", 1, 1, 1, true)
         GameTooltip:AddLine("按住左键拖动：移动按钮", 0.85, 0.85, 0.85, true)
         GameTooltip:Show()
     end)
@@ -171,6 +174,11 @@ function Fuyutsui:InitQuickToggleButton()
             if ch and Fuyutsui.SwitchDpsMode then
                 ch.dpsMode = (ch.dpsMode == 0) and 1 or 0
                 Fuyutsui:SwitchDpsMode()
+            end
+        elseif button == "Button4" then
+            if ch and Fuyutsui.SwitchPotion then
+                ch.potion = (ch.potion == 0) and 1 or 0
+                Fuyutsui:SwitchPotion()
             end
         end
     end)

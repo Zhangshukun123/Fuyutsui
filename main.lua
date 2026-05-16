@@ -678,6 +678,9 @@ function Fuyutsui:updatePlayerConfig()
     if blocks.state["输出模式"] then
         self:CreatTexture(blocks.state["输出模式"], c.dpsMode / 255 or 0)
     end
+    if blocks.state["爆发药水开关"] then
+        self:CreatTexture(blocks.state["爆发药水开关"], c.potion / 255 or 0)
+    end
 end
 
 -- 更新玩家酒池百分比
@@ -1403,17 +1406,21 @@ function Fuyutsui:SPELL_ACTIVATION_OVERLAY_HIDE(_, spellId)
     self:updateAuraByActivationOverlayHide(spellId)
 end
 
-local items = {
+local potions = {
     [241304] = "银月城生命药水",
     [241305] = "银月城生命药水",
     [241301] = "光注法力药水",
     [241300] = "光注法力药水",
     [5512] = "治疗石",
     [224464] = "恶魔治疗石",
+    [241288] = "鲁莽药水",
+    [241289] = "鲁莽药水",
+    [241308] = "圣光潜力",
+    [241309] = "圣光潜力",
 }
 
 function Fuyutsui:ITEM_COUNT_CHANGED(_, itemID)
-    if items[itemID] then
+    if potions[itemID] then
         self:GetItemCount()
     end
 end

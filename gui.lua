@@ -192,6 +192,9 @@ function Fuyutsui:SyncBlockFromDB()
     if st["输出模式"] then
         self:CreatTexture(st["输出模式"], c.dpsMode / 255 or 0)
     end
+    if st["爆发药水开关"] then
+        self:CreatTexture(st["爆发药水开关"], c.potion / 255 or 0)
+    end
     if self.RefreshQuickToggleAppearance then
         self:RefreshQuickToggleAppearance()
     end
@@ -225,16 +228,7 @@ Fuyutsui.options = {
 Fuyutsui Tinkerer是由Fuyutsuki Electronics研发的一块|cFF00FF00免费|r网络接入仓，大概能提升你在夜之城的战斗体验。
 
 感谢所有使用和反馈本插件的用户，特别感谢Discord群组中的成员们的宝贵意见与建议，让插件得以不断完善和进步！
-感谢以下用户对Fuyutsuki的贡献,排名不分先后：
-- @Wayne Bian
-- @ck002ck002
 
-- @Beer Mcdonald
-- @Zhiqiang Zhou
-- @Yingbo Wang
-- @Yingbo Wang
-
-- @Discord群组中的成员
 ]]):format(addon)
                     end,
                 },
@@ -273,7 +267,7 @@ Fuyutsui Tinkerer是由Fuyutsuki Electronics研发的一块|cFF00FF00免费|r网
                     type = "description",
                     order = 0,
                     name =
-                    "以下项保存在 |cffffffffFuyutsuiADB|r 的 |cffffffffdb.char|r（按角色），与 |cffffffff/fu cd|r、|cffffffff/fu aoemode|r、|cffffffff/fu dpsmode|r 一致；快捷按钮显示与位置亦存于本页。",
+                    "以下项保存在 |cffffffffFuyutsuiADB|r 的 |cffffffffdb.char|r（按角色），与 |cffffffff/fu cd|r、|cffffffff/fu aoemode|r、|cffffffff/fu dpsmode|r、|cffffffff/fu potion|r 一致；快捷按钮显示与位置亦存于本页。",
                 },
                 cooldowns = {
                     type = "toggle",
@@ -333,6 +327,27 @@ Fuyutsui Tinkerer是由Fuyutsuki Electronics研发的一块|cFF00FF00免费|r网
                         c.dpsMode = val
                         if Fuyutsui and Fuyutsui.SwitchDpsMode then
                             Fuyutsui:SwitchDpsMode()
+                        else
+                            Fuyutsui:SyncBlockFromDB()
+                        end
+                    end,
+                },
+                potion = {
+                    type = "toggle",
+                    order = 35,
+                    name = "爆发药水",
+                    desc = "开启时允许按逻辑使用爆发药水；与 |cffffffff/fu potion|r 一致。",
+                    width = "full",
+                    get = function()
+                        local c = CharCfg()
+                        return c and ((c.potion or 0) == 1) or false
+                    end,
+                    set = function(_, val)
+                        local c = CharCfg()
+                        if not c then return end
+                        c.potion = val and 1 or 0
+                        if Fuyutsui and Fuyutsui.SwitchPotion then
+                            Fuyutsui:SwitchPotion()
                         else
                             Fuyutsui:SyncBlockFromDB()
                         end
