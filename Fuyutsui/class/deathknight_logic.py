@@ -149,7 +149,10 @@ def run_deathknight_logic(state_dict, spec_name):
         灵魂收割 = spells.get("灵魂收割", -1)
         凋零_cd = spells.get("凋零冷却", -1)
         凋零_charge = spells.get("凋零充能", -1)
-       
+        # 物品
+        鲁莽药水冷却 = state_dict.get("鲁莽药水冷却", -1)
+        大红冷却 = state_dict.get("大红冷却", -1)
+
         if 引导 > 0:
             current_step = "在引导,不执行任何操作"
         elif 一键辅助 == 13:
@@ -216,6 +219,12 @@ def run_deathknight_logic(state_dict, spec_name):
                         elif 首领战 == 0 and (5 < 目标生命值 < 35 or 割魂索命 > 0):
                             current_step = "施放 灵魂收割"
                             action_hotkey = get_hotkey(0, "灵魂收割")
+                        else:
+                            current_step = "施放 腐化"
+                            action_hotkey = get_hotkey(0, "腐化")
+                    else:
+                        current_step = "施放 腐化"
+                        action_hotkey = get_hotkey(0, "腐化")
                 # "禁断知识"快结束时, 优先消耗符能
                 elif 0 <禁断知识 <= 5 and 能量值 >= 30 and 敌人人数 < 3:
                     current_step = "施放 凋零缠绕"

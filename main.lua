@@ -767,9 +767,11 @@ function Fuyutsui:updateSpellCooldown()
 end
 
 function Fuyutsui:GetItemCount()
-    self.state.HealthPotionCount = C_Item.GetItemCount(241304) + C_Item.GetItemCount(241305)
-    self.state.ManaPotionCount = C_Item.GetItemCount(241301) + C_Item.GetItemCount(241300)
-    self.state.HealthstoneCount = C_Item.GetItemCount(5512) + C_Item.GetItemCount(224464)
+    self.state.HealthPotionCount = C_Item.GetItemCount(241304) + C_Item.GetItemCount(241305)    -- 银月城生命药水
+    self.state.ManaPotionCount = C_Item.GetItemCount(241301) + C_Item.GetItemCount(241300)      -- 光注法力药水
+    self.state.HealthstoneCount = C_Item.GetItemCount(5512) + C_Item.GetItemCount(224464)       -- 治疗石
+    self.state.RecklessnessCount = C_Item.GetItemCount(241288) + C_Item.GetItemCount(241289)    -- 鲁莽药水
+    self.state.LightsPotentialCount = C_Item.GetItemCount(241308) + C_Item.GetItemCount(241309) -- 圣光潜力
 end
 
 function Fuyutsui:GetItemRemainingTime(itemID)
@@ -815,6 +817,28 @@ function Fuyutsui:updateItemCoolDown()
                 self:CreatTexture(blocks.state["治疗石冷却"], math.min(1, remainingTime / 255))
             else
                 self:CreatTexture(blocks.state["治疗石冷却"], 1)
+            end
+        end
+        if blocks.state["鲁莽药水冷却"] then
+            if not self.state.RecklessnessCount then
+                self:GetItemCount()
+            end
+            local remainingTime = self:GetItemRemainingTime(241288)
+            if remainingTime and self.state.RecklessnessCount > 0 then
+                self:CreatTexture(blocks.state["鲁莽药水冷却"], math.min(1, remainingTime / 255))
+            else
+                self:CreatTexture(blocks.state["鲁莽药水冷却"], 1)
+            end
+        end
+        if blocks.state["圣光潜力冷却"] then
+            if not self.state.LightsPotentialCount then
+                self:GetItemCount()
+            end
+            local remainingTime = self:GetItemRemainingTime(241308)
+            if remainingTime and self.state.LightsPotentialCount > 0 then
+                self:CreatTexture(blocks.state["圣光潜力冷却"], math.min(1, remainingTime / 255))
+            else
+                self:CreatTexture(blocks.state["圣光潜力冷却"], 1)
             end
         end
     end

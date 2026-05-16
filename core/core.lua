@@ -104,6 +104,7 @@ local function SaveConfig()
     c.cooldowns = c.cooldowns or 0
     c.dpsMode = c.dpsMode or 0
     c.delay = c.delay or 0
+    c.potion = c.potion or 0
 end
 
 --- 与斜杠 / 配置界面一致：print、同步顶部像素、规范化 db.char
@@ -176,6 +177,24 @@ function Fuyutsui:SwitchDelay()
     SaveConfig()
 end
 
+function Fuyutsui:SwitchPotion()
+    local c = self.db and self.db.char
+    if not c then return end
+    if c.potion == 0 then
+        print("|cff00ff00[Fuyutsui]|r 药水已|cffff0000关闭|r")
+    else
+        print("|cff00ff00[Fuyutsui]|r 药水已|cff00ff00开启|r")
+    end
+    local st = self.blocks and self.blocks.state
+    if st and st["药水开关"] then
+        self:CreatTexture(st["药水开关"], c.potion / 255 or 0)
+    end
+    SaveConfig()
+    if self.RefreshQuickToggleAppearance then
+        self:RefreshQuickToggleAppearance()
+    end
+end
+
 --- AceConsole：由 RegisterChatCommand("fu"|"fuyutsui", "SlashCommand") 分发，勿再手写 SlashCmdList
 function Fuyutsui:SlashCommand(input, editbox)
     input = (input or ""):trim()
@@ -240,6 +259,18 @@ function Fuyutsui:SlashCommand(input, editbox)
         if not c then return end
         c.dpsMode = 0
         self:SwitchDpsMode()
+    elseif command == "potion" then
+        if not c then return end
+        c.potion = (c.potion == 0) and 1 or 0
+        self:SwitchPotion()
+    elseif command == "potion on" then
+        if not c then return end
+        c.potion = 1
+        self:SwitchPotion()
+    elseif command == "potion off" then
+        if not c then return end
+        c.potion = 0
+        self:SwitchPotion()
     elseif command:match("^delay") then
         if not c then return end
         local secStr = command:match("^delay%s+(.+)$")
@@ -283,6 +314,9 @@ function Fuyutsui:SlashCommand(input, editbox)
         print("切换输出模式: /fu dpsmode")
         print("切换输出模式为|cff00ff00手写逻辑|r: /fu dpsmode manual")
         print("切换输出模式为|cff00ff00一键辅助|r: /fu dpsmode assistant")
+        print("药水开关: /fu potion")
+        print("|cff00ff00开启|r药水: /fu potion on")
+        print("|cffff0000关闭|r药水: /fu potion off")
         print("临时 delay 标志（db.char.delay 置 1 持续 x 秒后归零）: /fu delay [秒]，省略秒数则为 1 秒")
         print("界面设置(Ace): /fu options")
     elseif command == "gui" then
@@ -358,6 +392,7 @@ Fuyutsui.defaults = {
         cooldowns = 0,
         dpsMode = 0,
         delay = 0,
+        potion = 0,
         quickButtonCX = 180,
         quickButtonCY = -100,
         quickButtonShow = true,

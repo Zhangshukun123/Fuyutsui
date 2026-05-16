@@ -438,6 +438,10 @@ state:
       窒息: {step: 42, type: "int" }
       致盲冰雨: {step: 43, type: "int" }
   3:
+    食尸鬼层数: {step: bar, bar: 1, type: "int"}
+    腐化层数: {step: bar, bar: 2, type: "int"}
+    凋零层数: {step: bar, bar: 3, type: "int"}
+
     符文: {step: 21, type: "int" }
     目标生命值: {step: 22, type: "int" }
     敌人人数: {step: 23, type: "int" }
@@ -445,38 +449,38 @@ state:
     爆发开关: {step: 24, type: "int" }
     输出模式: {step: 25, type: "int" }
     AOE开关: {step: 26, type: "int" }
-    疾病判断: {step: 36, type: "int" }
-    亡者指挥官: {step: 37, type: "int" }
-    寒冰锁链: {step: 38, type: "int" }
-    暗影之爪层数: {step: 39, type: "int" }
-    凋萎: {step: 52, type: "int" }
-    
-    次级食尸鬼: {step: 27, type: "int" }
-    食尸鬼层数: {step: bar, bar: 1, type: "int"}
-    割魂索命: {step: 28, type: "int" }
-    末日突降: {step: 29, type: "int" }
-    末日层数: {step: 30, type: "int" }
-    黑暗援助: {step: 31, type: "int" }
-    禁断知识: {step: 32, type: "int" }
-    脓疮毒镰: {step: 33, type: "int" }
-    脓疮毒镰2: {step: 34, type: "int" }
-    枯萎凋零: {step: 35, type: "int" }
-    腐化层数: {step: bar, bar: 2, type: "int"}
-    凋零层数: {step: bar, bar: 3, type: "int"}
-    spells:
-      死亡之握: {step: 40, type: "int" }
-      反魔法领域: {step: 41, type: "int" }
-      窒息: {step: 42, type: "int" }
-      致盲冰雨: {step: 43, type: "int" }
 
-      亡者复生: {step: 44, type: "int" }
-      亡者大军: {step: 45, type: "int" }
-      腐化: {step: 46, type: "int" }
-      腐化充能: {step: 47, type: "int" }
-      黑暗突变: {step: 48, type: "int" }
-      灵魂收割: {step: 49, type: "int" }
-      凋零冷却: {step: 50, type: "int" }
-      凋零充能: {step: 51, type: "int" }
+    疾病判断: {step: 27, type: "int" }
+    鲁莽药水冷却: {step: 28, type: "int" }
+    大红冷却: {step: 29, type: "int" }
+
+    次级食尸鬼: {step: 41, type: "int" }
+    割魂索命: {step: 42, type: "int" }
+    末日突降: {step: 43, type: "int" }
+    末日层数: {step: 44, type: "int" }
+    黑暗援助: {step: 45, type: "int" }
+    禁断知识: {step: 46, type: "int" }
+    脓疮毒镰: {step: 47, type: "int" }
+    脓疮毒镰2: {step: 48, type: "int" }
+    枯萎凋零: {step: 48, type: "int" }
+    亡者指挥官: {step: 50, type: "int" }
+    寒冰锁链: {step: 51, type: "int" }
+    暗影之爪层数: {step: 52, type: "int" }
+    凋萎: {step: 53, type: "int" }
+
+    spells:
+      死亡之握: {step: 61, type: "int" }
+      反魔法领域: {step: 62, type: "int" }
+      窒息: {step: 63, type: "int" }
+      致盲冰雨: {step: 64, type: "int" }
+      亡者复生: {step: 65, type: "int" }
+      亡者大军: {step: 66, type: "int" }
+      腐化: {step: 67, type: "int" }
+      腐化充能: {step: 68, type: "int" }
+      黑暗突变: {step: 69, type: "int" }
+      灵魂收割: {step: 70, type: "int" }
+      凋零冷却: {step: 71, type: "int" }
+      凋零充能: {step: 72, type: "int" }
 
 7: # 萨满祭司
   keymap: "shaman.yml"
