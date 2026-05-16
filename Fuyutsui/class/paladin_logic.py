@@ -188,7 +188,7 @@ def run_paladin_logic(state_dict, spec_name):
         elif 清洁术CD == 0 and 驱散单位 is not None:
             current_step = f"施放 清毒术 on {驱散单位}"
             action_hotkey = get_hotkey(int(驱散单位), "清毒术")
-        elif 清洁术CD == 0 and 目标类型 == 12:
+        elif 清洁术CD == 0 and 目标类型 in (12, 13, 15):
             current_step = "施放 清毒术 on 目标"
             action_hotkey = get_hotkey(0, "清毒术")
 
