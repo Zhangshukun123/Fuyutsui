@@ -51,6 +51,30 @@ failed_spell_map = {
     24: "憎恶附肢",
     39: "死亡之握",
 }
+raid_boss_list = {
+    1,  # 元首阿福扎恩
+    2,  # 弗拉希乌斯
+    3,  # 陨落之王萨哈达尔
+    4,  # 威厄高尔和艾佐拉克
+    5,  # 光盲先锋军
+    6,  # 宇宙之冕
+    7,  # 奇美鲁斯，未梦之神
+    8,  # 贝洛朗，奥的子嗣
+    9,  # 至暗之夜降临
+    10, # 鲁阿夏尔
+    11, # 索姆贝兰
+    12, # 普雷达萨斯
+    13, # 克拉格平
+
+    53, # 洛萨克森
+    56, # 拉克图尔，聚魂之器
+    60, # 无眠之心
+    64, # 迪詹崔乌斯
+    68, # 鲁拉
+    72, # 多拉苟萨的回响
+    75, # 天灾领主泰兰努斯
+    79, # 高阶贤者维里克斯
+}
 
 # 找到失败法术，必须是法术有冷却时间，并且冷却时间为 0
 def _get_failed_spell(state_dict):
@@ -118,9 +142,10 @@ def run_deathknight_logic(state_dict, spec_name):
             current_step = "无匹配技能"
     elif spec_name == "邪恶":
         # 控制
-        爆发 = state_dict.get("爆发开关", 0)
+        爆发开关 = state_dict.get("爆发开关", 0)
         输出模式 = state_dict.get("输出模式", 0)
         AOE = state_dict.get("AOE开关", 0)
+        延迟 = state_dict.get("延迟", 0)
         # 光环
         次级食尸鬼 = state_dict.get("次级食尸鬼", 0)
         食尸鬼层数 = state_dict.get("食尸鬼层数", 0)
@@ -155,23 +180,22 @@ def run_deathknight_logic(state_dict, spec_name):
         爆发药水开关 = state_dict.get("爆发药水开关", 0)
 
         施放灵魂收割, 施放腐化 = False, False
-        # 腐化层数为0时, 且灵魂收割为0时, 且目标生命值小于35或割魂索命大于0时, 施放灵魂收割
-        if 腐化层数 ==0 and 灵魂收割_cd == 0 and (目标生命值 < 35 or 割魂索命 > 0):
+        # 腐化层数为0时, 且"灵魂收割"为0时, 且目标生命值小于35或割魂索命大于0时, 施放"灵魂收割"
+        if 腐化层数 == 0 and 灵魂收割_cd == 0 and (目标生命值 < 35 or 割魂索命 > 0):
             施放灵魂收割 = True
-        # "亡者指挥官"即将结束时, 腐化层数为1时, 优先施放灵魂收割, 其次腐化
+        # "亡者指挥官"即将结束时, 腐化层数为1时, 优先施放"灵魂收割", 其次腐化
         if 腐化层数 == 1 and 0 < 亡者指挥官 <= 3:
             if 0 <= 灵魂收割_cd <= 1 and (目标生命值 < 35 or 割魂索命 > 0):
                 施放灵魂收割 = True
             else:
                 施放腐化 = True
-        # "亡者指挥官"时, 腐化层数大于等于2时, 优先施放灵魂收割, 其次腐化
+        # "亡者指挥官"时, 腐化层数大于等于2时, 优先施放"灵魂收割", 其次腐化
         if 腐化层数 >= 2 and 亡者指挥官 > 1:
             if 0 <= 灵魂收割_cd <= 1 and (目标生命值 < 35 or 割魂索命 > 0):
                 施放灵魂收割 = True
             else:
                 施放腐化 = True
-
-        if 爆发 == 0:
+        if 爆发开关 == 0:
             if 腐化层数 == 2:
                 if 首领战 > 0 :
                     if 0 <= 灵魂收割_cd <= 1 and (目标生命值 < 35 or 割魂索命 > 0):                    
@@ -196,7 +220,7 @@ def run_deathknight_logic(state_dict, spec_name):
                     elif 灵魂收割_cd == 0 and 目标生命值 > 50 and 亡者大军_cd > 65:  
                         施放腐化 = True
 
-        if 引导 > 0:
+        if 引导 > 0 or 延迟 > 0:
             current_step = "在引导,不执行任何操作"
         elif 一键辅助 == 13:
             current_step = "施放 亡者复生"
@@ -226,11 +250,11 @@ def run_deathknight_logic(state_dict, spec_name):
                     current_step = "施放 爆发"
                     action_hotkey = get_hotkey(0, "爆发")
                 # 药水开关为1时, 施放鲁莽药水
-                elif 爆发药水开关 == 1 and 鲁莽药水冷却 == 0 and 爆发 == 1 and 黑暗突变_cd == 0 and 亡者大军_cd == 0:
+                elif 爆发药水开关 == 1 and 鲁莽药水冷却 == 0 and 爆发开关 == 1 and 黑暗突变_cd == 0 and 亡者大军_cd == 0:
                     current_step = "施放 鲁莽药水"
                     action_hotkey = get_hotkey(0, "鲁莽药水")
                 # 只有"黑暗突变"和"亡者大军"2个技能CD都好了才施放"亡者大军"
-                elif 爆发 == 1 and 黑暗突变_cd == 0 and 亡者大军_cd == 0:
+                elif 爆发开关 == 1 and 黑暗突变_cd == 0 and 亡者大军_cd == 0:
                     current_step = "施放 亡者大军"
                     action_hotkey = get_hotkey(0, "亡者大军")
                 # 确保"黑暗突变"会等待"亡者大军"CD
@@ -303,7 +327,7 @@ def run_deathknight_logic(state_dict, spec_name):
                     current_step = "施放 枯萎凋零"
                     action_hotkey = get_hotkey(0, "枯萎凋零")
                 # 当不开启爆发且"枯萎凋零"有两层时, 直接施放.
-                elif 爆发 == 0 and 敌人人数 >= 3 and 移动 == False and 凋零_buff == 0 and 凋零层数 == 2:
+                elif 爆发开关 == 0 and 敌人人数 >= 3 and 移动 == False and 凋零_buff == 0 and 凋零层数 == 2:
                     current_step = "施放 枯萎凋零"
                     action_hotkey = get_hotkey(0, "枯萎凋零")
                 elif 符文 > 0 and 黑暗突变_cd > 25 and 能量值 < 30:

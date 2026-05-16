@@ -165,11 +165,6 @@ end
 function Fuyutsui:SwitchDelay()
     local c = self.db and self.db.char
     if not c then return end
-    if c.delay == 0 then
-        print("|cff00ff00[Fuyutsui]|r 延迟已关闭")
-    else
-        print("|cff00ff00[Fuyutsui]|r 延迟已开启")
-    end
     local st = self.blocks and self.blocks.state
     if st and st["延迟"] then
         self:CreatTexture(st["延迟"], c.delay / 255 or 0)
@@ -287,6 +282,7 @@ function Fuyutsui:SlashCommand(input, editbox)
                 end
             end
         end
+        local delayAlreadyActive = fuDelayEndTimer ~= nil
         if fuDelayEndTimer then
             fuDelayEndTimer:Cancel()
             fuDelayEndTimer = nil
@@ -302,7 +298,9 @@ function Fuyutsui:SlashCommand(input, editbox)
                 self:SwitchDelay()
             end
         end)
-        print("|cff00ff00[Fuyutsui]|r db.char.delay 已设为 1，" .. sec .. " 秒后恢复为 0。")
+        if not delayAlreadyActive then
+            print("|cff00ff00[Fuyutsui]|r db.char.delay 已设为 1，" .. sec .. " 秒后恢复为 0。")
+        end
     elseif command == "help" then
         print("|cff00ff00Fuyutsui|r 命令列表:")
         print("爆发开关: /fu cd")

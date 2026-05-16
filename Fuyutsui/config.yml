@@ -454,6 +454,7 @@ state:
     鲁莽药水冷却: {step: 28, type: "int" }
     大红冷却: {step: 29, type: "int" }
     爆发药水开关: {step: 30, type: "int" }
+    延迟: {step: 31, type: "int" }
     
     次级食尸鬼: {step: 41, type: "int" }
     割魂索命: {step: 42, type: "int" }

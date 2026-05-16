@@ -114,6 +114,7 @@ Fuyutsui.ClassBlocks = {
         [27] = { type = "block", name = "疾病判断" },
         [28] = { type = "block", name = "鲁莽药水冷却" },
         [29] = { type = "block", name = "大红冷却" },
+        [31] = { type = "block", name = "延迟" },
 
         [41] = { type = "aura", name = "次级食尸鬼", auraName = "次级食尸鬼", showKey = "remaining" },
         [42] = { type = "aura", name = "割魂索命", auraName = "割魂索命", showKey = "remaining" },
