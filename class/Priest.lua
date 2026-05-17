@@ -117,7 +117,7 @@ Fuyutsui.ClassBlocks = {
         [36] = { type = "spell", spellId = 33076, name = "愈合祷言" },
         [37] = { type = "spell", spellId = 33076, name = "愈合祷言", charge = true },
         [38] = { type = "spell", spellId = 2050, name = "圣言术：静" },
-        [39] = { type = "spell", spellId = 2050, name = "圣言术：静" },
+        [39] = { type = "spell", spellId = 2050, name = "圣言术：静" , charge = true},
         [40] = { type = "spell", spellId = 88625, name = "圣言术：罚" },
         [41] = { type = "spell", spellId = 200183, name = "神圣化身" },
         [42] = { type = "spell", spellId = 14914, name = "神圣之火" },

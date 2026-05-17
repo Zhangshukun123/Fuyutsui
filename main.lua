@@ -292,7 +292,7 @@ function Fuyutsui:loadPlayerBlocks(specIndex)
             blocks.groups.role = v.role
             blocks.groups.dispel = v.dispel
             blocks.groups.auras = v.auras
-            if blocks.groups.rejuv then
+            if v.rejuv then
                 blocks.groups.rejuv = v.rejuv
             end
         end

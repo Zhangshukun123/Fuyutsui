@@ -389,18 +389,6 @@ def _priest_holy_logic(state_dict):
     群疗限值2数量 = get_count_units_below_health(state_dict, 治疗限值 - 10)
     失败法术 = _get_failed_spell(state_dict)
     
-    # 战斗逻辑
-    def _combat_filler():
-        nonlocal current_step, action_hotkey
-        if not 移动 and 神圣之火_cd == 0:
-            current_step = "施放 神圣之火"
-            action_hotkey = get_hotkey(0, "神圣之火")
-        elif not 移动:
-            current_step = "施放 惩击"
-            action_hotkey = get_hotkey(0, "惩击")
-        else:
-            current_step = "战斗中-无匹配技能"
-
     # 愈合祷言逻辑
     愈合祷言单位 = None
     if 愈合祷言_cd == 0 :
@@ -478,10 +466,19 @@ def _priest_holy_logic(state_dict):
                     current_step = f"施放 快速治疗 on {lowest_u}, 生命最低的单位"
                     action_hotkey = get_hotkey(int(lowest_u), "快速治疗")
                 else:
-                    if 目标类型 and 战斗:
-                        _combat_filler()
+                    current_step = f"施放 快速治疗 on {lowest_u}, 生命最低的单位"
+                    action_hotkey = get_hotkey(int(lowest_u), "快速治疗")
             elif 战斗 and 1 <= 目标类型 <= 3:
-                _combat_filler()
+                if not 移动 and 神圣之火_cd == 0:
+                    current_step = "施放 神圣之火"
+                    action_hotkey = get_hotkey(0, "神圣之火")
+                elif not 移动:
+                    current_step = "施放 惩击"
+                    action_hotkey = get_hotkey(0, "惩击")
+                else:
+                    current_step = "战斗中-无匹配技能"
+            else:
+                current_step = "无匹配技能"
 
         elif 队伍类型 == 46: 
             # 纯净术
@@ -533,7 +530,14 @@ def _priest_holy_logic(state_dict):
                     action_hotkey = get_hotkey(int(lowest_u), "快速治疗")
                 
             elif 战斗 and 1 <= 目标类型 <= 3:
-                _combat_filler()
+                if not 移动 and 神圣之火_cd == 0:
+                    current_step = "施放 神圣之火"
+                    action_hotkey = get_hotkey(0, "神圣之火")
+                elif not 移动:
+                    current_step = "施放 惩击"
+                    action_hotkey = get_hotkey(0, "惩击")
+                else:
+                    current_step = "战斗中-无匹配技能"
 
     return action_hotkey, current_step, unit_info
 

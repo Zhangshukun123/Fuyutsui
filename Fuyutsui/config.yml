@@ -880,7 +880,7 @@ state:
       生命绽放: {step: 4, type: "int" }
       迅捷治愈: {step: 5, type: "int" }
       愈合: {step: 6, type: "int" }
-      回春术: {step: 7, type: "int" }
+      回春数量: {step: 7, type: "int" }
 
 12: # 恶魔猎手
   keymap: "demonhunter.yml"
