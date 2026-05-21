@@ -89,6 +89,7 @@ Fuyutsui.ClassBlocks = {
         [22] = { type = "block", name = "施法技能" },
         [23] = { type = "block", name = "施法目标" },
         [49] = { type = "block", name = "目标距离" },
+        [50] = { type = "block", name = "爆发开关" },
 
         [25] = { type = "aura", name = "生生不息1", auraName = "生生不息1", showKey = "remaining" },
         [26] = { type = "aura", name = "生生不息2", auraName = "生生不息2", showKey = "remaining" },
@@ -166,7 +167,7 @@ Fuyutsui.ClassBlocks = {
 }
 
 Fuyutsui.MacrosList = {
-    dynamicSpells = { "氤氲之雾", "活血术", "清创生血", "抚慰之雾", "复苏之雾"  },
+    dynamicSpells = { "氤氲之雾", "活血术", "清创生血", "抚慰之雾", "复苏之雾","作茧缚命"  },
     specialSpells = {},
     staticSpells = {
         [1] = "扫堂腿",
