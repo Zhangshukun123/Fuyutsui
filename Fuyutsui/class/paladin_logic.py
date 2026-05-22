@@ -226,6 +226,10 @@ def run_paladin_logic(state_dict, spec_name):
             elif 美德道标BUFF == 0 and 圣洁鸣钟CD == 0 and 神圣能量 <= 2 and HP75 >= 3:
                 current_step = "群奶 圣洁鸣钟"
                 action_hotkey = get_hotkey(1, "圣洁鸣钟")
+            # 圣洁鸣钟救急
+            elif 圣洁鸣钟CD == 0 and 神圣能量 < 2 and HP60 >= 2:
+                current_step = "群奶 圣洁鸣钟"
+                action_hotkey = get_hotkey(1, "圣洁鸣钟")
 
             # ---- 优先级 2: 豆消耗 ----
             elif 神圣能量 >= 3 or 神圣意志BUFF > 0:
@@ -477,19 +481,19 @@ def run_paladin_logic(state_dict, spec_name):
                 current_step = "施放 处决宣判"
                 action_hotkey = get_hotkey(0, "处决宣判")
             # 灰烬觉醒: not翅膀
-            elif 复仇之怒CD >= 20 and 灰烬觉醒CD == 0 and 神圣能量 <= 3 and 爆发 == 1:
+            elif 20 <= 复仇之怒CD <= 30 and 灰烬觉醒CD == 0 and 2 <= 神圣能量 <= 3 and 爆发 == 1:
                 current_step = "施放 灰烬觉醒"
                 action_hotkey = get_hotkey(0, "灰烬觉醒")
             # 灰烬觉醒
-            elif 灰烬觉醒CD == 0 and 处决宣判BUFF > 0 and 神圣能量 <= 3:
+            elif 灰烬觉醒CD == 0 and 处决宣判BUFF > 0 and 2 <= 神圣能量 <= 3:
                 current_step = "施放 灰烬觉醒"
                 action_hotkey = get_hotkey(0, "灰烬觉醒")
             # 灰烬觉醒(30秒流 爆发开为自动)
-            elif 灰烬觉醒CD == 0 and 神圣能量 <= 3 and 处决宣判CD == 255 and 爆发 == 1:
+            elif 灰烬觉醒CD == 0 and 2 <= 神圣能量 <= 3 and 处决宣判CD == 255 and 爆发 == 1:
                 current_step = "施放 灰烬觉醒"
                 action_hotkey = get_hotkey(0, "灰烬觉醒")
             # 圣光之锤
-            elif 处决宣判BUFF > 0 and 圣光之锤BUFF > 0 and (神圣能量 == 5 or 神圣意志BUFF > 0):
+            elif 处决宣判BUFF > 0 and 圣光之锤BUFF > 0 and 神圣能量 == 5:
                 current_step = "施放 圣光之锤"
                 action_hotkey = get_hotkey(0, "灰烬觉醒")
             # 圣洁鸣钟
