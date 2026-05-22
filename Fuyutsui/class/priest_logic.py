@@ -205,6 +205,9 @@ def _priest_discipline_logic(state_dict):
             if 纯净术 == 0 and 驱散单位 is not None:
                 current_step = f"施放 纯净术 on {驱散单位}"
                 action_hotkey = get_hotkey(int(驱散单位), "纯净术")
+            elif 纯净术 == 0 and 目标类型 in (12, 13):
+                current_step = f"施放 纯净术 on 目标"
+                action_hotkey = get_hotkey(0, "纯净术")
             elif 战斗 and 1 <= 目标类型 <= 3 and 一键辅助 == 14:
                 current_step = "施放 暗言术：痛"
                 action_hotkey = get_hotkey(0, "暗言术：痛")
@@ -251,6 +254,9 @@ def _priest_discipline_logic(state_dict):
             if 纯净术 == 0 and 驱散单位 is not None:
                 current_step = f"施放 纯净术 on {驱散单位}"
                 action_hotkey = get_hotkey(int(驱散单位), "纯净术")
+            elif 纯净术 == 0 and 目标类型 in (12, 13):
+                current_step = f"施放 纯净术 on 目标"
+                action_hotkey = get_hotkey(0, "纯净术")
             elif 暗影愈合单位 is not None and (not 移动 or 圣光涌动 > 0):
                 current_step = f"施放 暗影愈合 on {暗影愈合单位}, 暗影愈合"
                 action_hotkey = get_hotkey(int(暗影愈合单位), "快速治疗")
