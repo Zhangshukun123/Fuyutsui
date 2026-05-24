@@ -67,7 +67,6 @@ failed_spell_map = {
     4: "禁锢",
     6: "混乱新星",
     16: "恶魔变形",
-    19: "烈火烙印",
     26: "邪能毁灭",
     27: "沉默咒符",
     28: "虚空新星",
@@ -164,9 +163,15 @@ def run_demonhunter_logic(state_dict, spec_name):
             if 恶魔尖刺_cd == 0:
                 current_step = "施放 恶魔尖刺"
                 action_hotkey = get_hotkey(0, "恶魔尖刺")
-            elif 烈火烙印 ==0 and 烈火烙印_cd == 0:
+            elif 烈火烙印 == 0 and 烈火烙印_cd == 0:
                 current_step = "施放 烈火烙印"
                 action_hotkey = get_hotkey(0, "烈火烙印")
+            elif not 移动 and 邪能毁灭_cd == 0 and 能量值 >= 50 and( 生命值 <= 80 or 敌人人数 >= 5):
+                current_step = "施放 邪能毁灭"
+                action_hotkey = get_hotkey(0, "邪能毁灭")
+            elif 邪能之刃_cd == 0 and 能量值 <= 20:
+                current_step = "施放 邪能之刃"
+                action_hotkey = get_hotkey(0, "邪能之刃")
             elif tup:
                 current_step = f"施放 {tup[0]}"
                 action_hotkey = get_hotkey(0, tup[1])
