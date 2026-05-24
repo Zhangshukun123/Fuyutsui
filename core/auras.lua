@@ -241,7 +241,39 @@ local auras = {
     },
     -- 猎人
     [3] = {
-
+        ["自然之友"] = {
+            remaining = 0,
+            duration = 8,
+            expirationTime = nil,
+            addAuras = {
+                [1276720] = { event = e["法术冷却"] },
+            },
+            updateAuras = nil,
+            removeAuras = {
+                [34026] = { event = e["施法成功"] }
+            },
+        },
+        ["狂野怒火"] = {
+            remaining = 0,
+            duration = 15,
+            expirationTime = nil,
+            addAuras = {
+                [19574] = { event = e["法术冷却"] },
+            },
+            updateAuras = nil,
+            removeAuras = {
+            },
+        },
+        ["猎人印记"] = {
+            remaining = 0,
+            duration = 255,
+            expirationTime = nil,
+            addAuras = {
+                [257284] = { event = e["法术冷却"] },
+            },
+            updateAuras = nil,
+            removeAuras = nil,
+        },
     },
     -- 盗贼
     [4] = {

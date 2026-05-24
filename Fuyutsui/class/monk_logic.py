@@ -252,7 +252,7 @@ def run_monk_logic(state_dict, spec_name):
                 current_step = f"施放 活血术 on {生命值最低单位}"
                 action_hotkey = get_hotkey(int(生命值最低单位), "活血术")
             elif not 战斗:
-                if 活力苏醒 <= 0 and 生命值最低单位 is not None and 最低生命值 <= 80:
+                if 活力苏醒 <= 0 and 生命值最低单位 is not None and 最低生命值 <= 90:
                     current_step = f"施放 抚慰之雾 on {生命值最低单位}"
                     action_hotkey = get_hotkey(int(生命值最低单位), "抚慰之雾")
                 elif 复苏之雾 == 0 and 无复苏单位 is not None:
@@ -282,7 +282,7 @@ def run_monk_logic(state_dict, spec_name):
                     current_step = f"施放 {tup[0]}"
                     action_hotkey = get_hotkey(0, tup[1])
                 # 未选择目标时毛线
-                elif 活力苏醒 <= 0 and 生命值最低单位 is not None and 最低生命值 <= 80:
+                elif 活力苏醒 <= 0 and 生命值最低单位 is not None and 最低生命值 <= 90:
                     current_step = f"施放 抚慰之雾 on {生命值最低单位}"
                     action_hotkey = get_hotkey(int(生命值最低单位), "抚慰之雾")
                 # 复苏之雾

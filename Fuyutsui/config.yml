@@ -192,8 +192,14 @@ state:
   keymap: "hunter.yml"
   1:
     敌人人数: {step: 21, type: "int" }
+    AOE开关: {step: 24, type: "int" }
+    输出模式: {step: 23, type: "int" }
+    爆发开关: {step: 22, type: "int" }
+    自然之友: {step: 46, type: "int" }
+    猎人印记: {step: 47, type: "int" }
+    狂野怒火光环: {step: 48, type: "int" }
     spells:
-      牺牲咆哮: {step: 39, type: "int" }
+      牺牲咆哮: {step: 49, type: "int" }
       意气风发: {step: 31, type: "int" }
       胁迫: {step: 32, type: "int" }
       震荡射击: {step: 33, type: "int" }
