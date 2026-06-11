@@ -129,6 +129,7 @@ def run_paladin_logic(state_dict, spec_name):
     祝福之锤CD = spells.get("祝福之锤", -1)
     正义之锤CD = spells.get("正义之锤", -1)
     复仇者之盾CD = spells.get("复仇者之盾", -1)
+    圣疗术CD = spells.get("圣疗术", -1)
 
 
     # ==================== 惩戒专精变量 ====================
@@ -210,6 +211,10 @@ def run_paladin_logic(state_dict, spec_name):
             elif 圣疗术CD == 0 and 大红冷却CD > 1 and 生命值 < 25:
                 current_step = "施放 圣疗术"
                 action_hotkey = get_hotkey(1, "圣疗术")
+            # 圣疗术(队友救急)
+            elif 圣疗术CD == 0 and 大红冷却CD == 0 and 最低生命值 < 20:
+                current_step = "施放 圣疗术"
+                action_hotkey = get_hotkey(int(最低单位), "圣疗术")
             # 美德道标
             elif 美德道标CD == 0 and HP75 >= 3 and 爆发 == 1:
                 current_step = "施放 美德道标"
@@ -392,8 +397,16 @@ def run_paladin_logic(state_dict, spec_name):
 
         # ---- 优先级 2: 防御技能 ----
         elif 战斗 and 1 <= 目标类型 <= 3:
+            # 大红(银月城生命药水)
+            if 大红冷却CD == 0 and 生命值 < 30:
+                current_step = "使用 生命药水"
+                action_hotkey = get_hotkey(0, "银月城生命药水")
+            # 圣疗术
+            elif 圣疗术CD == 0 and 大红冷却CD > 1 and 生命值 < 20:
+                current_step = "施放 圣疗术"
+                action_hotkey = get_hotkey(1, "圣疗术")
             # 神圣壁垒
-            if 军备类型BUFF == 1 and 神圣壁垒CD == 0 and 壁垒充能BUFF == 0:
+            elif 军备类型BUFF == 1 and 神圣壁垒CD == 0 and 壁垒充能BUFF == 0:
                 current_step = "施放 神圣壁垒"
                 action_hotkey = get_hotkey(0, "神圣壁垒")
             # 神圣壁垒
