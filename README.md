@@ -1,9 +1,9 @@
 # Fuyutsui（“冬月修补匠3型”）
-Fuyutsui Tinkerer是由日本大众消费电子巨头 冬月电子（Fuyutsuki Electronics） 研发的一块网络接入仓（Cyberdeck），能显著提升你玩《魔兽世界》的快感。
 
-但是最近被打败啦, 为了苟延残喘, 冬月电子决定隐姓埋名。请将"请将我放到其他文件夹并重命名"放置其他文件夹, 并重命名, 文件夹里面的文件"请重命名(这是启动程序)"也请重命名。
+Fuyutsui Tinkerer 是由日本大众消费电子巨头冬月电子（Fuyutsuki Electronics）研发的一块网络接入仓（Cyberdeck），能显著提升你玩《魔兽世界》的快感。
 
 # 免责声明 (Disclaimer)
+
    1. 法律合规性
 
       本软件（以下简称“Fuyutsui”）仅供技术研究、学术交流及个人学习之用。用户在下载、安装或使用本软件前，必须自行确保其行为符合所在地法律法规及相关服务提供商（包括但不限于游戏运营商）的用户协议与服务条款。
@@ -27,11 +27,13 @@ Fuyutsui Tinkerer是由日本大众消费电子巨头 冬月电子（Fuyutsuki E
       开发者保留随时修改本免责声明及项目源代码的权利。一旦开始使用本软件，即视为用户已阅读并完全同意本声明的所有条款。
 
 ---
+
 ## 它支持谁?
-- **版本**: 听说它只支持_Relic_
+
+- **版本**: 听说它只支持 _Relic_
    ### 职业与专精支持
    #### 天赋
-   脚本使用的天赋均来自于[WOWHEAD](https://www.wowhead.com/guides/classes)推荐的天赋
+   脚本使用的天赋均来自于 [WOWHEAD](https://www.wowhead.com/guides/classes) 推荐的天赋
    #### 图标含义:
 
    ✅: 手写逻辑      🔄: 官方一键辅助        ❌: 不支持
@@ -39,7 +41,7 @@ Fuyutsui Tinkerer是由日本大众消费电子巨头 冬月电子（Fuyutsuki E
    | 职业 | 专精 |专精  |专精  |专精  |
    | --- | --- | --- | --- | --- |
    | 战士 | 武器 🔄 | 狂怒 🔄 | 防护 ✅🔄 |  |
-   | 圣骑士 | 神圣 ✅ | 防护✅🔄 | 惩戒 🔄 |  | : 
+   | 圣骑士 | 神圣 ✅ | 防护✅🔄 | 惩戒 🔄 |  |
    | 猎人 | 野兽 🔄 | 射击 🔄 | 生存 🔄 |  |
    | 盗贼 | 奇袭 🔄 | 狂徒 🔄 | 敏锐 🔄 |  |
    | 牧师 | 戒律 ✅ | 神圣 ✅ | 暗影 ✅🔄 |  |
@@ -52,138 +54,58 @@ Fuyutsui Tinkerer是由日本大众消费电子巨头 冬月电子（Fuyutsuki E
    | 恶魔猎手 | 浩劫 🔄 | 复仇 🔄 | 噬灭 🔄 |  |
    | 唤魔师 | 湮灭 🔄 | 恩护 ❌ | 增辉 ❌ |  |
 
-
 - **感觉支持的职业非常少**
 
 ## 它到底做了什么？
 
-- **Lua（游戏内）**：在屏幕顶部生成一条“色块/色条”数据。
-- **Python（桌面端）**：扫描这条色条，从每个像素值获取队伍成员、光环、技能冷却等。
-- **策略决策（职业逻辑）**：根据当前职业专精加载对应的逻辑模块里判断“下一步该干谁”。
+本插件为 **WoW 游戏内 Lua AddOn**，主要功能如下：
 
-结果就是：它不是一个顶尖科技,研发初衷是“易用性低”与“稳定性差”。这让它看起来不像军用设备那样充满杀气，反而更像是一台经过久经风霜的废土工作站。
+- 在屏幕顶部生成一条「色块 / 色条」，将队伍成员、光环、技能冷却、当前决策等游戏状态编码为像素颜色。
+- 按当前职业与专精加载对应逻辑模块，判断「下一步该做什么」，并将结果写入色条供外部程序读取（若你自行搭配桌面端工具）。
+- 提供游戏内配置界面与快捷按钮，可切换爆发、AOE/单体、输出模式等选项。
 
 ---
 
-## 如何启动
-下面按“游戏内 Lua 插件 + 桌面端 Python”两部分说明。该项目面向 Windows（会调用屏幕截图与 Windows API）。
+## 如何安装与使用
 
-### 1. 文件放在哪里
-**Lua 插件（WoW AddOn）**：把仓库里的 `Fuyutsui` 这个文件夹整体复制到魔兽世界安装目录的 `Interface/AddOns/` 下面。
+### 1. 安装插件
 
-### 2. 安装 VS Code
-1. 安装 VS Code（任意版本即可）。
-2. 打开 VS Code 后：`文件 -> 打开文件夹`，选择项目根目录, 也就是`Interface/AddOns/Fuyutsui`。
+将仓库中的 `Fuyutsui` 文件夹整体复制到魔兽世界安装目录下的 `Interface/AddOns/` 中。
 
-### 3. 安装 Python（Windows）
-
-桌面端脚本依赖 **Python 3**，且会调用 Windows API，请在 **Windows** 上安装。
-
-#### 3.1 从哪里装
-
-1. 打开 [Python 官方下载页](https://www.python.org/downloads/windows/)，下载 **Windows installer (64-bit)**。
-2. 版本建议 **3.10 或更高**（与 `customtkinter`、类型提示等兼容性更好；3.9 多数情况也能用，若遇库不兼容再升级）。
-
-#### 3.2 安装向导里务必勾选的选项
-
-- **Add python.exe to PATH**（或 “将 Python 添加到 PATH”）：不勾的话，终端里经常提示找不到 `python` / `pip`。
-- 若出现 **Install launcher for all users**，可保留默认；装好后可用 `py -3` 启动指定版本。
-
-#### 3.3 装好后自检
-
-在 **PowerShell** 或 **命令提示符**（或 VS Code 终端）中执行：
+路径示例：
 
 ```text
-python --version
+...\World of Warcraft\_retail_\Interface\AddOns\Fuyutsui\
 ```
 
-若提示找不到命令，可再试：
+### 2. 启用插件
 
-```text
-py -3 --version
-```
+1. 启动魔兽世界，进入角色选择界面或游戏中。
+2. 打开插件列表（Esc → 插件），勾选 **Fuyutsui**。
+3. 若更新了文件，可在聊天框输入 `/reload` 重载界面。
 
-能打印出 `Python 3.x.x` 即表示安装成功。建议顺便升级 pip（减少装包失败）：
+### 3. 游戏内命令
 
-```text
-python -m pip install --upgrade pip
-```
-
-> **说明**：`python -m pip` 比单独敲 `pip` 更稳——永远对应当前这个 Python，避免“装了包却给另一个 Python 装”的混乱。
-
-#### 3.4 （可选）用虚拟环境隔离依赖
-
-若你本机还有别的 Python 项目，建议在插件的 Python 子目录里建虚拟环境：
-
-```text
-cd "你的路径\Interface\AddOns\Fuyutsui\Fuyutsui"
-python -m venv .venv
-.\.venv\Scripts\activate
-```
-
-激活后提示符前会出现 `(.venv)`，此时再执行下面的 `pip install` 只会装到这个环境里。  
-VS Code 里可在命令面板选择 **Python: Select Interpreter**，选带 `.venv` 的那一项。
-
-### 4. 安装 Python 依赖
-
-依赖列表在 **`Fuyutsui/Fuyutsui/requirements.txt`**（含 `customtkinter`、`PyYAML`、`mss` 等）。**必须在包含 `logic_gui.py` 的目录下安装并运行**，否则相对路径下的 `config.yml` 等会找不到。
-
-1. 打开终端，进入 Python 工程目录：
-
-   ```text
-   cd "你的路径\Interface\AddOns\Fuyutsui\Fuyutsui"
-   ```
-
-2. 若使用了虚拟环境，先执行 `.\.venv\Scripts\activate`。
-
-3. 一键安装依赖：
-
-   ```text
-   python -m pip install -r requirements.txt
-   ```
-
-4. 验证关键包是否就绪（可选）：
-
-   ```text
-   python -c "import customtkinter, yaml, mss; print('ok')"
-   ```
-
-若报错，把**完整终端输出**复制给 AI 或查阅报错中的包名，通常是网络、代理或 Python 版本过旧导致。
-
-### 5. 运行与日常使用
-
-#### 5.1 与游戏配合
-
-1. 启动魔兽世界，在角色选择界面或游戏中于插件列表启用 **`Fuyutsui`**。
-2. 桌面端通过窗口标题查找游戏窗口，默认标题为 **`魔兽世界`**（与国服客户端一致；若你使用其他语言客户端，需改 `GetPixels.py` / `utils.py` 里传入的 `window_title` 或相关默认值，否则截不到正确区域）。
-
-#### 5.2 启动桌面 GUI
-
-在 **`Interface/AddOns/Fuyutsui/Fuyutsui`** 目录下执行（与第 4 步 `cd` 目录相同）：
-
-```text
-python logic_gui.py
-```
-
-不要从仓库根目录 `.../AddOns/Fuyutsui` 直接运行，除非你自己改好了工作目录与配置文件路径。
-
-#### 5.3 GUI 与热键
-
-- 按 **`XBUTTON2`**（鼠标侧键 2，具体以鼠标驱动为准）可切换 **逻辑开启 / 关闭**。
-- 其他行为以 GUI 内说明与 `config.yml`、`keymap.yml` 为准。
-
-#### 5.4 常见问题速查
-
-| 现象 | 可能原因与处理 |
+| 命令 | 说明 |
 | --- | --- |
-| `'python' 不是内部或外部命令` | 未加入 PATH 或需用 `py -3`；或重装 Python 并勾选 Add to PATH。 |
-| `No module named 'xxx'` | 在 `Fuyutsui\Fuyutsui` 下重新执行 `python -m pip install -r requirements.txt`；确认 VS Code 选中的解释器与终端一致。 |
-| 找不到游戏窗口 / 截图为空 | 检查窗口标题是否为 `魔兽世界`；游戏需在前台或未被最小化到仅任务栏（以实际 Windows 行为为准）。 |
-| 权限或杀毒拦截 | 将项目目录或 Python 加入白名单，或以管理员身份仅作最后手段测试（一般不需要）。 |
+| `/fu` 或 `/fuyutsui` | 主命令 |
+| `/fu options` 或 `/fu config` | 打开配置界面 |
+| `/fu cd` / `/fu cd on` / `/fu cd off` | 切换爆发开关 |
+| `/fu aoemode` / `/fu aoemode auto` / `/fu aoemode aoe` | 切换 AOE / 单体模式 |
+| `/fu dpsmode` / `/fu dpsmode manual` / `/fu dpsmode assistant` | 切换输出模式（手写逻辑 / 官方一键辅助） |
+| `/fu potion` | 切换爆发药水开关 |
+
+配置项按角色保存在 `FuyutsuiADB` 中；界面内亦可拖动快捷按钮调整爆发、AOE、输出模式等。
+
+### 4. 键位映射
+
+插件逻辑会通过色条指示建议按键。完整键位对照表见项目根目录下的 [Keymap.md](Keymap.md)。
+
+---
 
 ## 免责声明
 
-本项目偏“个人工具/实验性质”，通过读取游戏画面像素并触发热键来实现辅助决策。
+本项目偏「个人工具 / 实验性质」，通过读取游戏画面像素并触发热键来实现辅助决策。
 请你自行判断是否符合你的需求，别让它被荒坂发现。
 
 [icon]: https://wow.zamimg.com/images/wow/icons/large/ui_spellbook_onebutton.jpg
