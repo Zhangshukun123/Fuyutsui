@@ -1,6 +1,9 @@
 # Fuyutsui（“冬月修补匠3型”）
 
-Fuyutsui Tinkerer 是由日本大众消费电子巨头冬月电子（Fuyutsuki Electronics）研发的一块网络接入仓（Cyberdeck），能显著提升你玩《魔兽世界》的快感。
+Fuyutsui Tinkerer 是由日本大众消费电子巨头冬月电子（Fuyutsuki Electronics）研发的一块网络接入仓（Cyberdeck），能够提升你使用枪械时的准确度、命中率和速度。
+
+### Fuyutsui 需要配合[Shigure](https://github.com/waynebian01/Shigure)使用。
+
 
 # 免责声明 (Disclaimer)
 
