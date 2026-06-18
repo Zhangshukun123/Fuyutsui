@@ -50,7 +50,7 @@ local auras = {
                 [281000] = { event = e["图标发光隐藏"] }, -- 斩杀（狂暴）
                 [280735] = { event = e["图标发光隐藏"] }, -- 斩杀（屠杀天赋）
             },
-        },        
+        },
         ["英勇打击高亮"] = {
             remaining = 0,
             duration = 15,
@@ -63,7 +63,7 @@ local auras = {
         },
         ["顺劈斩高亮"] = {
             remaining = 0,
-            duration = 15, 
+            duration = 15,
             expirationTime = nil,
             addAuras = nil,
             updateAuras = nil,
@@ -73,7 +73,7 @@ local auras = {
         },
         ["致死高亮"] = {
             remaining = 0,
-            duration = 15, 
+            duration = 15,
             expirationTime = nil,
             addAuras = nil,
             updateAuras = nil,
@@ -555,6 +555,94 @@ local auras = {
             removeAuras = {
                 [55090] = { event = e["施法成功"] },
             },
+        },
+        ["杀戮机器"] = {
+            remaining = 0,
+            duration = 10,
+            count = 0,
+            countMin = 0,
+            countMax = 2,
+            expirationTime = nil,
+            addAuras = {
+                [51124] = { event = e["法术冷却"], step = 1 },
+            },
+            updateAuras = nil,
+            removeAuras = {
+                [207230] = { event = e["施法成功"] }, -- 冰霜之镰
+                [49020] = { event = e["施法成功"] }, -- 湮灭
+            },
+        },
+        ["白霜"] = {
+            remaining = 0,
+            duration = 15,
+            expirationTime = nil,
+            addAuras = {
+                [59052] = { event = e["法术冷却"] },
+            },
+            updateAuras = nil,
+            removeAuras = {
+                [49184] = { event = e["施法成功"] }, -- 凛风冲击
+            },
+        },
+        ["冰霜灾祸"] = {
+            remaining = 0,
+            duration = 15,
+            expirationTime = nil,
+            addAuras = {
+                [1229310] = { event = e["法术冷却"] },
+            },
+            updateAuras = nil,
+            removeAuras = {
+                [1228433] = { event = e["施法成功"] }, -- 冰霜灾祸
+            },
+        },
+        ["锋锐之霜"] = {
+            remaining = 0,
+            duration = 30,
+            count = 0,
+            countMin = 0,
+            countMax = 5,
+            expirationTime = nil,
+            addAuras = {
+                [50401] = { event = e["法术冷却"], step = 1 },
+                [49143] = { event = e["施法成功"], step = 1 }, -- 冰霜打击
+            },
+            updateAuras = nil,
+            removeAuras = {
+                [49143] = { event = e["施法成功"], step = -1 }, -- 冰霜打击
+            },
+        },
+        ["冰霜之柱"] = {
+            remaining = 0,
+            duration = 12,
+            expirationTime = nil,
+            addAuras = {
+                [51271] = { event = e["法术冷却"] },
+            },
+            updateAuras = nil,
+            removeAuras = nil,
+        },
+        ["霜巢之眷-冰霜巨龙之怒"] = {
+            remaining = 0,
+            duration = 45,
+            expirationTime = nil,
+            addAuras = {
+                [1265639] = { event = e["法术冷却"] },
+            },
+            updateAuras = nil,
+            removeAuras = {
+                [1265384] = { event = e["施法成功"] },
+            },
+        },
+        ["霜巢之眷"] = {
+            remaining = 0,
+            duration = 12,
+            expirationTime = nil,
+            addAuras = {
+                [1265630] = { event = e["法术冷却"] },
+            },
+            updateAuras = nil,
+            removeAuras = nil,
         },
     },
     -- 萨满祭司

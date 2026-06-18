@@ -19,7 +19,8 @@ local groupList = Fuyutsui.groupList
 local spells = {}
 local failedSpell, failedSpellId, failedSpellTimer, updateIndex = nil, nil, nil, 1
 local roleMap, spellsList, EnumPowerType = Fuyutsui.roleMap, Fuyutsui.spellsList, Fuyutsui.EnumPowerType
-local ColorValue255, ColorValue0, ColorValue1 = CreateColor(0, 0, 1, 1), CreateColor(0, 0, 0, 1), CreateColor(0, 0, 1 / 255, 1)
+local ColorValue255, ColorValue0, ColorValue1 = CreateColor(0, 0, 1, 1), CreateColor(0, 0, 0, 1),
+    CreateColor(0, 0, 1 / 255, 1)
 
 -- ================================================================
 --                          创建颜色曲线
@@ -935,6 +936,54 @@ function Fuyutsui:updateItemCoolDown()
     end
 end
 
+-- 死亡骑士天启骑士检测
+
+-- 激活的天启骑士
+local ActiveKnightSpells = {
+    [454393] = 1, -- 莫格莱尼
+    [454389] = 2, -- 怀特迈恩
+    [454392] = 3, -- 纳兹戈林
+    [454390] = 4, -- 托尔贝恩
+}
+-- 未激活的天启骑士
+local InactiveKnightSpells = {
+    [444248] = 1, -- 莫格莱尼
+    [444251] = 2, -- 怀特迈恩
+    [444252] = 3, -- 纳兹戈林
+    [444254] = 4, -- 托尔贝恩
+}
+
+local ActiveKnights = { false, false, false, false }
+function Fuyutsui:updateKnightStatus(spellID)
+    if ActiveKnightSpells[spellID] then
+        local knightIndex = ActiveKnightSpells[spellID]
+        ActiveKnights[knightIndex] = true
+    end
+    if InactiveKnightSpells[spellID] then
+        local knightIndex = InactiveKnightSpells[spellID]
+        ActiveKnights[knightIndex] = false
+    end
+end
+
+local function GetActiveKnightsCount()
+    local count = 0
+    for i = 1, 4 do
+        if ActiveKnights[i] then
+            count = count + 1
+        end
+    end
+    return count
+end
+
+function Fuyutsui:updateKnightStatusCount()
+    local count = GetActiveKnightsCount()
+    if blocks then
+        if blocks.state["天启骑士数量"] then
+            self:CreatTexture(blocks.state["天启骑士数量"], count / 255)
+        end
+    end
+end
+
 -- ================================================================
 --                          目标信息
 -- ================================================================
@@ -1598,6 +1647,7 @@ function Fuyutsui:SPELL_UPDATE_COOLDOWN(_, spellID)
     -- self:Print(spellID, C_Spell.GetSpellName(spellID))
     if issecretvalue(spellID) then return end
     self:updateAuraBySpellCooldown(spellID)
+    self:updateKnightStatus(spellID)
 end
 
 function Fuyutsui:SPELL_UPDATE_ICON(_, spellID)
@@ -1914,6 +1964,7 @@ function Fuyutsui:OnUpdate(elapsed)
     self.timeElapsed1 = self.timeElapsed1 + elapsed
     if self.timeElapsed1 > 1 then
         self:updatePlayerCombatTime()
+        self:updateKnightStatusCount()
         self.timeElapsed1 = 0
     end
 end
