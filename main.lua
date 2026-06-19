@@ -10,6 +10,7 @@ local EvaluateColorFromBoolean = C_CurveUtil.EvaluateColorFromBoolean
 local rc = LibStub("LibRangeCheck-3.0")
 
 local state = Fuyutsui.state
+state.auras = {}
 local blocks = Fuyutsui.blocks
 local target = Fuyutsui.target
 local focus = Fuyutsui.focus
@@ -283,7 +284,7 @@ function Fuyutsui:loadPlayerBlocks(specIndex)
             -- 跳过 powerType 等非条目字段
         elseif v.type == "block" then
             if not v.name then
-                self:Print(("loadPlayerBlocks: 索引 %s 的 block 缺少 name，已跳过"):format(tostring(k)))
+                print(("loadPlayerBlocks: 索引 %s 的 block 缺少 name，已跳过"):format(tostring(k)))
             else
                 blocks.state[v.name] = k
             end
@@ -291,7 +292,7 @@ function Fuyutsui:loadPlayerBlocks(specIndex)
             blocks.auras[k] = v
         elseif v.type == "spell" then
             if not v.spellId then
-                self:Print(("loadPlayerBlocks: 索引 %s 的 spell 缺少 spellId，已跳过"):format(tostring(k)))
+                print(("loadPlayerBlocks: 索引 %s 的 spell 缺少 spellId，已跳过"):format(tostring(k)))
             else
                 if not blocks.spells[v.spellId] then
                     blocks.spells[v.spellId] = {}
@@ -788,12 +789,19 @@ end
 
 -- 更新防御光环
 function Fuyutsui:GetDefensiveAuraInstanceID(unit, info)
-    if unit ~= "player" then return end
     if info.addedAuras then
         for i = 1, 2 do
             local aura = C_UnitAuras.GetBuffDataByIndex(unit, i, "HELPFUL|BIG_DEFENSIVE")
             if not issecretvalue(aura) and aura then
                 state.DefensiveAuraInstanceID = aura.auraInstanceID
+            end
+        end
+    end
+    if info.updatedAuraInstanceIDs then
+        for _, v in pairs(info.updatedAuraInstanceIDs) do
+            if v == state.DefensiveAuraInstanceID then
+                local aura = C_UnitAuras.GetAuraDataByAuraInstanceID(unit, v)
+                state.DefensiveAuraInstanceID = aura
             end
         end
     end
@@ -937,7 +945,6 @@ function Fuyutsui:updateItemCoolDown()
 end
 
 -- 死亡骑士天启骑士检测
-
 -- 激活的天启骑士
 local ActiveKnightSpells = {
     [454393] = 1, -- 莫格莱尼
@@ -981,6 +988,26 @@ function Fuyutsui:updateKnightStatusCount()
         if blocks.state["天启骑士数量"] then
             self:CreatTexture(blocks.state["天启骑士数量"], count / 255)
         end
+    end
+end
+
+-- 萨满: 漩涡武器
+
+local function GetMaelstromWeaponCount()
+    -- 344179
+    local count = 0
+    for k, v in pairs(state.auras) do
+        if not isSec(v.spellId) and v.spellId == 344179 then
+            count = v.applications
+        end
+    end
+    return count
+end
+
+function Fuyutsui:updateMaelstromWeaponCount()
+    if blocks and blocks.state["漩涡武器层数"] then
+        local count = GetMaelstromWeaponCount()
+        self:CreatTexture(blocks.state["漩涡武器层数"], count / 255)
     end
 end
 
@@ -1328,9 +1355,10 @@ end
 function Fuyutsui:updateUnitFullAura(unit)
     local obj = group[unit]
     if not obj then return end
-    for i = 1, 5 do
-        local buff = C_UnitAuras.GetBuffDataByIndex(unit, i, "PLAYER|HELPFUL|RAID_IN_COMBAT")
-        if buff then
+    obj.aura = {}
+    for i = 1, 40 do
+        local buff = C_UnitAuras.GetBuffDataByIndex(unit, i, "HELPFUL")
+        if buff and not isSec(buff.spellId) and buff.sourceUnit == "player" then
             obj.aura[buff.auraInstanceID] = buff
         end
     end
@@ -1396,21 +1424,6 @@ function Fuyutsui:OnUpdateUnitAura()
     end
 end
 
-local function getAuraDispelTypeColor(unit)
-    local obj = group[unit]
-    if not blocks.groups or not obj then return end
-    local index = blocks.groups.start + (obj.index - 1) * blocks.groups.num + blocks.groups.dispel
-    local auraInstanceIDs = C_UnitAuras.GetUnitAuraInstanceIDs(unit, "HARMFUL|RAID_PLAYER_DISPELLABLE", 1, 4)
-    if auraInstanceIDs and #auraInstanceIDs > 0 then
-        local color = C_UnitAuras.GetAuraDispelTypeColor(unit, auraInstanceIDs[1], dispelCurve)
-        if color then
-            Fuyutsui:CreatTexture(index, color.b)
-        end
-    else
-        Fuyutsui:CreatTexture(index, 0)
-    end
-end
-
 function Fuyutsui:clearGroupBlocks()
     if blocks.groups and blocks.groups.start then
         local startIndex = blocks.groups.start
@@ -1464,7 +1477,7 @@ function Fuyutsui:ZONE_CHANGED()
     state.subzone = GetSubZoneText()
     -- print("ZONE_CHANGED", state.mapID, state.mapInfo, state.subzone)
     if GetBindLocation() == state.subzone then
-        self:Print("欢迎回家!")
+        print("欢迎回家!")
     end
 end
 
@@ -1474,7 +1487,7 @@ function Fuyutsui:ZONE_CHANGED_INDOORS()
     state.subzone = GetSubZoneText()
     -- print("ZONE_CHANGED_INDOORS", state.mapID, state.mapInfo, state.subzone)
     if GetBindLocation() == state.subzone then
-        self:Print("欢迎回家!")
+        print("欢迎回家!")
     end
 end
 
@@ -1647,7 +1660,7 @@ function Fuyutsui:UNIT_SPELLCAST_FAILED(_, unitTarget, castGUID, spellID, castBa
 end
 
 function Fuyutsui:SPELL_UPDATE_COOLDOWN(_, spellID)
-    -- self:Print(spellID, C_Spell.GetSpellName(spellID))
+    -- print(spellID, C_Spell.GetSpellName(spellID))
     if issecretvalue(spellID) then return end
     self:updateAuraBySpellCooldown(spellID)
     self:updateKnightStatus(spellID)
@@ -1882,37 +1895,97 @@ function Fuyutsui:TestFiltered(unit, auraInstanceID)
     end
 end
 
-function Fuyutsui:UNIT_AURA(_, unit, info)
-    self:GetDefensiveAuraInstanceID(unit, info)
-    local obj = group[unit]
-    if not obj then return end
-    getAuraDispelTypeColor(unit)
+function FuyutsuiPrintPlayerAuraInfo()
+    local playerAura = state.auras
+    if not playerAura then return end
+    print("|cnGREEN_FONT_COLOR:玩家光环: |r")
+    for k, v in pairs(playerAura) do
+        print(k, v.spellId, v.name, v.duration)
+    end
+end
+
+function Fuyutsui:updatePlayerAuraInfo(unit, info)
     if info.isFullUpdate then
-        self:updateUnitFullAura(unit)
-        return
+        state.auras = {}
+        for i = 1, 40 do
+            local buff = C_UnitAuras.GetBuffDataByIndex(unit, i, "HELPFUL")
+            local debuff = C_UnitAuras.GetDebuffDataByIndex(unit, i, "HARMFUL")
+            if buff then
+                state.auras[buff.auraInstanceID] = buff
+            end
+            if debuff then
+                state.auras[debuff.auraInstanceID] = debuff
+            end
+        end
     end
     if info.addedAuras then
         for k, v in pairs(info.addedAuras) do
-            -- print("|cnGREEN_FONT_COLOR:新增光环: |r", v.auraInstanceID, v.spellId, v.name, v.duration)
-            if not isSec(v.spellId) and v.sourceUnit == "player" then
-                obj.aura[v.auraInstanceID] = v
-            end
+            state.auras[v.auraInstanceID] = v
         end
     end
     if info.updatedAuraInstanceIDs then
         for _, v in pairs(info.updatedAuraInstanceIDs) do
             local aura = C_UnitAuras.GetAuraDataByAuraInstanceID(unit, v)
-            if aura and not isSec(aura.spellId) and aura.sourceUnit == "player" then
-                -- print("|cnYELLOW_FONT_COLOR:更新光环: |r", aura.auraInstanceID, aura.spellId, aura.name)
-                obj.aura[aura.auraInstanceID] = aura
-            end
+            state.auras[aura.auraInstanceID] = aura
         end
     end
     if info.removedAuraInstanceIDs then
         for _, v in pairs(info.removedAuraInstanceIDs) do
-            -- print("|cnRED_FONT_COLOR:移除光环: |r", v)
-            obj.aura[v] = nil
+            state.auras[v] = nil
         end
+    end
+end
+
+function Fuyutsui:updateGroupAuraInfo(unit, info)
+    local obj = group[unit]
+    if obj then
+        if info.isFullUpdate then
+            self:updateUnitFullAura(unit)
+        end
+        if info.addedAuras then
+            for k, v in pairs(info.addedAuras) do
+                -- print("|cnGREEN_FONT_COLOR:新增光环: |r", v.auraInstanceID, v.spellId, v.name, v.duration)
+                if not isSec(v.spellId) and v.sourceUnit == "player" then
+                    obj.aura[v.auraInstanceID] = v
+                end
+            end
+        end
+        if info.updatedAuraInstanceIDs then
+            for _, v in pairs(info.updatedAuraInstanceIDs) do
+                local aura = C_UnitAuras.GetAuraDataByAuraInstanceID(unit, v)
+                -- print("|cnYELLOW_FONT_COLOR:更新光环: |r", aura.auraInstanceID, aura.spellId, aura.name)
+                if aura and not isSec(aura.spellId) and aura.sourceUnit == "player" then
+                    obj.aura[v] = aura
+                end
+            end
+        end
+        if info.removedAuraInstanceIDs then
+            for _, v in pairs(info.removedAuraInstanceIDs) do
+                -- print("|cnRED_FONT_COLOR:移除光环: |r", v)
+                obj.aura[v] = nil
+            end
+        end
+        if blocks.groups then
+            local index = blocks.groups.start + (obj.index - 1) * blocks.groups.num + blocks.groups.dispel
+            local auraInstanceIDs = C_UnitAuras.GetUnitAuraInstanceIDs(unit, "HARMFUL|RAID_PLAYER_DISPELLABLE", 1, 4)
+            if auraInstanceIDs and #auraInstanceIDs > 0 then
+                local color = C_UnitAuras.GetAuraDispelTypeColor(unit, auraInstanceIDs[1], dispelCurve)
+                if color then
+                    self:CreatTexture(index, color.b)
+                end
+            else
+                self:CreatTexture(index, 0)
+            end
+        end
+    end
+end
+
+function Fuyutsui:UNIT_AURA(_, unit, info)
+    self:updateGroupAuraInfo(unit, info)
+    if unit == "player" then
+        self:updatePlayerAuraInfo(unit, info)
+        self:GetDefensiveAuraInstanceID(unit, info)
+        self:updateMaelstromWeaponCount()
     end
 end
 

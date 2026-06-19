@@ -50,6 +50,9 @@ Fuyutsui.ClassBlocks = {
 
     },
     [2] = {
+        ["countBars"] = {
+            { valueType = "castCount", name = "溢流漩涡", minValue = 0, maxValue = 20, spellId = 8004 },
+        },
         [1] = { type = "block", name = "锚点" },
         [2] = { type = "block", name = "职业" },
         [3] = { type = "block", name = "专精" },
@@ -95,6 +98,8 @@ Fuyutsui.ClassBlocks = {
         [39] = { type = "spell", spellId = 383013, name = "清毒图腾" },
         [40] = { type = "spell", spellId = 192063, name = "阵风" },
         [41] = { type = "spell", spellId = 58875, name = "幽魂步" },
+
+        [42] = { type = "block", name = "漩涡武器层数" },
 
     },
     [3] = {
