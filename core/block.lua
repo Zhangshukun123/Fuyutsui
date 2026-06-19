@@ -63,8 +63,6 @@ for i = 1, BLOCK_FIX_CONFIG.blockCount do
     Fuyutsui:CreatTexture(i, 0)
 end
 
-
-
 -- 创建"色条"的容器
 local countBars = CreateFrame("Frame", "FuyutsuiCountBars", UIParent)
 countBars:SetSize(screenWidth, 20)
@@ -182,4 +180,178 @@ function Fuyutsui:ClearAllFuyutsuiBars()
     nextAvailableIndex = 2
 
     -- print("|cff00ff00FuyutsuiBars 清除成功: 计数器与法术映射已重置。|r")
+end
+
+-- ================================================================
+--                     玩家光环图标（BAR_CONFIG 下方）
+-- ================================================================
+local AURA_ICON_SIZE = 20
+local AURA_WHITE_BORDER_WIDTH = 2
+local AURA_BORDER_WIDTH = 2
+local AURA_MARKER_WIDTH = 2
+local AURA_SLOT_SIZE = AURA_ICON_SIZE + AURA_WHITE_BORDER_WIDTH * 2 + AURA_BORDER_WIDTH * 2
+local AURA_ROW_HEIGHT = AURA_SLOT_SIZE
+local auraDurationCurve = Fuyutsui:creatColorCurve(255, 255)
+
+local auraIconBars = CreateFrame("Frame", "FuyutsuiAuraIcons", UIParent)
+auraIconBars:SetPoint("TOPLEFT", UIParent, "TOPLEFT", 1, BAR_CONFIG.heightOffset - 4)
+auraIconBars:SetSize(screenWidth, AURA_ROW_HEIGHT * 2)
+auraIconBars:SetFrameStrata("TOOLTIP")
+auraIconBars:SetFrameLevel(1)
+
+local buffIconSlots = {}
+local debuffIconSlots = {}
+
+local function createRowMarker(r, g, b)
+    local tex = auraIconBars:CreateTexture(nil, "OVERLAY")
+    tex:SetSize(AURA_MARKER_WIDTH, AURA_ROW_HEIGHT)
+    tex:SetColorTexture(r, g, b, 1)
+    return tex
+end
+
+local buffRowStartMarker = createRowMarker(0, 1, 0)
+local buffRowEndMarker = createRowMarker(0, 1, 0)
+local debuffRowStartMarker = createRowMarker(1, 0, 0)
+local debuffRowEndMarker = createRowMarker(1, 0, 0)
+
+local function updateRowMarkers(startMarker, endMarker, count, rowOffset)
+    startMarker:ClearAllPoints()
+    startMarker:SetPoint("TOPLEFT", auraIconBars, "TOPLEFT", 0, rowOffset)
+    startMarker:Show()
+
+    endMarker:ClearAllPoints()
+    endMarker:SetPoint("TOPLEFT", auraIconBars, "TOPLEFT",
+        AURA_MARKER_WIDTH + count * AURA_SLOT_SIZE, rowOffset)
+    endMarker:Show()
+end
+
+local function getAuraRemainingB(auraInstanceID)
+    local duration = C_UnitAuras.GetAuraDuration("player", auraInstanceID)
+    if duration then
+        local auraduration = duration:EvaluateRemainingDuration(auraDurationCurve)
+        ---@diagnostic disable-next-line: param-type-mismatch
+        local _, _, b = auraduration:GetRGB()
+        return b
+    else
+        return 0
+    end
+end
+
+local function createAuraIconSlot(parent)
+    local slot = CreateFrame("Frame", nil, parent)
+    slot:SetSize(AURA_SLOT_SIZE, AURA_SLOT_SIZE)
+
+    slot.borderTop = slot:CreateTexture(nil, "OVERLAY")
+    slot.borderTop:SetHeight(AURA_BORDER_WIDTH)
+    slot.borderTop:SetPoint("TOPLEFT", slot, "TOPLEFT")
+    slot.borderTop:SetPoint("TOPRIGHT", slot, "TOPRIGHT")
+
+    slot.borderBottom = slot:CreateTexture(nil, "OVERLAY")
+    slot.borderBottom:SetHeight(AURA_BORDER_WIDTH)
+    slot.borderBottom:SetPoint("BOTTOMLEFT", slot, "BOTTOMLEFT")
+    slot.borderBottom:SetPoint("BOTTOMRIGHT", slot, "BOTTOMRIGHT")
+
+    slot.borderLeft = slot:CreateTexture(nil, "OVERLAY")
+    slot.borderLeft:SetWidth(AURA_BORDER_WIDTH)
+    slot.borderLeft:SetPoint("TOPLEFT", slot.borderTop, "BOTTOMLEFT")
+    slot.borderLeft:SetPoint("BOTTOMLEFT", slot.borderBottom, "TOPLEFT")
+
+    slot.borderRight = slot:CreateTexture(nil, "OVERLAY")
+    slot.borderRight:SetWidth(AURA_BORDER_WIDTH)
+    slot.borderRight:SetPoint("TOPRIGHT", slot.borderTop, "BOTTOMRIGHT")
+    slot.borderRight:SetPoint("BOTTOMRIGHT", slot.borderBottom, "TOPRIGHT")
+
+    slot.icon = slot:CreateTexture(nil, "ARTWORK")
+    slot.icon:SetSize(AURA_ICON_SIZE, AURA_ICON_SIZE)
+    slot.icon:SetPoint("TOPLEFT", slot, "TOPLEFT",
+        AURA_BORDER_WIDTH + AURA_WHITE_BORDER_WIDTH,
+        -(AURA_BORDER_WIDTH + AURA_WHITE_BORDER_WIDTH))
+
+    slot.whiteTop = slot:CreateTexture(nil, "OVERLAY")
+    slot.whiteTop:SetHeight(AURA_WHITE_BORDER_WIDTH)
+    slot.whiteTop:SetPoint("BOTTOMLEFT", slot.icon, "TOPLEFT", -AURA_WHITE_BORDER_WIDTH, 0)
+    slot.whiteTop:SetPoint("BOTTOMRIGHT", slot.icon, "TOPRIGHT", AURA_WHITE_BORDER_WIDTH, 0)
+    slot.whiteTop:SetColorTexture(1, 1, 1, 1)
+
+    slot.whiteBottom = slot:CreateTexture(nil, "OVERLAY")
+    slot.whiteBottom:SetHeight(AURA_WHITE_BORDER_WIDTH)
+    slot.whiteBottom:SetPoint("TOPLEFT", slot.icon, "BOTTOMLEFT", -AURA_WHITE_BORDER_WIDTH, 0)
+    slot.whiteBottom:SetPoint("TOPRIGHT", slot.icon, "BOTTOMRIGHT", AURA_WHITE_BORDER_WIDTH, 0)
+    slot.whiteBottom:SetColorTexture(1, 1, 1, 1)
+
+    slot.whiteLeft = slot:CreateTexture(nil, "OVERLAY")
+    slot.whiteLeft:SetWidth(AURA_WHITE_BORDER_WIDTH)
+    slot.whiteLeft:SetPoint("TOPRIGHT", slot.icon, "TOPLEFT", 0, 0)
+    slot.whiteLeft:SetPoint("BOTTOMRIGHT", slot.icon, "BOTTOMLEFT", 0, 0)
+    slot.whiteLeft:SetColorTexture(1, 1, 1, 1)
+
+    slot.whiteRight = slot:CreateTexture(nil, "OVERLAY")
+    slot.whiteRight:SetWidth(AURA_WHITE_BORDER_WIDTH)
+    slot.whiteRight:SetPoint("TOPLEFT", slot.icon, "TOPRIGHT", 0, 0)
+    slot.whiteRight:SetPoint("BOTTOMLEFT", slot.icon, "BOTTOMRIGHT", 0, 0)
+    slot.whiteRight:SetColorTexture(1, 1, 1, 1)
+
+    return slot
+end
+
+local function setSlotBorderColor(slot, r, g, b)
+    slot.borderTop:SetColorTexture(r, g, b, 1)
+    slot.borderBottom:SetColorTexture(r, g, b, 1)
+    slot.borderLeft:SetColorTexture(r, g, b, 1)
+    slot.borderRight:SetColorTexture(r, g, b, 1)
+end
+
+local function collectAurasSorted(auraTable)
+    local list = {}
+    for _, aura in pairs(auraTable) do
+        tinsert(list, aura)
+    end
+    table.sort(list, function(a, b)
+        return a.auraInstanceID < b.auraInstanceID
+    end)
+    return list
+end
+
+local function updateAuraIconRow(slots, auras, rowOffset, borderR)
+    local sorted = collectAurasSorted(auras)
+    local slotIndex = 0
+    for i, aura in ipairs(sorted) do
+        slotIndex = slotIndex + 1
+        local slot = slots[slotIndex]
+        if not slot then
+            slot = createAuraIconSlot(auraIconBars)
+            slots[slotIndex] = slot
+        end
+        slot:ClearAllPoints()
+        slot:SetPoint("TOPLEFT", auraIconBars, "TOPLEFT",
+            AURA_MARKER_WIDTH + (slotIndex - 1) * AURA_SLOT_SIZE, rowOffset)
+        slot:Show()
+
+        local b = getAuraRemainingB(aura.auraInstanceID)
+        setSlotBorderColor(slot, borderR, i / 255, b)
+
+        local icon = aura.icon
+        if not icon and aura.spellId then
+            icon = C_Spell.GetSpellTexture(aura.spellId)
+        end
+        if icon then
+            slot.icon:SetTexture(icon)
+            slot.icon:Show()
+        else
+            slot.icon:Hide()
+        end
+    end
+    for i = slotIndex + 1, #slots do
+        slots[i]:Hide()
+    end
+    return slotIndex
+end
+
+---@param playerAuras table { buffs = {}, debuffs = {} }
+function Fuyutsui:UpdatePlayerAuraIcons(playerAuras)
+    if not playerAuras then return end
+    local buffCount = updateAuraIconRow(buffIconSlots, playerAuras.buffs or {}, 0, 2 / 255)
+    updateRowMarkers(buffRowStartMarker, buffRowEndMarker, buffCount, 0)
+    local debuffCount = updateAuraIconRow(debuffIconSlots, playerAuras.debuffs or {}, -AURA_ROW_HEIGHT, 3 / 255)
+    updateRowMarkers(debuffRowStartMarker, debuffRowEndMarker, debuffCount, -AURA_ROW_HEIGHT)
 end

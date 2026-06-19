@@ -7,10 +7,11 @@ local GetSpellName = C_Spell.GetSpellName
 local IsSpellKnown = C_SpellBook.IsSpellKnown
 local IsSpellInSpellBook = C_SpellBook.IsSpellInSpellBook
 local EvaluateColorFromBoolean = C_CurveUtil.EvaluateColorFromBoolean
+
 local rc = LibStub("LibRangeCheck-3.0")
 
 local state = Fuyutsui.state
-state.auras = {}
+state.auras = { buffs = {}, debuffs = {}, }
 local blocks = Fuyutsui.blocks
 local target = Fuyutsui.target
 local focus = Fuyutsui.focus
@@ -20,8 +21,9 @@ local groupList = Fuyutsui.groupList
 local spells = {}
 local failedSpell, failedSpellId, failedSpellTimer, updateIndex = nil, nil, nil, 1
 local roleMap, spellsList, EnumPowerType = Fuyutsui.roleMap, Fuyutsui.spellsList, Fuyutsui.EnumPowerType
-local ColorValue255, ColorValue0, ColorValue1 = CreateColor(0, 0, 1, 1), CreateColor(0, 0, 0, 1),
-    CreateColor(0, 0, 1 / 255, 1)
+local ColorValue255 = CreateColor(0, 0, 1, 1)
+local ColorValue0 = CreateColor(0, 0, 0, 1)
+local ColorValue1 = CreateColor(0, 0, 1 / 255, 1)
 
 -- ================================================================
 --                          创建颜色曲线
@@ -944,6 +946,25 @@ function Fuyutsui:updateItemCoolDown()
     end
 end
 
+-- 更新玩家完整光环信息
+function Fuyutsui:updatePlayerFullAura()
+    local unit = "player"
+    state.auras = {
+        buffs = {},
+        debuffs = {},
+    }
+    for i = 1, 40 do
+        local buff = C_UnitAuras.GetBuffDataByIndex(unit, i, "HELPFUL")
+        local debuff = C_UnitAuras.GetDebuffDataByIndex(unit, i, "HARMFUL")
+        if buff then
+            state.auras.buffs[buff.auraInstanceID] = buff
+        end
+        if debuff then
+            state.auras.debuffs[debuff.auraInstanceID] = debuff
+        end
+    end
+end
+
 -- 死亡骑士天启骑士检测
 -- 激活的天启骑士
 local ActiveKnightSpells = {
@@ -996,7 +1017,7 @@ end
 local function GetMaelstromWeaponCount()
     -- 344179
     local count = 0
-    for k, v in pairs(state.auras) do
+    for k, v in pairs(state.auras.buffs) do
         if not isSec(v.spellId) and v.spellId == 344179 then
             count = v.applications
         end
@@ -1494,6 +1515,7 @@ end
 function Fuyutsui:PLAYER_ENTERING_WORLD()
     state.mapID = C_Map.GetBestMapForUnit("player") or 0
     self:updateHeroTalent()
+    self:updatePlayerFullAura()
     C_Timer.After(5, function()
         self:updateGroup()
     end)
@@ -1899,39 +1921,47 @@ function FuyutsuiPrintPlayerAuraInfo()
     local playerAura = state.auras
     if not playerAura then return end
     print("|cnGREEN_FONT_COLOR:玩家光环: |r")
-    for k, v in pairs(playerAura) do
+    for k, v in pairs(playerAura.buffs) do
+        print(k, v.spellId, v.name, v.duration)
+    end
+    for k, v in pairs(playerAura.debuffs) do
         print(k, v.spellId, v.name, v.duration)
     end
 end
 
 function Fuyutsui:updatePlayerAuraInfo(unit, info)
     if info.isFullUpdate then
-        state.auras = {}
-        for i = 1, 40 do
-            local buff = C_UnitAuras.GetBuffDataByIndex(unit, i, "HELPFUL")
-            local debuff = C_UnitAuras.GetDebuffDataByIndex(unit, i, "HARMFUL")
-            if buff then
-                state.auras[buff.auraInstanceID] = buff
-            end
-            if debuff then
-                state.auras[debuff.auraInstanceID] = debuff
-            end
-        end
+        self:updatePlayerFullAura()
     end
     if info.addedAuras then
         for k, v in pairs(info.addedAuras) do
-            state.auras[v.auraInstanceID] = v
+            print("|cnGREEN_FONT_COLOR:新增光环: |r", v.spellId, C_Spell.GetSpellLink(v.spellId))
+            if v.isHelpful then
+                state.auras.buffs[v.auraInstanceID] = v
+            elseif v.isHarmful then
+                state.auras.debuffs[v.auraInstanceID] = v
+            end
         end
     end
     if info.updatedAuraInstanceIDs then
         for _, v in pairs(info.updatedAuraInstanceIDs) do
             local aura = C_UnitAuras.GetAuraDataByAuraInstanceID(unit, v)
-            state.auras[aura.auraInstanceID] = aura
+            if aura then
+                if state.auras.buffs[aura.auraInstanceID] then
+                    state.auras.buffs[aura.auraInstanceID] = aura
+                elseif state.auras.debuffs[aura.auraInstanceID] then
+                    state.auras.debuffs[aura.auraInstanceID] = aura
+                end
+            end
         end
     end
     if info.removedAuraInstanceIDs then
         for _, v in pairs(info.removedAuraInstanceIDs) do
-            state.auras[v] = nil
+            if state.auras.buffs[v] then
+                state.auras.buffs[v] = nil
+            elseif state.auras.debuffs[v] then
+                state.auras.debuffs[v] = nil
+            end
         end
     end
 end
@@ -2027,6 +2057,7 @@ function Fuyutsui:OnUpdate(elapsed)
     self.timeElapsed = self.timeElapsed + elapsed
     if self.timeElapsed > 0.2 then
         self:GetDefensiveAuraDuration()
+        self:UpdatePlayerAuraIcons(state.auras)
         self:updateSpellCooldown()
         self:OnUpdateUnitAura()
         self:updateAuraBlocks()
