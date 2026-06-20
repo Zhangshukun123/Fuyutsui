@@ -189,7 +189,7 @@ local AURA_ICON_SIZE = 25
 local AURA_WHITE_BORDER_WIDTH = 2
 local AURA_BORDER_WIDTH = 2
 local AURA_MARKER_WIDTH = 2
-local AURA_ICON_SPACING = 1
+local AURA_ICON_SPACING = 0
 local AURA_APP_BAR_MAX = 20
 local AURA_APP_BAR_HEIGHT = 2
 local AURA_WHITE_FRAME_SIZE = AURA_ICON_SIZE
@@ -302,7 +302,7 @@ local function createAuraIconSlot(parent)
 
     slot.appBarFrame = CreateFrame("Frame", nil, slot)
     slot.appBarFrame:SetSize(AURA_APP_BAR_BG_WIDTH, AURA_APP_BAR_HEIGHT)
-    slot.appBarFrame:SetPoint("TOP", slot.whiteBottom, "BOTTOM", 0, 0)
+    slot.appBarFrame:SetPoint("TOP", slot.whiteBottom, "BOTTOM", 0, -2)
     slot.appBarFrame:SetFrameLevel(20)
 
     slot.appBarBg = {}
