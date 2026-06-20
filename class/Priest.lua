@@ -1,39 +1,26 @@
 if UnitClassBase("player") ~= "PRIEST" then return end
 local addon, ns = ...
-
 Fuyutsui.ClassBlocks = {
     [1] = {
-
         ["countBars"] = {
             { valueType = "charge", name = "苦修", minValue = 0, maxValue = 2, spellId = 47540 },
             { valueType = "charge", name = "真言术：耀", minValue = 0, maxValue = 2, spellId = 194509 }
         },
-
-        [1] = { type = "block", name = "锚点" },
-        [2] = { type = "block", name = "职业" },
-        [3] = { type = "block", name = "专精" },
-        [4] = { type = "block", name = "有效性" },
-        [5] = { type = "block", name = "战斗" },
-        [6] = { type = "block", name = "移动" },
-        [7] = { type = "block", name = "施法" },
-        [8] = { type = "block", name = "引导" },
-        [9] = { type = "block", name = "蓄力" },
-        [10] = { type = "block", name = "蓄力层数" },
-        [11] = { type = "block", name = "生命值" },
-        [12] = { type = "block", name = "能量值" },
-        [13] = { type = "block", name = "一键辅助" },
-        [14] = { type = "block", name = "法术失败" },
-        [15] = { type = "block", name = "目标类型" },
-        [16] = { type = "block", name = "队伍类型" },
-        [17] = { type = "block", name = "队伍人数" },
-        [18] = { type = "block", name = "首领战" },
-        [19] = { type = "block", name = "难度" },
-        [20] = { type = "block", name = "英雄天赋" },
-
+        [9] = { type = "block", name = "战斗时间" },
+        [10] = { type = "block", name = "移动" },
+        [11] = { type = "block", name = "施法" },
+        [12] = { type = "block", name = "引导" },
+        [13] = { type = "block", name = "蓄力" },
+        [14] = { type = "block", name = "蓄力层数" },
+        [15] = { type = "block", name = "生命值" },
+        [16] = { type = "block", name = "法力值" },
+        [17] = { type = "block", name = "目标类型" },
+        [18] = { type = "block", name = "队伍人数" },
+        [19] = { type = "block", name = "首领战" },
+        [20] = { type = "block", name = "难度" },
         [21] = { type = "block", name = "目标生命值" },
         [22] = { type = "block", name = "施法技能" },
         [23] = { type = "block", name = "施法目标" },
-
         [24] = { type = "aura", name = "虚空之盾", auraName = "虚空之盾", showKey = "remaining" },
         [25] = { type = "aura", name = "圣光涌动", auraName = "圣光涌动", showKey = "remaining" },
         [26] = { type = "aura", name = "涌动层数", auraName = "圣光涌动", showKey = "count" },
@@ -43,13 +30,11 @@ Fuyutsui.ClassBlocks = {
         [30] = { type = "aura", name = "福音层数", auraName = "福音", showKey = "count" },
         [46] = { type = "aura", name = "祸福相依", auraName = "祸福相依", showKey = "remaining" },
         [47] = { type = "aura", name = "祸福层数", auraName = "祸福相依", showKey = "count" },
-
         [31] = { type = "spell", spellId = 8122, name = "心灵尖啸" },
         [32] = { type = "spell", spellId = 32375, name = "群体驱散" },
         [33] = { type = "spell", spellId = 527, name = "纯净术" },
         [34] = { type = "spell", spellId = 19236, name = "绝望祷言" },
         [35] = { type = "spell", spellId = 232633, name = "奥术洪流" },
-
         [36] = { type = "spell", spellId = 47540, name = "苦修" },
         [37] = { type = "spell", spellId = 47540, name = "苦修", charge = true },
         [38] = { type = "spell", spellId = 194509, name = "真言术：耀" },
@@ -63,16 +48,13 @@ Fuyutsui.ClassBlocks = {
         [49] = { type = "spell", spellId = 34433, name = "暗影魔" },
         [50] = { type = "spell", spellId = 1235211, name = "暗影分流" },
         [51] = { type = "spell", spellId = 586, name = "渐隐术" },
-
         [48] = { type = "block", name = "延迟" },
         [52] = { type = "block", name = "大红冷却" },
         [53] = { type = "block", name = "敌人人数" },
         [54] = { type = "block", name = "有光环敌人数量" },
         [55] = { type = "block", name = "目标光环数量" },
-
         [56] = { type = "block", name = "目标施法" },
         [57] = { type = "block", name = "目标施法可打断" },
-
         [70] = {
             type = "group",
             num = 5,
@@ -90,42 +72,29 @@ Fuyutsui.ClassBlocks = {
             { valueType = "charge", name = "愈合祷言", minValue = 0, maxValue = 2, spellId = 33076 },
             { valueType = "charge", name = "圣言术：静", minValue = 0, maxValue = 2, spellId = 2050 }
         },
-
-        [1] = { type = "block", name = "锚点" },
-        [2] = { type = "block", name = "职业" },
-        [3] = { type = "block", name = "专精" },
-        [4] = { type = "block", name = "有效性" },
-        [5] = { type = "block", name = "战斗" },
-        [6] = { type = "block", name = "移动" },
-        [7] = { type = "block", name = "施法" },
-        [8] = { type = "block", name = "引导" },
-        [9] = { type = "block", name = "蓄力" },
-        [10] = { type = "block", name = "蓄力层数" },
-        [11] = { type = "block", name = "生命值" },
-        [12] = { type = "block", name = "能量值" },
-        [13] = { type = "block", name = "一键辅助" },
-        [14] = { type = "block", name = "法术失败" },
-        [15] = { type = "block", name = "目标类型" },
-        [16] = { type = "block", name = "队伍类型" },
-        [17] = { type = "block", name = "队伍人数" },
-        [18] = { type = "block", name = "首领战" },
-        [19] = { type = "block", name = "难度" },
-        [20] = { type = "block", name = "英雄天赋" },
-
+        [9] = { type = "block", name = "战斗时间" },
+        [10] = { type = "block", name = "移动" },
+        [11] = { type = "block", name = "施法" },
+        [12] = { type = "block", name = "引导" },
+        [13] = { type = "block", name = "蓄力" },
+        [14] = { type = "block", name = "蓄力层数" },
+        [15] = { type = "block", name = "生命值" },
+        [16] = { type = "block", name = "法力值" },
+        [17] = { type = "block", name = "目标类型" },
+        [18] = { type = "block", name = "队伍人数" },
+        [19] = { type = "block", name = "首领战" },
+        [20] = { type = "block", name = "难度" },
         [22] = { type = "block", name = "施法技能" },
         [23] = { type = "block", name = "施法目标" },
-
         [25] = { type = "aura", name = "织光者", auraName = "织光者", showKey = "remaining" },
         [26] = { type = "aura", name = "织光者层数", auraName = "织光者", showKey = "count" },
         [27] = { type = "aura", name = "圣光涌动", auraName = "圣光涌动", showKey = "remaining" },
         [28] = { type = "aura", name = "祈福", auraName = "祈福", showKey = "remaining" },
-
         [31] = { type = "spell", spellId = 8122, name = "心灵尖啸" },
         [32] = { type = "spell", spellId = 32375, name = "群体驱散" },
         [33] = { type = "spell", spellId = 527, name = "纯净术" },
         [34] = { type = "spell", spellId = 19236, name = "绝望祷言" },
         [35] = { type = "spell", spellId = 232633, name = "奥术洪流" },
-
         [36] = { type = "spell", spellId = 33076, name = "愈合祷言" },
         [37] = { type = "spell", spellId = 33076, name = "愈合祷言", charge = true },
         [38] = { type = "spell", spellId = 2050, name = "圣言术：静" },
@@ -135,11 +104,8 @@ Fuyutsui.ClassBlocks = {
         [42] = { type = "spell", spellId = 14914, name = "神圣之火" },
         [43] = { type = "spell", spellId = 120517, name = "光晕" },
         [44] = { type = "spell", spellId = 64843, name = "神圣赞美诗" },
-
         [45] = { type = "block", name = "目标施法" },
         [46] = { type = "block", name = "目标施法可打断" },
-
-
         [70] = {
             type = "group",
             num = 5,
@@ -151,30 +117,21 @@ Fuyutsui.ClassBlocks = {
                 [5] = { 139 },   -- 恢复, 139
             },
         },
-
     },
     [3] = {
-        [1] = { type = "block", name = "锚点" },
-        [2] = { type = "block", name = "职业" },
-        [3] = { type = "block", name = "专精" },
-        [4] = { type = "block", name = "有效性" },
-        [5] = { type = "block", name = "战斗" },
-        [6] = { type = "block", name = "移动" },
-        [7] = { type = "block", name = "施法" },
-        [8] = { type = "block", name = "引导" },
-        [9] = { type = "block", name = "蓄力" },
-        [10] = { type = "block", name = "蓄力层数" },
-        [11] = { type = "block", name = "生命值" },
-        [12] = { type = "block", name = "能量值" },
-        [13] = { type = "block", name = "一键辅助" },
-        [14] = { type = "block", name = "法术失败" },
-        [15] = { type = "block", name = "目标类型" },
-        [16] = { type = "block", name = "队伍类型" },
-        [17] = { type = "block", name = "队伍人数" },
-        [18] = { type = "block", name = "首领战" },
-        [19] = { type = "block", name = "难度" },
-        [20] = { type = "block", name = "英雄天赋" },
 
+        [9] = { type = "block", name = "战斗时间" },
+        [10] = { type = "block", name = "移动" },
+        [11] = { type = "block", name = "施法" },
+        [12] = { type = "block", name = "引导" },
+        [13] = { type = "block", name = "蓄力" },
+        [14] = { type = "block", name = "蓄力层数" },
+        [15] = { type = "block", name = "生命值" },
+        [16] = { type = "block", name = "法力值" },
+        [17] = { type = "block", name = "目标类型" },
+        [18] = { type = "block", name = "队伍人数" },
+        [19] = { type = "block", name = "首领战" },
+        [20] = { type = "block", name = "难度" },
         [21] = { type = "block", name = "爆发开关" },
         [22] = { type = "block", name = "输出模式" },
         [23] = { type = "block", name = "AOE开关" },
@@ -182,13 +139,11 @@ Fuyutsui.ClassBlocks = {
         [25] = { type = "block", name = "目标距离" },
         [26] = { type = "block", name = "目标生命值" },
         [27] = { type = "block", name = "施法技能" },
-
         [31] = { type = "spell", spellId = 8122, name = "心灵尖啸" },
         [32] = { type = "spell", spellId = 32375, name = "群体驱散" },
         [33] = { type = "spell", spellId = 527, name = "纯净术" },
         [34] = { type = "spell", spellId = 19236, name = "绝望祷言" },
         [35] = { type = "spell", spellId = 232633, name = "奥术洪流" },
-
         [36] = { type = "spell", spellId = 8092, name = "心灵震爆" },
         [37] = { type = "spell", spellId = 32379, name = "暗言术：灭" },
         [38] = { type = "spell", spellId = 263165, name = "虚空洪流" },
@@ -197,24 +152,20 @@ Fuyutsui.ClassBlocks = {
         [41] = { type = "spell", spellId = 15286, name = "吸血鬼的拥抱" },
         [42] = { type = "spell", spellId = 120644, name = "光晕" },
         [43] = { type = "spell", spellId = 1242173, name = "虚空齐射", forcedKnown = true },
-
         [44] = { type = "block", name = "目标施法" },
         [45] = { type = "block", name = "目标施法可打断" },
         [46] = { type = "block", name = "焦点施法" },
         [47] = { type = "block", name = "焦点施法可打断" },
-
         [48] = { type = "block", name = "目标引导" },
         [49] = { type = "block", name = "目标引导可打断" },
         [50] = { type = "block", name = "焦点引导" },
         [51] = { type = "block", name = "焦点引导可打断" },
-
     },
 }
-
 Fuyutsui.MacrosList = {
     dynamicSpells = { "苦修", "快速治疗", "真言术：盾", "愈合祷言", "纯净术", "圣言术：静" },
-    specialSpells = { 
-        [36] = "/castsequence reset=0.3 真言术：耀,x", 
+    specialSpells = {
+        [36] = "/castsequence reset=0.3 真言术：耀,x",
         [39] = "/stopcasting",
     },
     staticSpells = {

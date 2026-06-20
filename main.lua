@@ -268,6 +268,17 @@ function Fuyutsui:updatePlayerBlocks()
 end
 
 -- 载入玩家blocks配置
+
+local FixBlocks = {
+    [1] = { type = "block", name = "锚点" },
+    [2] = { type = "block", name = "职业" },
+    [3] = { type = "block", name = "专精" },
+    [4] = { type = "block", name = "队伍类型" },
+    [5] = { type = "block", name = "英雄天赋" },
+    [6] = { type = "block", name = "有效性" },
+    [7] = { type = "block", name = "一键辅助" },
+    [8] = { type = "block", name = "法术失败" },
+}
 function Fuyutsui:loadPlayerBlocks(specIndex)
     if not specIndex or not self.ClassBlocks then
         return
@@ -280,6 +291,9 @@ function Fuyutsui:loadPlayerBlocks(specIndex)
         spells = {},
         countBars = {},
     }
+    for k, v in pairs(FixBlocks) do
+        blocks.state[v.name] = k
+    end
     for k, v in pairs(t) do
         if k == "countBars" and type(v) == "table" then
             for key, value in pairs(v) do
@@ -406,10 +420,10 @@ function Fuyutsui:updatePlayerCombatTime()
     if state.combat then
         local combatTime = GetTime() - state.combatStartTime
         state.combatTime = math.min(1, combatTime / 255)
-        self:CreatTexture(blocks.state["战斗"], state.combatTime)
+        self:CreatTexture(blocks.state["战斗时间"], state.combatTime)
     else
         state.combatTime = 0
-        self:CreatTexture(blocks.state["战斗"], 0)
+        self:CreatTexture(blocks.state["战斗时间"], 0)
     end
 end
 
@@ -502,7 +516,19 @@ function Fuyutsui:updatePlayerHealth()
     self:CreatTexture(blocks.state["生命值"], state.healthPercent)
 end
 
-local specialPowerMap = {
+local powerNameMap = {
+    ["MANA"] = "法力值",
+    ["RAGE"] = "怒气值",
+    ["FOCUS"] = "集中值",
+    ["ENERGY"] = "能量值",
+    ["RUNES"] = "符文",
+    ["RUNIC_POWER"] = "符文能量",
+    ["LUNAR_POWER"] = "星界能量",
+    ["MAELSTROM"] = "漩涡值",
+    ["INSANITY"] = "狂乱值",
+    ["ARCANE_CHARGES"] = "奥术充能",
+    ["FURY"] = "恶魔之怒",
+    ["PAIN"] = "痛苦值",
     ["COMBO_POINTS"] = "连击点",
     ["HOLY_POWER"] = "神圣能量",
     ["ESSENCE"] = "精华能量",
@@ -513,24 +539,23 @@ local specialPowerMap = {
 function Fuyutsui:updatePlayerPower(powerType)
     if blocks then
         local power = UnitPower("player", EnumPowerType[powerType])
-        local specialPower = specialPowerMap[powerType]
-        if isSec(power) then
+        local powerName = powerNameMap[powerType]
+        if powerName then
             if not powerCurve[powerType] then self:CreatPowerCurve(powerType) end
             local powerPercent = UnitPowerPercent("player", EnumPowerType[powerType], nil, powerCurve[powerType])
             ---@diagnostic disable-next-line: param-type-mismatch
             local _, _, b = powerPercent:GetRGB()
-            state.powerPercent = b
-            self:CreatTexture(blocks.state["能量值"], state.powerPercent)
-        elseif specialPower then
-            local blockIndex = blocks.state[specialPower]
+            state.power[powerType] = b
+            local blockIndex = blocks.state[powerName]
             if blockIndex then
-                self:CreatTexture(blockIndex, power / 255 or 0)
+                self:CreatTexture(blockIndex, b)
             end
         end
     end
 end
 
 function Fuyutsui:updatePlayerPowerType()
+    state.power = {}
     local powerType = UnitPowerType("player")
     self:CreatPowerCurve(powerType)
     self:updatePlayerPower(powerType)
@@ -1053,7 +1078,7 @@ end
     14 = "友方 有诅咒 减益"
     15 = "友方 有中毒 减益"
 
-]]
+    ]]
 
 -- 更新目标是否可以攻击
 function Fuyutsui:updateTargetType()
