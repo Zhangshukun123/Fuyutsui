@@ -183,26 +183,27 @@ function Fuyutsui:ClearAllFuyutsuiBars()
 end
 
 -- ================================================================
---                     玩家光环图标（BAR_CONFIG 下方）
+--                     玩家光环图标
 -- ================================================================
-local AURA_ICON_SIZE = 25
-local AURA_WHITE_BORDER_WIDTH = 2
-local AURA_BORDER_WIDTH = 2
-local AURA_MARKER_WIDTH = 2
-local AURA_ICON_SPACING = 0
-local AURA_APP_BAR_MAX = 20
-local AURA_APP_BAR_HEIGHT = 2
-local AURA_WHITE_FRAME_SIZE = AURA_ICON_SIZE
-local AURA_APP_BAR_WIDTH = AURA_WHITE_FRAME_SIZE + 1
-local AURA_APP_BAR_BG_EXTRA_RIGHT = 1
-local AURA_APP_BAR_BG_WIDTH = AURA_APP_BAR_WIDTH + AURA_APP_BAR_BG_EXTRA_RIGHT
-local AURA_SLOT_SIZE = AURA_ICON_SIZE + AURA_WHITE_BORDER_WIDTH * 2 + AURA_BORDER_WIDTH * 2
-local AURA_SLOT_PITCH = AURA_SLOT_SIZE + AURA_ICON_SPACING
-local AURA_APP_BAR_BG_SEG_WIDTH = AURA_APP_BAR_BG_WIDTH / AURA_APP_BAR_MAX
-local AURA_ROW_HEIGHT = AURA_SLOT_SIZE + AURA_APP_BAR_HEIGHT
-local auraDurationCurve = Fuyutsui:creatColorCurve(255, 255)
+local AURA_LAYER_PADDING = 4                                                   -- 尺寸递增
+local AURA_ICON_SIZE = 25                                                      -- 图标尺寸
+local AURA_WHITE_BLOCK_SIZE = AURA_ICON_SIZE + AURA_LAYER_PADDING              -- 白底尺寸
+local AURA_COOLDOWN_BLOCK_SIZE = AURA_WHITE_BLOCK_SIZE + AURA_LAYER_PADDING    -- 冷却尺寸
+local AURA_MARKER_WIDTH = 2                                                    -- 标记宽度
+local AURA_ICON_SPACING = 0                                                    -- 图标间距
+local AURA_APP_BAR_MAX = 20                                                    -- 光环层数条 最大值
+local AURA_APP_BAR_HEIGHT = 2                                                  -- 光环层数条 高度
+local AURA_WHITE_FRAME_SIZE = AURA_ICON_SIZE                                   -- 白底尺寸
+local AURA_APP_BAR_WIDTH = AURA_WHITE_FRAME_SIZE + 1                           -- 光环层数条 宽度
+local AURA_APP_BAR_BG_EXTRA_RIGHT = 1                                          -- 光环层数条 背景额外宽度
+local AURA_APP_BAR_BG_WIDTH = AURA_APP_BAR_WIDTH + AURA_APP_BAR_BG_EXTRA_RIGHT -- 光环层数条 背景宽度
+local AURA_SLOT_SIZE = AURA_COOLDOWN_BLOCK_SIZE                                -- 槽位尺寸
+local AURA_SLOT_PITCH = AURA_SLOT_SIZE + AURA_ICON_SPACING                     -- 槽位间距
+local AURA_APP_BAR_BG_SEG_WIDTH = AURA_APP_BAR_BG_WIDTH / AURA_APP_BAR_MAX     -- 光环层数条 背景段宽度
+local AURA_ROW_HEIGHT = AURA_SLOT_SIZE + AURA_APP_BAR_HEIGHT                   -- 行高
+local auraDurationCurve = Fuyutsui:creatColorCurve(255, 255)                   -- 光环持续时间曲线
 
-local auraIconBars = CreateFrame("Frame", "FuyutsuiAuraIcons", UIParent)
+local auraIconBars = CreateFrame("Frame", "FuyutsuiAuraIcons", UIParent)       -- 光环图标容器
 auraIconBars:SetPoint("TOPLEFT", UIParent, "TOPLEFT", 0, BAR_CONFIG.heightOffset - 4)
 auraIconBars:SetSize(screenWidth, AURA_ROW_HEIGHT * 2)
 auraIconBars:SetFrameStrata("TOOLTIP")
@@ -250,59 +251,22 @@ local function createAuraIconSlot(parent)
     local slot = CreateFrame("Frame", nil, parent)
     slot:SetSize(AURA_SLOT_SIZE, AURA_SLOT_SIZE)
 
-    slot.borderTop = slot:CreateTexture(nil, "OVERLAY")
-    slot.borderTop:SetHeight(AURA_BORDER_WIDTH)
-    slot.borderTop:SetPoint("TOPLEFT", slot, "TOPLEFT")
-    slot.borderTop:SetPoint("TOPRIGHT", slot, "TOPRIGHT")
+    slot.cooldownBlock = slot:CreateTexture(nil, "BACKGROUND")
+    slot.cooldownBlock:SetSize(AURA_COOLDOWN_BLOCK_SIZE, AURA_COOLDOWN_BLOCK_SIZE)
+    slot.cooldownBlock:SetPoint("CENTER", slot, "CENTER", 0, 0)
 
-    slot.borderBottom = slot:CreateTexture(nil, "OVERLAY")
-    slot.borderBottom:SetHeight(AURA_BORDER_WIDTH)
-    slot.borderBottom:SetPoint("BOTTOMLEFT", slot, "BOTTOMLEFT")
-    slot.borderBottom:SetPoint("BOTTOMRIGHT", slot, "BOTTOMRIGHT")
-
-    slot.borderLeft = slot:CreateTexture(nil, "OVERLAY")
-    slot.borderLeft:SetWidth(AURA_BORDER_WIDTH)
-    slot.borderLeft:SetPoint("TOPLEFT", slot.borderTop, "BOTTOMLEFT")
-    slot.borderLeft:SetPoint("BOTTOMLEFT", slot.borderBottom, "TOPLEFT")
-
-    slot.borderRight = slot:CreateTexture(nil, "OVERLAY")
-    slot.borderRight:SetWidth(AURA_BORDER_WIDTH)
-    slot.borderRight:SetPoint("TOPRIGHT", slot.borderTop, "BOTTOMRIGHT")
-    slot.borderRight:SetPoint("BOTTOMRIGHT", slot.borderBottom, "TOPRIGHT")
+    slot.whiteBlock = slot:CreateTexture(nil, "BORDER")
+    slot.whiteBlock:SetSize(AURA_WHITE_BLOCK_SIZE, AURA_WHITE_BLOCK_SIZE)
+    slot.whiteBlock:SetPoint("CENTER", slot, "CENTER", 0, 0)
+    slot.whiteBlock:SetColorTexture(1, 1, 1, 1)
 
     slot.icon = slot:CreateTexture(nil, "ARTWORK")
     slot.icon:SetSize(AURA_ICON_SIZE, AURA_ICON_SIZE)
-    slot.icon:SetPoint("TOPLEFT", slot, "TOPLEFT",
-        AURA_BORDER_WIDTH + AURA_WHITE_BORDER_WIDTH,
-        -(AURA_BORDER_WIDTH + AURA_WHITE_BORDER_WIDTH))
-
-    slot.whiteTop = slot:CreateTexture(nil, "OVERLAY")
-    slot.whiteTop:SetHeight(AURA_WHITE_BORDER_WIDTH)
-    slot.whiteTop:SetPoint("BOTTOMLEFT", slot.icon, "TOPLEFT", -AURA_WHITE_BORDER_WIDTH, 0)
-    slot.whiteTop:SetPoint("BOTTOMRIGHT", slot.icon, "TOPRIGHT", AURA_WHITE_BORDER_WIDTH, 0)
-    slot.whiteTop:SetColorTexture(1, 1, 1, 1)
-
-    slot.whiteBottom = slot:CreateTexture(nil, "OVERLAY")
-    slot.whiteBottom:SetHeight(AURA_WHITE_BORDER_WIDTH)
-    slot.whiteBottom:SetPoint("TOPLEFT", slot.icon, "BOTTOMLEFT", -AURA_WHITE_BORDER_WIDTH, 0)
-    slot.whiteBottom:SetPoint("TOPRIGHT", slot.icon, "BOTTOMRIGHT", AURA_WHITE_BORDER_WIDTH, 0)
-    slot.whiteBottom:SetColorTexture(1, 1, 1, 1)
-
-    slot.whiteLeft = slot:CreateTexture(nil, "OVERLAY")
-    slot.whiteLeft:SetWidth(AURA_WHITE_BORDER_WIDTH)
-    slot.whiteLeft:SetPoint("TOPRIGHT", slot.icon, "TOPLEFT", 0, 0)
-    slot.whiteLeft:SetPoint("BOTTOMRIGHT", slot.icon, "BOTTOMLEFT", 0, 0)
-    slot.whiteLeft:SetColorTexture(1, 1, 1, 1)
-
-    slot.whiteRight = slot:CreateTexture(nil, "OVERLAY")
-    slot.whiteRight:SetWidth(AURA_WHITE_BORDER_WIDTH)
-    slot.whiteRight:SetPoint("TOPLEFT", slot.icon, "TOPRIGHT", 0, 0)
-    slot.whiteRight:SetPoint("BOTTOMLEFT", slot.icon, "BOTTOMRIGHT", 0, 0)
-    slot.whiteRight:SetColorTexture(1, 1, 1, 1)
+    slot.icon:SetPoint("CENTER", slot, "CENTER", 0, 0)
 
     slot.appBarFrame = CreateFrame("Frame", nil, slot)
     slot.appBarFrame:SetSize(AURA_APP_BAR_BG_WIDTH, AURA_APP_BAR_HEIGHT)
-    slot.appBarFrame:SetPoint("TOP", slot.whiteBottom, "BOTTOM", 0, -2)
+    slot.appBarFrame:SetPoint("TOP", slot, "BOTTOM", 0, 0)
     slot.appBarFrame:SetFrameLevel(20)
 
     slot.appBarBg = {}
@@ -326,11 +290,8 @@ local function createAuraIconSlot(parent)
     return slot
 end
 
-local function setSlotBorderColor(slot, r, g, b)
-    slot.borderTop:SetColorTexture(r, g, b, 1)
-    slot.borderBottom:SetColorTexture(r, g, b, 1)
-    slot.borderLeft:SetColorTexture(r, g, b, 1)
-    slot.borderRight:SetColorTexture(r, g, b, 1)
+local function setSlotCooldownColor(slot, r, g, b)
+    slot.cooldownBlock:SetColorTexture(r, g, b, 1)
 end
 
 local function setSlotAppBarBgColor(slot, r, g)
@@ -367,7 +328,7 @@ local function updateAuraIconRow(slots, auras, rowOffset, borderR)
 
         local b = getAuraRemainingB(aura.auraInstanceID)
         local borderG = i / 255
-        setSlotBorderColor(slot, borderR, borderG, b)
+        setSlotCooldownColor(slot, borderR, borderG, b)
         setSlotAppBarBgColor(slot, borderR, borderG)
 
         local icon = aura.icon
