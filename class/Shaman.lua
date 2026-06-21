@@ -35,6 +35,8 @@ Fuyutsui.ClassBlocks = {
         [39] = { type = "spell", spellId = 383013, name = "清毒图腾" },
         [40] = { type = "spell", spellId = 192063, name = "阵风" },
         [41] = { type = "spell", spellId = 58875, name = "幽魂步" },
+
+        [42] = { type = "block", name = "大红冷却" },
     },
     [2] = {
         ["countBars"] = {
