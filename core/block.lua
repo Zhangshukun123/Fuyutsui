@@ -169,6 +169,7 @@ function Fuyutsui:ClearAllFuyutsuiBars()
     local regions = { countBars:GetRegions() }
     for _, region in ipairs(regions) do
         if region:IsObjectType("Texture") then
+            ---@diagnostic disable-next-line: undefined-field
             region:SetColorTexture(0, 0, 0, 0)
             region:Hide()
         end

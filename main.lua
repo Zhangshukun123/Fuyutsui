@@ -444,6 +444,7 @@ end
 
 -- 7. 更新玩家施法状态
 function Fuyutsui:updatePlayerCastingInfo()
+    if not blocks or not blocks.state or not blocks.state["施法"] then return end
     if state.casting then
         local cast = UnitCastingDuration("player")
         if cast then
@@ -464,6 +465,7 @@ end
 
 -- 8. 更新玩家引导状态
 function Fuyutsui:updatePlayerChannelingInfo()
+    if not blocks or not blocks.state or not blocks.state["引导"] then return end
     if state.channeling then
         local channel = UnitChannelDuration("player")
         if channel then
@@ -484,6 +486,7 @@ end
 
 -- 9. 10. 更新玩家蓄力状态
 function Fuyutsui:updatePlayerEmpowerInfo()
+    if not blocks or not blocks.state or not blocks.state["蓄力"] or not blocks.state["蓄力层数"] then return end
     if state.empowering then
         local empowerStages = UnitEmpoweredStageDurations("player")
         local empowerDuration = UnitEmpoweredChannelDuration("player")
@@ -520,6 +523,7 @@ function Fuyutsui:updatePlayerHealth()
     ---@diagnostic disable-next-line: param-type-mismatch
     local _, _, b = healthPercent:GetRGB()
     state.healthPercent = b
+    if not blocks or not blocks.state or not blocks.state["生命值"] then return end
     self:CreatTexture(blocks.state["生命值"], state.healthPercent)
 end
 
