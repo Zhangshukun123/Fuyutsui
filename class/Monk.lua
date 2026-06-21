@@ -69,7 +69,7 @@ Fuyutsui.ClassBlocks = {
         [13] = { type = "block", name = "蓄力" },
         [14] = { type = "block", name = "蓄力层数" },
         [15] = { type = "block", name = "生命值" },
-        [16] = { type = "block", name = "能量值" },
+        [16] = { type = "block", name = "法力值" },
         [17] = { type = "block", name = "目标类型" },
         [18] = { type = "block", name = "队伍人数" },
         [19] = { type = "block", name = "首领战" },
@@ -117,7 +117,9 @@ Fuyutsui.ClassBlocks = {
         },
     },
     [3] = {
-
+        ["countBars"] = {
+            { valueType = "charge", name = "乾元之巅", minValue = 0, maxValue = 2, spellId = 1249625 },
+        },
         [9] = { type = "block", name = "战斗时间" },
         [10] = { type = "block", name = "移动" },
         [11] = { type = "block", name = "施法" },
@@ -125,7 +127,7 @@ Fuyutsui.ClassBlocks = {
         [13] = { type = "block", name = "蓄力" },
         [14] = { type = "block", name = "蓄力层数" },
         [15] = { type = "block", name = "生命值" },
-        [16] = { type = "block", name = "法力值" },
+        [16] = { type = "block", name = "能量值" },
         [17] = { type = "block", name = "目标类型" },
         [18] = { type = "block", name = "队伍人数" },
         [19] = { type = "block", name = "首领战" },
@@ -133,6 +135,16 @@ Fuyutsui.ClassBlocks = {
         [21] = { type = "block", name = "目标生命值" },
         [22] = { type = "block", name = "敌人人数" },
         [23] = { type = "block", name = "真气" },
+
+        [24] = { type = "spell", spellId = 122470, name = "业报之触" },
+        [25] = { type = "spell", spellId = 107428, name = "旭日东升踢" },
+        [26] = { type = "spell", spellId = 1249625, name = "乾元之巅" },
+        [27] = { type = "spell", spellId = 218164, name = "清创生血" },
+        [28] = { type = "spell", spellId = 152175, name = "升龙霸" },
+        [29] = { type = "spell", spellId = 101545, name = "翔龙在天" },
+        [30] = { type = "spell", spellId = 113656, name = "怒雷破" },
+
+
         [31] = { type = "spell", spellId = 322109, name = "轮回之触" },
         [32] = { type = "spell", spellId = 119381, name = "扫堂腿" },
         [33] = { type = "spell", spellId = 322101, name = "移花接木" },
@@ -142,6 +154,7 @@ Fuyutsui.ClassBlocks = {
         [37] = { type = "spell", spellId = 198898, name = "赤精之歌" },
         [38] = { type = "spell", spellId = 116844, name = "平心之环" },
         [39] = { type = "spell", spellId = 115078, name = "分筋错骨" },
+
         [41] = { type = "block", name = "目标施法" },
         [42] = { type = "block", name = "目标施法可打断" },
         [43] = { type = "block", name = "焦点施法" },

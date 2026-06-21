@@ -563,9 +563,10 @@ end
 
 function Fuyutsui:updatePlayerPowerType()
     state.power = {}
-    local powerType = UnitPowerType("player")
-    self:CreatPowerCurve(powerType)
-    self:updatePlayerPower(powerType)
+    for powerType in pairs(EnumPowerType) do
+        self:CreatPowerCurve(powerType)
+        self:updatePlayerPower(powerType)
+    end
 end
 
 -- 13. 更新玩家[一键辅助]
