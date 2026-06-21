@@ -209,6 +209,45 @@ auraIconBars:SetPoint("TOPLEFT", UIParent, "TOPLEFT", 0, BAR_CONFIG.heightOffset
 auraIconBars:SetSize(screenWidth, AURA_ROW_HEIGHT * 2 + AURA_ROW_SPACING)
 auraIconBars:SetFrameStrata("TOOLTIP")
 auraIconBars:SetFrameLevel(1)
+auraIconBars:SetMovable(true)
+auraIconBars:SetClampedToScreen(true)
+
+local function saveAuraIconBarsPosition()
+    local c = Fuyutsui.db and Fuyutsui.db.char
+    if not c then return end
+    local p, _, rp, x, y = auraIconBars:GetPoint(1)
+    if p and x and y then
+        c.auraIconPoint = p
+        c.auraIconRelPoint = rp or p
+        c.auraIconX = x
+        c.auraIconY = y
+    end
+end
+
+local function restoreAuraIconBarsPosition()
+    local c = Fuyutsui.db and Fuyutsui.db.char
+    if c and c.auraIconPoint and c.auraIconX and c.auraIconY then
+        auraIconBars:ClearAllPoints()
+        auraIconBars:SetPoint(c.auraIconPoint, UIParent, c.auraIconRelPoint or c.auraIconPoint, c.auraIconX, c.auraIconY)
+    end
+end
+
+restoreAuraIconBarsPosition()
+
+local function enableAuraIconDrag(dragFrame)
+    dragFrame:EnableMouse(true)
+    dragFrame:SetScript("OnMouseDown", function(_, button)
+        if button ~= "LeftButton" then return end
+        auraIconBars:StartMoving()
+        auraIconBars:SetScript("OnUpdate", function(frame)
+            if not IsMouseButtonDown("LeftButton") then
+                frame:StopMovingOrSizing()
+                frame:SetScript("OnUpdate", nil)
+                saveAuraIconBarsPosition()
+            end
+        end)
+    end)
+end
 
 local buffIconSlots = {}
 local debuffIconSlots = {}
@@ -264,6 +303,12 @@ local function createAuraIconSlot(parent)
     slot.icon = slot:CreateTexture(nil, "ARTWORK")
     slot.icon:SetSize(AURA_ICON_SIZE, AURA_ICON_SIZE)
     slot.icon:SetPoint("CENTER", slot, "CENTER", 0, 0)
+
+    slot.dragHit = CreateFrame("Frame", nil, slot)
+    slot.dragHit:SetSize(AURA_ICON_SIZE, AURA_ICON_SIZE)
+    slot.dragHit:SetPoint("CENTER", slot.icon, "CENTER", 0, 0)
+    slot.dragHit:SetFrameLevel(30)
+    enableAuraIconDrag(slot.dragHit)
 
     slot.appBarFrame = CreateFrame("Frame", nil, slot)
     slot.appBarFrame:SetSize(AURA_APP_BAR_BG_WIDTH, AURA_APP_BAR_HEIGHT)
@@ -358,6 +403,6 @@ function Fuyutsui:UpdateAuraIcons(AurasTable, AurasTable2)
     local buffCount = updateAuraIconRow(buffIconSlots, AurasTable or {}, 0, 2 / 255, "player")
     updateRowMarkers(buffRowStartMarker, buffRowEndMarker, buffCount, 0)
     local debuffCount = updateAuraIconRow(debuffIconSlots, AurasTable2 or {}, -AURA_ROW_HEIGHT - AURA_ROW_SPACING,
-    3 / 255, "target")
+        3 / 255, "target")
     updateRowMarkers(debuffRowStartMarker, debuffRowEndMarker, debuffCount, -AURA_ROW_HEIGHT - AURA_ROW_SPACING)
 end
