@@ -164,6 +164,7 @@ Fuyutsui.ClassBlocks = {
         [53] = { type = "block", name = "目标引导可打断" },
         [54] = { type = "block", name = "焦点引导" },
         [55] = { type = "block", name = "焦点引导可打断" },
+        [56] = { type = "spell", spellId = 35395, name = "十字军打击" },
         [70] = {
             type = "group",
             num = 3,
@@ -210,5 +211,6 @@ Fuyutsui.MacrosList = {
         [31] = "圣光道标",
         [32] = "银月城生命药水",
         [33] = "清毒术",
+        [34] = "圣光之锤",
     },
 }

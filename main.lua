@@ -1234,6 +1234,17 @@ end
 --                          姓名版信息
 -- ================================================================
 
+local function isTrainingDummyUnit(unit)
+    local name = GetUnitName(unit, true)
+    if not name then
+        return false
+    end
+
+    local lowerName = string.lower(name)
+    return string.find(name, "假人", 1, true) ~= nil
+        or string.find(lowerName, "training dummy", 1, true) ~= nil
+end
+
 local function addNameplate(unit)
     local minRange, maxRange = updateUnitRange(unit)
     nameplate[unit] = {
@@ -1244,6 +1255,7 @@ local function addNameplate(unit)
         minRange = minRange,
         maxRange = maxRange,
         affectingCombat = UnitAffectingCombat(unit),
+        isTrainingDummy = isTrainingDummyUnit(unit),
     }
 end
 local testMap = {
@@ -1258,13 +1270,16 @@ function Fuyutsui:updateEnemyCount()
     local hasAuraCount = 0
     local inTestMap = state.mapID and testMap[state.mapID]
     local inTestEncounter = state.encounterID and testEncounter[state.encounterID]
+    local targetIsTrainingDummy = state.combat and isTrainingDummyUnit("target")
     for unit, data in pairs(nameplate) do
         local minRange, maxRange = updateUnitRange(unit)
         data.minRange = minRange
         data.maxRange = maxRange
         data.affectingCombat = UnitAffectingCombat(unit)
+        data.isTrainingDummy = data.isTrainingDummy or isTrainingDummyUnit(unit)
         if data.canAttack and data.maxRange and data.maxRange <= self.state.specRange
-            and (data.affectingCombat or inTestMap or inTestEncounter) then
+            and (data.affectingCombat or inTestMap or inTestEncounter
+                or (targetIsTrainingDummy and data.isTrainingDummy)) then
             count = count + 1
             local hasAura = self:updateUnitAuraCount(unit)
             if hasAura > 0 then
