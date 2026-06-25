@@ -127,7 +127,7 @@ Fuyutsui.ClassBlocks = {
         [13] = { type = "block", name = "蓄力" },
         [14] = { type = "block", name = "蓄力层数" },
         [15] = { type = "block", name = "生命值" },
-        [16] = { type = "block", name = "法力值" },
+        [16] = { type = "block", name = "狂乱值" },
         [17] = { type = "block", name = "目标类型" },
         [18] = { type = "block", name = "队伍人数" },
         [19] = { type = "block", name = "首领战" },
@@ -160,6 +160,7 @@ Fuyutsui.ClassBlocks = {
         [49] = { type = "block", name = "目标引导可打断" },
         [50] = { type = "block", name = "焦点引导" },
         [51] = { type = "block", name = "焦点引导可打断" },
+        [52] = { type = "spell", spellId = 450983, name = "虚空冲击", forcedKnown = true },
     },
 }
 Fuyutsui.MacrosList = {

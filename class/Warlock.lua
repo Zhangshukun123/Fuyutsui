@@ -69,6 +69,7 @@ Fuyutsui.ClassBlocks = {
         [57] = { type = "block", name = "目标引导可打断" },
         [58] = { type = "block", name = "焦点引导" },
         [59] = { type = "block", name = "焦点引导可打断" },
+        [60] = { type = "block", name = "爆发开关" },
         [31] = { type = "spell", spellId = 5782, name = "恐惧" },
         [32] = { type = "spell", spellId = 6789, name = "死亡缠绕" },
         [33] = { type = "spell", spellId = 20707, name = "灵魂石" },
